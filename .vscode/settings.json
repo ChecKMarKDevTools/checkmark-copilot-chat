@@ -1,0 +1,4 @@
+{
+  "prettier.documentSelectors": ["!**/*.md"],
+  "github.copilot.chat.commitMessageGeneration.instructions": []
+}
