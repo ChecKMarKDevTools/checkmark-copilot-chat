@@ -1,0 +1,56 @@
+---
+name: 🧑‍🏫 Spirit Guide
+description: A mysterious insight, wandering idea, or concept that doesn’t fit the others — yet.
+labels: 🧑‍🏫 Spirit Guide
+assignees: anchildress1
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🌀 WHAT CALLED YOU HERE?
+        What popped into your brain that made you open this form? Don’t overthink it. Don’t even try to name it. Just channel it.
+
+  - type: textarea
+    id: concept
+    attributes:
+      label: 🌬️ The Whisper
+      description: Describe the thing. Or not. Go stream-of-consciousness. We're listening.
+      placeholder: |
+        - "I had a dream where the CI/CD pipeline sang to me"
+        - "Not sure if this is a feature or a bug but something feels...off"
+        - "Okay but what if the README told a story?"
+      validations:
+        required: true
+
+  - type: textarea
+    id: energy
+    attributes:
+      label: 🔮 The Energy Around It
+      description: Any feelings, weird vibes, or background that might help place this idea later?
+      placeholder: |
+        - "Feels like it could be part of the release process?"
+        - "Kinda like onboarding? But cosmic?"
+        - "I think it’s adjacent to documentation but I’m scared to say that out loud"
+      validations:
+        required: false
+
+  - type: checkboxes
+    id: fate
+    attributes:
+      label: 🧭 Possible Destinies
+      description: Where do you *think* this might belong, if we had to place it?
+      options:
+        - label: Might become a feature
+        - label: Might be a bug, like... spiritually
+        - label: Could be documentation, or chaos
+        - label: I genuinely have no clue, and that’s okay
+
+  - type: textarea
+    id: fragments
+    attributes:
+      label: 🪞 Fragments, Sketches, or Scribbles
+      description: Drop anything else that tagged along for the ride. Diagrams, metaphors, napkin drawings, inner monologue.
+      placeholder: 'This came to me while reheating pizza. I don’t question it.'
+      validations:
+        required: false

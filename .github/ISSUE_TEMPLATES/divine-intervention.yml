@@ -1,0 +1,46 @@
+---
+name: 🕊️ Divine Intervention
+description: Suggest an idea or improvement for this project
+labels: enhancement
+assignees: anchildress1
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ✨ THE VISION
+        What divine message descended upon you? What inefficiency, confusion, or annoyance caused the skies to part and this idea to emerge?
+
+  - type: textarea
+    id: prophecy
+    attributes:
+      label: 📜 Prophecy Details
+      description: Describe the idea or improvement in its most glorious form.
+      placeholder: |
+        - "What if this thing just... worked?"
+        - "Copilot summoned it in a dream"
+        - "Dark mode, but emotionally healing"
+      validations:
+        required: true
+
+  - type: textarea
+    id: mortal-alternatives
+    attributes:
+      label: 🧍 Other Mortal Attempts
+      description: What have you or others tried already? Any existing workarounds, spells, or compromises?
+      placeholder: |
+        - "Tried manually editing the config every time like a gremlin"
+        - "Currently using a sticky note and shame"
+      validations:
+        required: false
+
+  - type: textarea
+    id: blessings
+    attributes:
+      label: 🌈 Additional Blessings or Omens
+      description: Anything else we should know? Screenshots, diagrams, holy relics, vague vibes?
+      placeholder: |
+        - "I have a sketch on a napkin"
+        - "This would save our team 3 hours a week and a minor meltdown"
+      validations:
+        required: false

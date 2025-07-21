@@ -1,0 +1,66 @@
+name: 🚀 Release Please
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: google-github-actions/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+          package-name: 'checkmark-copilot-chat'
+          prerelease: true
+          prerelease-type: 'beta'
+          changelog-types: >-
+            [
+              {
+                "type": "feat",
+                "section": "📺 *Pilot Episode: New & Shiny*",
+                "hidden": false
+              },
+              {
+                "type": "fix",
+                "section": "🔧 *CSI: Bug Unit*",
+                "hidden": false
+              },
+              {
+                "type": "chore",
+                "section": "🧽 *The Maintenance Diaries* (unaired)",
+                "hidden": true
+              },
+              {
+                "type": "docs",
+                "section": "📖 *Previously On...* (narrated by the Docs Dept)",
+                "hidden": true
+              },
+              {
+                "type": "style",
+                "section": "💅 *Makeover Montage*",
+                "hidden": true
+              },
+              {
+                "type": "refactor",
+                "section": "🔄 *Extreme Code Makeover: Backend Edition*",
+                "hidden": true
+              },
+              {
+                "type": "perf",
+                "section": "⚡ *Fast & the Curious*",
+                "hidden": false
+              },
+              {
+                "type": "test",
+                "section": "🧪 *Trial by Unit* (testimony included)",
+                "hidden": true
+              }
+            ]
