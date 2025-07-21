@@ -1,0 +1,32 @@
+---
+config:
+  theme: base
+  accessibility:
+    enabled: true
+    ariaDescribedBy: "release-workflow-desc"
+    ariaLabelledBy: "release-workflow-title"
+---
+
+%%{init: {"accessibility": {"enabled": true, "ariaDescribedBy": "release-workflow-desc", "ariaLabelledBy": "release-workflow-title", "ariaDescription": "Release workflow flowchart showing the automated release process starting with a push to main branch, triggering Release Please action, scanning conventional commits, calculating version bump, generating TV-themed changelog, creating release PR, and completing with GitHub release creation and artifact publishing"}}}%%
+
+flowchart TD
+    A[Push to main] --> B{Release Please Action}
+    B --> C[Scan Conventional Commits]
+    C --> D[Calculate Version Bump]
+    D --> E[Generate TV-Themed Changelog]
+    E --> F[Create Release PR]
+    F --> G{PR Merged?}
+    G -->|Yes| H[Create GitHub Release]
+    G -->|No| I[Update Existing PR]
+    H --> J[Tag Repository]
+    J --> K[Publish Artifacts]
+    K --> L[🎉 Release Complete]
+    I --> M[Wait for Next Push]
+
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef process fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+
+    class L success
+    class B,C,D,E,H,J,K process
+    class G decision

@@ -1,0 +1,39 @@
+---
+config:
+  theme: base
+  accessibility:
+    enabled: true
+    ariaDescribedBy: "ecosystem-data-flow-desc"
+    ariaLabelledBy: "ecosystem-data-flow-title"
+---
+
+%%{init: {"accessibility": {"enabled": true, "ariaDescribedBy": "ecosystem-data-flow-desc", "ariaLabelledBy": "ecosystem-data-flow-title", "ariaDescription": "Ecosystem data flow sequence diagram showing the complete lifecycle from developer code changes through CI/CD deployment, user installation, chat mode usage with Copilot API integration, community feedback, and continuous improvement cycle"}}}%%
+
+sequenceDiagram
+    participant Dev as 👩‍💻 Developer
+    participant Git as Git Repository
+    participant GHA as GitHub Actions
+    participant Market as VS Code Marketplace
+    participant User as 👤 End User
+    participant VSCode as VS Code + Extension
+    participant Copilot as GitHub Copilot API
+    participant Community as 👥 Community
+
+    Dev->>Git: Push code changes
+    Git->>GHA: Trigger CI/CD pipeline
+    GHA->>GHA: Run tests & security scans
+    GHA->>Market: Deploy to marketplace
+
+    User->>Market: Install extension
+    Market->>VSCode: Download & activate extension
+
+    User->>VSCode: Use chat modes (/chat doc)
+    VSCode->>Copilot: Send enhanced prompts
+    Copilot->>VSCode: Return AI response
+    VSCode->>User: Display mode-specific result
+
+    User->>Community: Share feedback & ideas
+    Community->>Git: Contribute issues & discussions
+    Git->>Dev: Inform development priorities
+
+    Note over Dev,Community: Continuous improvement cycle

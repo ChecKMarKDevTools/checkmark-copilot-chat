@@ -1,0 +1,29 @@
+---
+config:
+  theme: base
+  accessibility:
+    enabled: true
+    ariaDescribedBy: "publishing-workflow-desc"
+    ariaLabelledBy: "publishing-workflow-title"
+---
+
+%%{init: {"accessibility": {"enabled": true, "ariaDescribedBy": "publishing-workflow-desc", "ariaLabelledBy": "publishing-workflow-title", "ariaDescription": "Extension publishing workflow flowchart showing the automated process from release creation through checkout, Node.js setup, dependency installation, testing, building, validation, signing, marketplace publishing, and community notification"}}}%%
+
+flowchart TD
+    A[Release Created] --> B[Checkout Release Tag]
+    B --> C[Setup Node.js]
+    C --> D[Install Dependencies]
+    D --> E[Run Full Test Suite]
+    E --> F[Build Extension Package]
+    F --> G[Validate Extension Manifest]
+    G --> H[Sign Extension]
+    H --> I[Publish to VS Code Marketplace]
+    I --> J[Update GitHub Release Assets]
+    J --> K[Notify Community]
+    K --> L[🎉 Extension Live]
+
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef process fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+
+    class L success
+    class B,C,D,E,F,G,H,I,J,K process

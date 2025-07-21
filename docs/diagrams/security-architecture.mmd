@@ -1,0 +1,42 @@
+---
+config:
+  theme: base
+  accessibility:
+    enabled: true
+    ariaDescribedBy: "security-architecture-desc"
+    ariaLabelledBy: "security-architecture-title"
+---
+
+%%{init: {"accessibility": {"enabled": true, "ariaDescribedBy": "security-architecture-desc", "ariaLabelledBy": "security-architecture-title", "ariaDescription": "Security architecture diagram showing multiple security layers including input validation, data sanitization, authorization checks, output filtering, and audit logging, along with threat mitigation strategies for XSS prevention, code injection protection, secret detection, and permission management"}}}%%
+
+graph LR
+    subgraph "Security Layers"
+        Input[Input Validation]
+        Sanitization[Data Sanitization]
+        Authorization[Authorization Checks]
+        Output[Output Filtering]
+        Audit[Audit Logging]
+    end
+
+    subgraph "Threat Mitigation"
+        XSS[XSS Prevention]
+        Injection[Code Injection Protection]
+        Secrets[Secret Detection]
+        Permissions[Permission Management]
+    end
+
+    Input --> Sanitization
+    Sanitization --> Authorization
+    Authorization --> Output
+    Output --> Audit
+
+    Input --> XSS
+    Sanitization --> Injection
+    Authorization --> Secrets
+    Output --> Permissions
+
+    classDef security fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef threat fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+
+    class Input,Sanitization,Authorization,Output,Audit security
+    class XSS,Injection,Secrets,Permissions threat

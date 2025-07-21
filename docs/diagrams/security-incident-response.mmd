@@ -1,0 +1,33 @@
+---
+config:
+  theme: base
+  accessibility:
+    enabled: true
+    ariaDescribedBy: "security-incident-response-desc"
+    ariaLabelledBy: "security-incident-response-title"
+---
+
+%%{init: {"accessibility": {"enabled": true, "ariaDescribedBy": "security-incident-response-desc", "ariaLabelledBy": "security-incident-response-title", "ariaDescription": "Security incident response workflow flowchart showing the process from security alert through severity assessment, critical vs standard response paths, mitigation actions, user notification, emergency fixes, security audits, and documentation updates"}}}%%
+
+flowchart TD
+    A[Security Alert] --> B[Assess Severity]
+    B --> C{Critical?}
+    C -->|Yes| D[Immediate Mitigation]
+    C -->|No| E[Standard Process]
+    D --> F[Disable Affected Features]
+    F --> G[Notify Users]
+    G --> H[Deploy Emergency Fix]
+    E --> I[Schedule Fix]
+    H --> J[Security Audit]
+    I --> J
+    J --> K[Update Security Docs]
+
+    classDef critical fill:#ffebee,stroke:#c62828,stroke-width:3px
+    classDef normal fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef process fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+
+    class A,D,F,G,H critical
+    class E,I normal
+    class B,J,K process
+    class C decision

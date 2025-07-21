@@ -1,0 +1,32 @@
+---
+config:
+  theme: base
+  accessibility:
+    enabled: true
+    ariaDescribedBy: "data-flow-sequence-desc"
+    ariaLabelledBy: "data-flow-sequence-title"
+---
+
+%%{init: {"accessibility": {"enabled": true, "ariaDescribedBy": "data-flow-sequence-desc", "ariaLabelledBy": "data-flow-sequence-title", "ariaDescription": "Sequence diagram showing the data flow when a user executes a chat command, starting with user input in VS Code, routing through the extension, security validation, chat mode processing, Copilot API interaction, and response delivery back to the user"}}}%%
+
+sequenceDiagram
+    participant User
+    participant VSCode
+    participant Extension
+    participant ChatMode
+    participant CopilotAPI
+    participant SecurityLayer
+
+    User->>VSCode: /chat [mode] [prompt]
+    VSCode->>Extension: Route chat command
+    Extension->>SecurityLayer: Validate input
+    SecurityLayer->>Extension: Input approved
+    Extension->>ChatMode: Delegate to specific mode
+    ChatMode->>ChatMode: Apply mode-specific context
+    ChatMode->>CopilotAPI: Send enriched prompt
+    CopilotAPI->>ChatMode: Return AI response
+    ChatMode->>SecurityLayer: Validate response
+    SecurityLayer->>ChatMode: Response approved
+    ChatMode->>Extension: Return processed response
+    Extension->>VSCode: Display result
+    VSCode->>User: Show chat response

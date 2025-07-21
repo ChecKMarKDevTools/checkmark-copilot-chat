@@ -1,0 +1,33 @@
+---
+config:
+  theme: base
+  accessibility:
+    enabled: true
+    ariaDescribedBy: "health-check-workflow-desc"
+    ariaLabelledBy: "health-check-workflow-title"
+---
+
+%%{init: {"accessibility": {"enabled": true, "ariaDescribedBy": "health-check-workflow-desc", "ariaLabelledBy": "health-check-workflow-title", "ariaDescription": "Installation health check workflow flowchart showing the verification process from extension installation through prerequisite checking, Copilot activation, basic chat testing, mode switching validation, and final readiness confirmation"}}}%%
+
+flowchart TD
+    A[Install Extension] --> B[Check Prerequisites]
+    B --> C{Copilot Active?}
+    C -->|No| D[Install/Activate Copilot]
+    C -->|Yes| E[Test Basic Chat]
+    D --> E
+    E --> F{Chat Working?}
+    F -->|No| G[Check Configuration]
+    F -->|Yes| H[Test Mode Switching]
+    G --> H
+    H --> I{Modes Working?}
+    I -->|No| J[Review Mode Settings]
+    I -->|Yes| K[✅ Ready to Go!]
+    J --> K
+
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef process fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+
+    class K success
+    class A,B,D,E,G,H,J process
+    class C,F,I decision

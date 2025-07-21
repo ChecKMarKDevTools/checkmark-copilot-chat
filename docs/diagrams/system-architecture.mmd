@@ -1,0 +1,77 @@
+---
+config:
+  theme: base
+  themeVariables:
+    primaryColor: "#e1f5fe"
+  accessibility:
+    enabled: true
+    ariaDescribedBy: "system-architecture-desc"
+    ariaLabelledBy: "system-architecture-title"
+---
+
+%%{init: {"accessibility": {"enabled": true, "ariaDescribedBy": "system-architecture-desc", "ariaLabelledBy": "system-architecture-title", "ariaDescription": "System architecture diagram showing the CheckMark Copilot Extension components including VS Code environment, core extension, chat modes, and external integrations"}}}%%
+
+graph TB
+    subgraph "VS Code Environment"
+        VSCode[VS Code Editor]
+        CopilotAPI[GitHub Copilot API]
+        ExtensionHost[Extension Host]
+    end
+
+    subgraph "CheckMark Extension"
+        Core[Core Extension]
+        ChatModes[Chat Mode Manager]
+        Security[Security Layer]
+        Config[Configuration Manager]
+    end
+
+    subgraph "Chat Modes"
+        DocDoctor[🩺 Doc Doctor]
+        LogReviewr[🔎 Logging Reviewr]
+        RefactorGenie[🧞 Refactor Genie]
+        CICDWizard[🪄 CI/CD Wizard]
+        SecuritySentinel[🛡️ Security Sentinel]
+        TestAlchemist[🧪 Test Alchemist]
+        UXCrafter[🎨 UX Craftsperson]
+        DataWhisperer[📊 Data Whisperer]
+        PerfOptimizer[🚀 Performance Optimizer]
+        ModeCustom[🎭 Custom Modes]
+    end
+
+    subgraph "External Integrations"
+        GitHub[GitHub API]
+        NPM[NPM Registry]
+        Marketplace[VS Code Marketplace]
+    end
+
+    VSCode --> ExtensionHost
+    ExtensionHost --> Core
+    Core --> ChatModes
+    Core --> Security
+    Core --> Config
+
+    ChatModes --> DocDoctor
+    ChatModes --> LogReviewr
+    ChatModes --> RefactorGenie
+    ChatModes --> CICDWizard
+    ChatModes --> SecuritySentinel
+    ChatModes --> TestAlchemist
+    ChatModes --> UXCrafter
+    ChatModes --> DataWhisperer
+    ChatModes --> PerfOptimizer
+    ChatModes --> ModeCustom
+
+    Core --> CopilotAPI
+    Core --> GitHub
+    Config --> NPM
+    Core --> Marketplace
+
+    classDef coreComponent fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    classDef chatMode fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef external fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef vscode fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+
+    class Core,ChatModes,Security,Config coreComponent
+    class DocDoctor,LogReviewr,RefactorGenie,CICDWizard,SecuritySentinel,TestAlchemist,UXCrafter,DataWhisperer,PerfOptimizer,ModeCustom chatMode
+    class GitHub,NPM,Marketplace external
+    class VSCode,CopilotAPI,ExtensionHost vscode

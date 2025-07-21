@@ -1,0 +1,34 @@
+---
+config:
+  theme: base
+  accessibility:
+    enabled: true
+    ariaDescribedBy: "ci-workflow-desc"
+    ariaLabelledBy: "ci-workflow-title"
+---
+
+%%{init: {"accessibility": {"enabled": true, "ariaDescribedBy": "ci-workflow-desc", "ariaLabelledBy": "ci-workflow-title", "ariaDescription": "Continuous integration workflow flowchart showing the automated PR validation process including code checkout, Node.js setup, dependency installation, linting, unit and integration testing, extension building, security scanning, code coverage analysis, and final PR approval or blocking decision"}}}%%
+
+flowchart TD
+A[PR Created/Updated] --> B[Checkout Code]
+B --> C[Setup Node.js]
+C --> D[Install Dependencies]
+D --> E[Run Linting]
+E --> F[Run Unit Tests]
+F --> G[Run Integration Tests]
+G --> H[Build Extension]
+H --> I[Security Scan]
+I --> J[Code Coverage]
+J --> K{All Checks Pass?}
+K -->|Yes| L[✅ PR Ready]
+K -->|No| M[❌ Block PR]
+
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef failure fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef process fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+
+    class L success
+    class M failure
+    class B,C,D,E,F,G,H,I,J process
+    class K decision

@@ -1,0 +1,188 @@
+---
+config:
+  theme: base
+  accessibility:
+    enabled: true
+    ariaDescribedBy: "project-ecosystem-desc"
+    ariaLabelledBy: "project-ecosystem-title"
+---
+
+%%{init: {"accessibility": {"enabled": true, "ariaDescribedBy": "project-ecosystem-desc", "ariaLabelledBy": "project-ecosystem-title", "ariaDescription": "Complete project ecosystem diagram showing the interconnected components including development environment, code quality tools, GitHub repository, CI/CD pipeline, VS Code extension architecture, chat modes, external services, user environment, documentation system, and community support channels"}}}%%
+
+graph TB
+    subgraph "Development Environment"
+        Dev[👩‍💻 Developer]
+        IDE[VS Code]
+        Git[Git Repository]
+        Node[Node.js/npm]
+    end
+
+    subgraph "Code Quality & Security"
+        Lint[ESLint]
+        Format[Prettier]
+        Spell[CSpell]
+        Husky[Husky Hooks]
+        Security[Security Scanning]
+    end
+
+    subgraph "GitHub Repository"
+        Main[main branch]
+        Issues[GitHub Issues]
+        Discussions[GitHub Discussions]
+        Wiki[Documentation]
+        Releases[GitHub Releases]
+    end
+
+    subgraph "CI/CD Pipeline"
+        GHA[GitHub Actions]
+        Tests[Automated Tests]
+        Build[Extension Build]
+        Package[Extension Package]
+        Deploy[Deployment]
+    end
+
+    subgraph "VS Code Extension"
+        Core[Core Extension]
+        Modes[Chat Modes]
+        Security2[Security Layer]
+        Config[Configuration]
+    end
+
+    subgraph "Chat Modes Ecosystem"
+        DocDoctor[🩺 Doc Doctor]
+        LogReviewr[🔎 Logging Reviewr]
+        RefactorGenie[🧞 Refactor Genie]
+        CICDWizard[🪄 CI/CD Wizard]
+        SecuritySentinel[🛡️ Security Sentinel]
+        TestAlchemist[🧪 Test Alchemist]
+        UXCrafter[🎨 UX Craftsperson]
+        DataWhisperer[📊 Data Whisperer]
+        PerfOptimizer[🚀 Performance Optimizer]
+        CustomModes[🎭 Custom Modes]
+    end
+
+    subgraph "External Services"
+        Copilot[GitHub Copilot API]
+        Marketplace[VS Code Marketplace]
+        NPM[NPM Registry]
+        GitHub2[GitHub API]
+    end
+
+    subgraph "User Environment"
+        User[👤 End User]
+        VSCodeUser[VS Code + Extension]
+        Projects[User Projects]
+        Teams[Development Teams]
+    end
+
+    subgraph "Documentation System"
+        UserDocs[📖 User Documentation]
+        DevDocs[🛠️ Developer Documentation]
+        APIDocs[📋 API Documentation]
+        Examples[💡 Examples & Tutorials]
+    end
+
+    subgraph "Community & Support"
+        Community[👥 User Community]
+        Support[🆘 Support Channels]
+        Feedback[💬 Feedback Loop]
+        Contributors[🤝 Future Contributors]
+    end
+
+    %% Development Flow
+    Dev --> IDE
+    IDE --> Git
+    Dev --> Node
+
+    %% Quality Assurance
+    Git --> Lint
+    Git --> Format
+    Git --> Spell
+    Git --> Husky
+    Git --> Security
+
+    %% Repository Management
+    Git --> Main
+    Main --> Issues
+    Main --> Discussions
+    Main --> Wiki
+    Main --> Releases
+
+    %% CI/CD Flow
+    Main --> GHA
+    GHA --> Tests
+    Tests --> Build
+    Build --> Package
+    Package --> Deploy
+    Deploy --> Marketplace
+
+    %% Extension Architecture
+    Package --> Core
+    Core --> Modes
+    Core --> Security2
+    Core --> Config
+
+    %% Chat Modes
+    Modes --> DocDoctor
+    Modes --> LogReviewr
+    Modes --> RefactorGenie
+    Modes --> CICDWizard
+    Modes --> SecuritySentinel
+    Modes --> TestAlchemist
+    Modes --> UXCrafter
+    Modes --> DataWhisperer
+    Modes --> PerfOptimizer
+    Modes --> CustomModes
+
+    %% External Integrations
+    Core --> Copilot
+    Deploy --> Marketplace
+    Package --> NPM
+    Core --> GitHub2
+
+    %% User Experience
+    Marketplace --> VSCodeUser
+    User --> VSCodeUser
+    VSCodeUser --> Projects
+    User --> Teams
+
+    %% Documentation Flow
+    Wiki --> UserDocs
+    Wiki --> DevDocs
+    Wiki --> APIDocs
+    Wiki --> Examples
+
+    %% Community Interaction
+    User --> Community
+    Community --> Support
+    Support --> Feedback
+    Feedback --> Issues
+    Community --> Contributors
+
+    %% Feedback Loops
+    User --> Feedback
+    Teams --> Feedback
+    Contributors --> Git
+    Support --> Dev
+
+    classDef development fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef quality fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef repository fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef cicd fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef extension fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef modes fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef external fill:#f1f8e9,stroke:#558b2f,stroke-width:2px
+    classDef user fill:#fff8e1,stroke:#ffa000,stroke-width:2px
+    classDef docs fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    classDef community fill:#ffeaa7,stroke:#fdcb6e,stroke-width:2px
+
+    class Dev,IDE,Git,Node development
+    class Lint,Format,Spell,Husky,Security quality
+    class Main,Issues,Discussions,Wiki,Releases repository
+    class GHA,Tests,Build,Package,Deploy cicd
+    class Core,Security2,Config extension
+    class Modes,DocDoctor,LogReviewr,RefactorGenie,CICDWizard,SecuritySentinel,TestAlchemist,UXCrafter,DataWhisperer,PerfOptimizer,CustomModes modes
+    class Copilot,Marketplace,NPM,GitHub2 external
+    class User,VSCodeUser,Projects,Teams user
+    class UserDocs,DevDocs,APIDocs,Examples docs
+    class Community,Support,Feedback,Contributors community

@@ -18,7 +18,9 @@ All the questions you're thinking but haven't asked yet! And some you probably w
 
 ### Q: How do I know if it's working?
 
-**A:** Try typing `/chat doc` in your Copilot chat. If you get documentation-focused responses with a professional but friendly tone, you're golden! ✨
+**A:** Right now, you can't! We're still in the foundation-building phase. Once we have the first working version, you'll be able to try typing `/chat doc` in your Copilot chat and get documentation-focused responses. But we're not there yet! ✨
+
+**Follow the project** to know when the first beta is ready for testing.
 
 ---
 
@@ -26,14 +28,16 @@ All the questions you're thinking but haven't asked yet! And some you probably w
 
 ### Q: How many chat modes are there?
 
-**A:** Currently 10+ modes including:
+**A:** We're designing 10+ specialized modes including:
 
 - 🩺 Doc Doctor (documentation)
 - 🔎 Logging Reviewr (log optimization)
 - 🧞 Refactor Genie (code cleanup)
 - 🪄 CI/CD Wizard (automation)
 - 🛡️ Security Sentinel (security review)
-- And more! Check the [chat modes guide](./chat-modes.md) for the full list.
+- And more! Check the [chat modes guide](./chat-modes.md) for the full planned list.
+
+**Current Status:** We're in early development - the foundation is being built first!
 
 ### Q: Can I create custom modes?
 

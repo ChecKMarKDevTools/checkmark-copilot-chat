@@ -1,0 +1,32 @@
+---
+config:
+  theme: base
+  accessibility:
+    enabled: true
+    ariaDescribedBy: "security-workflow-desc"
+    ariaLabelledBy: "security-workflow-title"
+---
+
+%%{init: {"accessibility": {"enabled": true, "ariaDescribedBy": "security-workflow-desc", "ariaLabelledBy": "security-workflow-title", "ariaDescription": "Security workflow flowchart showing automated security scanning process including dependency audit, SAST code analysis, secret scanning, license compliance, vulnerability assessment, and conditional security issue creation with maintainer notification"}}}%%
+
+flowchart TD
+    A[Scheduled/Manual Trigger] --> B[Dependency Audit]
+    B --> C[SAST Code Analysis]
+    C --> D[Secret Scanning]
+    D --> E[License Compliance]
+    E --> F[Vulnerability Assessment]
+    F --> G{Issues Found?}
+    G -->|Yes| H[Create Security Issue]
+    G -->|No| I[✅ All Clear]
+    H --> J[Notify Maintainers]
+    J --> K[Generate Security Report]
+
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef warning fill:#fff8e1,stroke:#ffa000,stroke-width:2px
+    classDef process fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+
+    class I success
+    class H,J,K warning
+    class B,C,D,E,F process
+    class G decision

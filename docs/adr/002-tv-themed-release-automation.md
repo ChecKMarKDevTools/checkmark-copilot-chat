@@ -32,12 +32,12 @@ Implement TV-themed release automation where:
 Example changelog structure:
 
 ```markdown
-## Season 2: "The Documentation Chronicles" 📺
+## Season 1: "The Foundation Chronicles" 📺
 
-### New Episodes
+### Pilot Episode
 
-- **S02E01**: "The Doc Doctor Arrives" - Comprehensive documentation generation
-- **S02E02**: "Security Sentinel's First Case" - Advanced security scanning
+- **S01E01**: "The Doc Doctor Arrives" - Comprehensive documentation generation
+- **S01E02**: "Security Sentinel's First Case" - Advanced security scanning
 
 ### Behind the Scenes (Bug Fixes)
 
