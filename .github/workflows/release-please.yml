@@ -1,66 +1,59 @@
-name: 🚀 Release Please
+name: 🍾 Release Please
 
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   release-please:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
-      attestations: write
     steps:
-      - uses: google-github-actions/release-please-action@v4
+      - name: ✅ Checkout Code
+        uses: actions/checkout@v4
+      - name: ⚙️ Get Volta Node Version
+        id: get-volta-node
+        run: |
+          version=$(jq -r .volta.node package.json)
+          echo "node-version=$version" >> $GITHUB_OUTPUT
+      - name: 🤖 Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: node
-          package-name: 'checkmark-copilot-chat'
-          prerelease: true
-          prerelease-type: 'beta'
-          changelog-types: >-
-            [
-              {
-                "type": "feat",
-                "section": "📺 *Pilot Episode: New & Shiny*",
-                "hidden": false
-              },
-              {
-                "type": "fix",
-                "section": "🔧 *CSI: Bug Unit*",
-                "hidden": false
-              },
-              {
-                "type": "chore",
-                "section": "🧽 *The Maintenance Diaries* (unaired)",
-                "hidden": true
-              },
-              {
-                "type": "docs",
-                "section": "📖 *Previously On...* (narrated by the Docs Dept)",
-                "hidden": true
-              },
-              {
-                "type": "style",
-                "section": "💅 *Makeover Montage*",
-                "hidden": true
-              },
-              {
-                "type": "refactor",
-                "section": "🔄 *Extreme Code Makeover: Backend Edition*",
-                "hidden": true
-              },
-              {
-                "type": "perf",
-                "section": "⚡ *Fast & the Curious*",
-                "hidden": false
-              },
-              {
-                "type": "test",
-                "section": "🧪 *Trial by Unit* (testimony included)",
-                "hidden": true
-              }
-            ]
+          node-version: ${{ steps.get-volta-node.outputs.node-version }}
+      - name: 📥 Install Dependencies
+        run: npm install
+      - name: 🏗️ Build Project
+        run: npm run build
+      - name: 🧪 Run Tests
+        run: npm test
+      - name: 📦 Package Artifact
+        run: |
+          mkdir -p artifact
+          zip -r artifact/release-artifact.zip .
+      - name: 🚀 Create Release
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+      - name: 📤 Upload Release Artifact
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ steps.release.outputs.tag_name }} artifact/release-artifact.zip
+      - name: 📝 Report Release Status
+        if: always()
+        run: |
+          # Output release status and tag to the Actions summary
+          if [ "${{ steps.release.outputs.release_created }}" == "true" ]; then
+            echo "🎉 Release created: ${{ steps.release.outputs.tag_name }}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "🤔 No new release created. Proposed tag: ${{ steps.release.outputs.tag_name }}" >> $GITHUB_STEP_SUMMARY
+          fi

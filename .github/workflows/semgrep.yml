@@ -1,0 +1,46 @@
+name: Semgrep Scan
+
+on:
+  pull_request: {}
+
+jobs:
+  semgrep:
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    if: (github.actor != 'dependabot[bot]')
+    steps:
+      - name: ✅ Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔍 Run Semgrep CI (+ Publish + Emit Reports)
+        run: |
+          semgrep ci \
+            --publish \
+            --publish-token ${{ secrets.SEMGREP_APP_TOKEN }} \
+            --publish-deployment ${{ secrets.SEMGREP_DEPLOYMENT_ID }} \
+            --sarif semgrep.sarif \
+            --json   semgrep.json
+
+      - name: 📤 Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
+        if: always()
+
+      - name: 📝 Summarize PR Diff Scan
+        if: always()
+        run: |
+          echo "🔍 **Semgrep PR Diff Scan Summary**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🗂️ **Changed files in this PR:**" >> $GITHUB_STEP_SUMMARY
+          git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }} >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          issues=$(jq '.results | length' semgrep.json)
+          echo "😵 Found **$issues** issues in changed files" >> $GITHUB_STEP_SUMMARY

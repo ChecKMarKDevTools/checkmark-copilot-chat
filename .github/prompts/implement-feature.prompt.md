@@ -1,3 +1,23 @@
+---
+mode: agent
+tools:
+  - codebase
+  - changes
+  - editFiles
+  - findTestFiles
+  - problems
+  - runTests
+  - runInTerminal
+  - search
+  - testFailure
+extensions:
+  - Mermaid Chart
+  - SonarQube for IDE
+  - GitHub Pull Requests
+description: |
+  This prompt is used to implement new features in the CheckMark Copilot Extension. It ensures that the implementation follows security best practices, is well-documented, and integrates seamlessly with existing chat modes.
+---
+
 # 🚀 Implement Feature Prompt Template
 
 Use this template when asking Copilot to implement new features for the CheckMark Copilot Extension. This ensures consistent, secure, and well-documented implementations! ✨

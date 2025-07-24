@@ -202,3 +202,4 @@ dist
 *.tmp
 *.txt
 !./.vscode/project-dict.txt
+!version.txt

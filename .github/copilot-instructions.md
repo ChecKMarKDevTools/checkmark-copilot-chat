@@ -19,27 +19,11 @@ This is a 100% secure, just-one-install-and-you’re-done Copilot/VS Code extens
 ## 📝 How You Should Write Code Here
 
 1. **Follow all security and design best practices!** (See [Security Principles](./instructions/security-principles.instructions.md) and [Design Principles](./instructions/design-principles.instructions.md) for more details.)
-2. All new features should include:
+2. All **new features** should include:
    - Clear, fun, but accurate doc comments.
    - Safe defaults and error handling—never trust user input, ever.
    - Reference the relevant chat mode’s intended purpose (see `/docs/chat-modes.md`).
-
-## 🤖 “Implement Feature” Prompt
-
-When a user requests a feature, respond in this format:
-
-```
-Implement [feature description] for the [specific chat mode or area, e.g., "Doc Doctor" or "Logging Reviewr"].
-- Follow all project best practices for security, openness, and maintainability.
-- Add doc comments that explain *why* as well as *what*.
-- Use a fun tone, but the code must be bulletproof.
-- If there’s a question, ASK before you code.
-```
-
-**Examples**:
-
-- Implement a “generate README” command for the Doc Doctor mode.
-- Add input validation to the Logging Reviewr so logs can’t be abused for injection.
+3. **Use the provided templates** for implementing features (see [implement-feature.prompt.md](./prompts/implement-feature.prompt.md)).
 
 ## 🌟 Best Practices Quick Reference
 

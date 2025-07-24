@@ -18,11 +18,12 @@ Each ADR follows this structure:
 
 ## Current ADRs
 
-| Number                                                  | Title                                   | Status   | Date       |
-| ------------------------------------------------------- | --------------------------------------- | -------- | ---------- |
+| Number | Title | Status | Date |
+| - | - | - | - |
 | [001](./001-single-parameterized-skill-architecture.md) | Single Parameterized Skill Architecture | Accepted | 2025-07-21 |
-| [002](./002-tv-themed-release-automation.md)            | TV-Themed Release Automation            | Accepted | 2025-07-21 |
-| [003](./003-security-first-design-approach.md)          | Security-First Design Approach          | Accepted | 2025-07-21 |
+| [002](./002-tv-themed-release-automation.md) | TV-Themed Release Automation | Accepted | 2025-07-21 |
+| [003](./003-security-first-design-approach.md) | Security-First Design Approach | Accepted | 2025-07-21 |
+| [004](./004-user-data-privacy-and-instruction-append-only.md) | User Data Privacy and Instruction Append-Only Policy | Proposed | 2025-07-22 |
 
 ## Creating New ADRs
 

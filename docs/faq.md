@@ -244,7 +244,7 @@ We read every issue! 🐛
 ## 🤔 Didn't Find Your Question?
 
 - **Check the [troubleshooting guide](./troubleshooting.md)** for technical issues
-- **Browse [GitHub Discussions](https://github.com/CheckMarKDevTools/checkmark-copilot-chat/discussions)** for community Q&A
+- **Browse [GitHub Discussions](https://github.com/CheckMarKDevTools/checkmark-copilot-chat/discussions)** for community Q\&A
 - **Open a GitHub issue** if you found a bug
 - **Start a discussion** for general questions
 

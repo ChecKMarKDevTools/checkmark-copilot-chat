@@ -6,39 +6,39 @@ This folder contains all the Mermaid diagrams for the CheckMark Copilot Extensio
 
 ## 🏗️ Architecture Diagrams
 
-| Diagram                   | Description                                              | File                                                     |
-| ------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| **System Architecture**   | Complete extension architecture with VS Code integration | [system-architecture.mmd](./system-architecture.mmd)     |
-| **Data Flow Sequence**    | User interaction flow through the system                 | [data-flow-sequence.mmd](./data-flow-sequence.mmd)       |
-| **Security Architecture** | Multi-layer security approach                            | [security-architecture.mmd](./security-architecture.mmd) |
+| Diagram | Description | File |
+| - | - | - |
+| **System Architecture** | Complete extension architecture with VS Code integration | [system-architecture.mmd](./system-architecture.mmd) |
+| **Data Flow Sequence** | User interaction flow through the system | [data-flow-sequence.mmd](./data-flow-sequence.mmd) |
+| **Security Architecture** | Multi-layer security approach | [security-architecture.mmd](./security-architecture.mmd) |
 
 ## 🚀 Workflow Diagrams
 
-| Diagram                 | Description                             | File                                                 |
-| ----------------------- | --------------------------------------- | ---------------------------------------------------- |
-| **Release Workflow**    | Current GitHub Actions release process  | [release-workflow.mmd](./release-workflow.mmd)       |
-| **CI Workflow**         | Planned continuous integration pipeline | [ci-workflow.mmd](./ci-workflow.mmd)                 |
-| **Security Workflow**   | Automated security scanning process     | [security-workflow.mmd](./security-workflow.mmd)     |
-| **Publishing Workflow** | Extension marketplace deployment        | [publishing-workflow.mmd](./publishing-workflow.mmd) |
+| Diagram | Description | File |
+| - | - | - |
+| **Release Workflow** | Current GitHub Actions release process | [release-workflow.mmd](./release-workflow.mmd) |
+| **CI Workflow** | Planned continuous integration pipeline | [ci-workflow.mmd](./ci-workflow.mmd) |
+| **Security Workflow** | Automated security scanning process | [security-workflow.mmd](./security-workflow.mmd) |
+| **Publishing Workflow** | Extension marketplace deployment | [publishing-workflow.mmd](./publishing-workflow.mmd) |
 
 ## 🚨 Emergency Workflows
 
-| Diagram                        | Description                     | File                                                               |
-| ------------------------------ | ------------------------------- | ------------------------------------------------------------------ |
-| **Hotfix Workflow**            | Emergency deployment process    | [hotfix-workflow.mmd](./hotfix-workflow.mmd)                       |
+| Diagram | Description | File |
+| - | - | - |
+| **Hotfix Workflow** | Emergency deployment process | [hotfix-workflow.mmd](./hotfix-workflow.mmd) |
 | **Security Incident Response** | Security issue handling process | [security-incident-response.mmd](./security-incident-response.mmd) |
 
 ## 🛠️ User Experience Diagrams
 
-| Diagram                   | Description                       | File                                                     |
-| ------------------------- | --------------------------------- | -------------------------------------------------------- |
+| Diagram | Description | File |
+| - | - | - |
 | **Health Check Workflow** | Installation verification process | [health-check-workflow.mmd](./health-check-workflow.mmd) |
 
 ## 🌍 Ecosystem Diagrams
 
-| Diagram                 | Description                            | File                                                 |
-| ----------------------- | -------------------------------------- | ---------------------------------------------------- |
-| **Project Ecosystem**   | Complete project ecosystem overview    | [project-ecosystem.mmd](./project-ecosystem.mmd)     |
+| Diagram | Description | File |
+| - | - | - |
+| **Project Ecosystem** | Complete project ecosystem overview | [project-ecosystem.mmd](./project-ecosystem.mmd) |
 | **Ecosystem Data Flow** | Data flow through the entire ecosystem | [ecosystem-data-flow.mmd](./ecosystem-data-flow.mmd) |
 
 ## 📝 How to Use These Diagrams

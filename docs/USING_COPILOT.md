@@ -1,5 +1,6 @@
 # 🚀 How to Use Co2. **Extensions are powerful—use them responsibly!**
-   Seriously, read [Security Principles](../.github/instructions/security-principles.instructions.md).lot in This Repo (and Actually Have Fun Doing It)
+
+Seriously, read [Security Principles](../.github/instructions/security-principles.instructions.md).lot in This Repo (and Actually Have Fun Doing It)
 
 ## 📦 Quickstart
 
@@ -18,7 +19,7 @@
    Use [implement-feature.prompt.md](../.github/prompts/implement-feature.prompt.md) to add features without ever wondering, “Wait, am I supposed to write tests?” (The answer is: Yes. Yes, you are.)
 
 4. **Be Secure, Not Sorry**
-   Seriously, read [SECURITY_BEST_PRACTICES.md](../.github/instructions/security-principles.instructions.md).
+   Seriously, read [Security Principles](../.github/instructions/security-principles.instructions.md).
    If you’re unsure, the answer is “sanitize input and add a comment.”
    All chat modes enforce security, but you’re still responsible for double-checking before merging.
 

@@ -54,7 +54,7 @@
 
 ## Virtual Collaboration & Workflow 🌐
 
-- 🔔 **Asynchronous Design Reviews:** Automate context-rich reminders (e.g., “@alice, PR idle for 48 hrs”) via Slack threads to maintain transparency.
+- 🔔 **Asynchronous Design Reviews:** Automate context-rich reminders (e.g., “[**@alice**](https://github.com/alice), PR idle for 48 hrs”) via Slack threads to maintain transparency.
 - 📖 **Living Documentation:** Store design docs and API contracts in your repo; surface them via `/help` commands or Home Tab panels.
 - 🚩 **Feature Flags & Gradual Rollout:** Use feature flags (LaunchDarkly or simple toggles) to pilot features before full rollouts.
 

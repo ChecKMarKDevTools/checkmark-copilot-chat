@@ -1,0 +1,79 @@
+name: 🛰️ Full Body Scan - Chaos-style
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '13 04 * * 4' # Week 1: Thursday at 04:13 UTC
+    - cron: '42 02 * * 1' # Week 2: Monday at 02:42 UTC
+    - cron: '29 06 * * 5' # Week 3: Friday at 06:29 UTC
+    - cron: '57 03 * * 0' # Week 4: Sunday at 03:57 UTC
+
+jobs:
+  scan:
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    container:
+      image: semgrep/semgrep
+    name: 🔍 Weekly Deep Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧾 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🎛️ Set Codename Roster
+        id: setnames
+        run: |
+          echo "JUDY=💋 Judy's Backup Failed Again" >> $GITHUB_ENV
+          echo "BILLY=🎿 Billy Went Skiing With No Helmet" >> $GITHUB_ENV
+          echo "KELVIN=💰 Kelvin Charged It to the Church Card" >> $GITHUB_ENV
+          echo "JESSE=🙏 Jesse Baptized a Branch in Production" >> $GITHUB_ENV
+
+      - name: 📺 Determine Episode Rotation
+        id: episodes
+        run: |
+          WEEK=$(date +%U)
+          THIS=$(( WEEK % 4 ))
+
+          declare -a CODES
+          CODES[0]="${{ steps.setnames.outputs.JUDY }}"
+          CODES[1]="${{ steps.setnames.outputs.BILLY }}"
+          CODES[2]="${{ steps.setnames.outputs.KELVIN }}"
+          CODES[3]="${{ steps.setnames.outputs.JESSE }}"
+
+          echo "this_week=${CODES[$THIS]}" >> $GITHUB_OUTPUT
+
+      - name: 🎬 Now Playing
+        run: |
+          echo ""
+          echo "🎬 NOW PLAYING: ${{ steps.episodes.outputs.this_week }}"
+          echo "🎧 Soundtrack for this episode:"
+          echo "▶️ https://www.youtube.com/watch?v=R-znj7Uf9Oo"
+          echo ""
+          echo "💡 Hit play while we run this week's full-body scan. It's more fun that way."
+
+      - name: 🧼 Run Security Scan
+        id: security-scan
+        run: |
+          semgrep ci \
+            --publish \
+            --publish-token ${{ secrets.SEMGREP_APP_TOKEN }} \
+            --publish-deployment ${{ secrets.SEMGREP_DEPLOYMENT_ID }} \
+            --sarif semgrep.sarif \
+            --json   semgrep.json
+
+      - name: 📤 Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
+        if: always()
+
+      - name: 📝 Summarize Full Body Scan
+        if: always()
+        run: |
+          echo "🔍 Full Body Scan Episode: ${{ steps.episodes.outputs.this_week }}" >> $GITHUB_STEP_SUMMARY
+          issues=$(jq '.results | length' semgrep.json)
+          echo "😵 Found **$issues** issues in changed files" >> $GITHUB_STEP_SUMMARY

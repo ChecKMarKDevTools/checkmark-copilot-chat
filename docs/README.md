@@ -4,11 +4,11 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 
 ## 🎯 Quick Start
 
-| Document                                | Description                             | When to Use           |
-| --------------------------------------- | --------------------------------------- | --------------------- |
-| [Installation Guide](./installation.md) | Get up and running fast                 | First time setup      |
+| Document | Description | When to Use |
+| - | - | - |
+| [Installation Guide](./installation.md) | Get up and running fast | First time setup |
 | [Chat Modes Reference](./chat-modes.md) | All available modes and how to use them | Daily usage reference |
-| [FAQ](./faq.md)                         | Common questions and answers            | When you're confused  |
+| [FAQ](./faq.md) | Common questions and answers | When you're confused |
 
 ## 📖 Core Documentation
 
@@ -30,18 +30,18 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 
 ### Available Modes
 
-| Mode                  | Emoji | Purpose                             | Documentation                                       |
-| --------------------- | ----- | ----------------------------------- | --------------------------------------------------- |
-| Doc Doctor            | 🩺    | Documentation generation and review | [Chat Modes](./chatmodes.md#-doc-doctor)            |
-| Logging Reviewr       | 🔎    | Log optimization and security       | [Chat Modes](./chatmodes.md#-logging-reviewr)       |
-| Instruction Whisperer | 🌬️    | Repo guidelines and standards       | [Chat Modes](./chatmodes.md#-instruction-whisperer) |
-| Refactor Genie        | 🧞    | Code cleanup and optimization       | [Chat Modes](./chatmodes.md#-refactor-genie)        |
-| CI/CD Wizard          | 🪄    | Pipeline automation                 | [Chat Modes](./chatmodes.md#-cicd-wizard)           |
-| Security Sentinel     | 🛡️    | Security review and validation      | [Chat Modes](./chatmodes.md#-security-sentinel)     |
-| Test Alchemist        | 🧪    | Test generation and strategy        | [Chat Modes](./chatmodes.md#-test-alchemist)        |
-| UX Craftsperson       | 🎨    | UI/UX improvements                  | [Chat Modes](./chatmodes.md#-ux-craftsperson)       |
-| Data Whisperer        | 📊    | Data analysis and visualization     | [Chat Modes](./chatmodes.md#-data-whisperer)        |
-| Performance Optimizer | 🚀    | Performance analysis and tuning     | [Chat Modes](./chatmodes.md#-performance-optimizer) |
+| Mode | Emoji | Purpose | Documentation |
+| - | - | - | - |
+| Doc Doctor | 🩺 | Documentation generation and review | [Chat Modes](./chatmodes.md#-doc-doctor) |
+| Logging Reviewr | 🔎 | Log optimization and security | [Chat Modes](./chatmodes.md#-logging-reviewr) |
+| Instruction Whisperer | 🌬️ | Repo guidelines and standards | [Chat Modes](./chatmodes.md#-instruction-whisperer) |
+| Refactor Genie | 🧞 | Code cleanup and optimization | [Chat Modes](./chatmodes.md#-refactor-genie) |
+| CI/CD Wizard | 🪄 | Pipeline automation | [Chat Modes](./chatmodes.md#-cicd-wizard) |
+| Security Sentinel | 🛡️ | Security review and validation | [Chat Modes](./chatmodes.md#-security-sentinel) |
+| Test Alchemist | 🧪 | Test generation and strategy | [Chat Modes](./chatmodes.md#-test-alchemist) |
+| UX Craftsperson | 🎨 | UI/UX improvements | [Chat Modes](./chatmodes.md#-ux-craftsperson) |
+| Data Whisperer | 📊 | Data analysis and visualization | [Chat Modes](./chatmodes.md#-data-whisperer) |
+| Performance Optimizer | 🚀 | Performance analysis and tuning | [Chat Modes](./chatmodes.md#-performance-optimizer) |
 
 ## 🛠️ Development Documentation
 
@@ -77,32 +77,32 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 
 ### By Role
 
-| Role                  | Recommended Reading                                                                                                                                                | Key Features                                   |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
-| **Developer**         | [Chat Modes](./chat-modes.md), [FAQ](./faq.md)                                                                                                                     | All chat modes, troubleshooting                |
-| **Tech Lead**         | [Architecture](./architecture.md), [Security](../.github/SECURITY.md)                                                                                              | System design, security model                  |
-| **DevOps Engineer**   | [CI/CD Workflow](./github-actions-workflow.md)                                                                                                                     | Automation and pipelines                       |
+| Role | Recommended Reading | Key Features |
+| - | - | - |
+| **Developer** | [Chat Modes](./chat-modes.md), [FAQ](./faq.md) | All chat modes, troubleshooting |
+| **Tech Lead** | [Architecture](./architecture.md), [Security](../.github/SECURITY.md) | System design, security model |
+| **DevOps Engineer** | [CI/CD Workflow](./github-actions-workflow.md) | Automation and pipelines |
 | **Security Engineer** | [Security Principles](../.github/instructions/security-principles.instructions.md), [Design Principles](../.github/instructions/design-principles.instructions.md) | Security validation and architectural patterns |
 
 ### By Project Type
 
-| Project Type    | Recommended Modes                                               | Documentation                     |
-| --------------- | --------------------------------------------------------------- | --------------------------------- |
-| **Web Apps**    | Doc Doctor, Refactor Genie, Security Sentinel                   | [Chat Modes](./chatmodes.md)      |
-| **APIs**        | Logging Reviewr, Security Sentinel, Test Alchemist              | [Chat Modes](./chatmodes.md)      |
-| **Open Source** | Doc Doctor, Instruction Whisperer, CI/CD Wizard                 | [Chat Modes](./chatmodes.md)      |
-| **Enterprise**  | Security Sentinel, Instruction Whisperer, Performance Optimizer | [Architecture](./architecture.md) |
+| Project Type | Recommended Modes | Documentation |
+| - | - | - |
+| **Web Apps** | Doc Doctor, Refactor Genie, Security Sentinel | [Chat Modes](./chatmodes.md) |
+| **APIs** | Logging Reviewr, Security Sentinel, Test Alchemist | [Chat Modes](./chatmodes.md) |
+| **Open Source** | Doc Doctor, Instruction Whisperer, CI/CD Wizard | [Chat Modes](./chatmodes.md) |
+| **Enterprise** | Security Sentinel, Instruction Whisperer, Performance Optimizer | [Architecture](./architecture.md) |
 
 ## 🚨 Emergency Documentation
 
 ### Quick Problem Solving
 
-| Issue                  | Quick Fix             | Full Documentation                                                        |
-| ---------------------- | --------------------- | ------------------------------------------------------------------------- |
-| Extension not loading  | Restart VS Code       | [Troubleshooting](./troubleshooting.md#extension-not-loading)             |
-| Chat modes not working | Check Copilot status  | [Troubleshooting](./troubleshooting.md#github-copilot-integration-issues) |
-| Performance issues     | Reduce context size   | [Troubleshooting](./troubleshooting.md#performance-issues)                |
-| Security errors        | Review input patterns | [Troubleshooting](./troubleshooting.md#security-validation-errors)        |
+| Issue | Quick Fix | Full Documentation |
+| - | - | - |
+| Extension not loading | Restart VS Code | [Troubleshooting](./troubleshooting.md#extension-not-loading) |
+| Chat modes not working | Check Copilot status | [Troubleshooting](./troubleshooting.md#github-copilot-integration-issues) |
+| Performance issues | Reduce context size | [Troubleshooting](./troubleshooting.md#performance-issues) |
+| Security errors | Review input patterns | [Troubleshooting](./troubleshooting.md#security-validation-errors) |
 
 ### Contact Information
 

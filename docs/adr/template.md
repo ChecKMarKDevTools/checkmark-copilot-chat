@@ -2,35 +2,35 @@
 
 ## Title
 
-\[Short descriptive title of the decision\]
+\[Short descriptive title of the decision]
 
 ## Status
 
-\[Proposed | Accepted | Deprecated | Superseded\]
+\[Proposed | Accepted | Deprecated | Superseded]
 
 ## Date
 
-[YYYY-MM-DD]
+\[YYYY-MM-DD]
 
 ## Context
 
-\[Describe the situation that prompted this decision. What problem are we trying to solve? What constraints exist?\]
+\[Describe the situation that prompted this decision. What problem are we trying to solve? What constraints exist?]
 
 ## Decision
 
-\[Describe the decision that was made. What approach did we choose and why?\]
+\[Describe the decision that was made. What approach did we choose and why?]
 
 ## Consequences
 
-\[Describe the consequences of this decision. What are the positive and negative outcomes? What trade-offs were made?\]
+\[Describe the consequences of this decision. What are the positive and negative outcomes? What trade-offs were made?]
 
 ## Alternatives Considered
 
-\[List other options that were considered and why they were rejected\]
+\[List other options that were considered and why they were rejected]
 
 ## References
 
-\[Links to related documents, discussions, or external resources\]
+\[Links to related documents, discussions, or external resources]
 
 ---
 
