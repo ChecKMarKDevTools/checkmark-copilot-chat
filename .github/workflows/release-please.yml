@@ -35,7 +35,7 @@ jobs:
       - name: 📦 Package Artifact
         run: |
           mkdir -p artifact
-          zip -r artifact/release-artifact.zip .
+          git archive -o artifact/release-artifact.zip HEAD
       - name: 🚀 Create Release
         id: release
         uses: googleapis/release-please-action@v4
