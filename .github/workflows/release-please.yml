@@ -28,8 +28,6 @@ jobs:
           node-version: ${{ steps.get-volta-node.outputs.node-version }}
       - name: 📥 Install Dependencies
         run: npm install
-        env:
-          NODE_AUTH_TOKEN: '' # Force install without auth
       - name: 🏗️ Build Project
         run: npm run build
       - name: 🧪 Run Tests
