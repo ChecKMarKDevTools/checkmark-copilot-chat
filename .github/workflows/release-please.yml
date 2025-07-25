@@ -60,6 +60,7 @@ jobs:
 
       - name: ✍️ Generate Attestation
         id: attestation
+        if: ${{ steps.upload.outcome == 'success' }}
         uses: actions/attest-build-provenance@v2
         with:
           subject-name: release-artifact.zip

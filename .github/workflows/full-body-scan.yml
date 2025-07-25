@@ -34,6 +34,7 @@ jobs:
 
       - name: 📺 Determine Episode Rotation
         id: episodes
+        shell: bash
         run: |
           if [[ "${{ github.event_name }}" == "schedule" ]]; then
             WEEK=$(date +%U)

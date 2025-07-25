@@ -31,7 +31,7 @@
     "format:md": "remark . -o",
     "lint": "npm run lint:js && npm run format:md",
     "spellcheck": "cspell . --show-suggestions",
-    "lint:commit": "commitlint --edit"
+    "commitlint": "commitlint --edit"
   },
   "devDependencies": {
     "@commitlint/cli": "19.8.1",

@@ -14,7 +14,7 @@ Include:
 
 - I’ll acknowledge receipt within 48 hours (unless the server melts).
 - Verified issues will be triaged ASAP.
-- You’ll get credit in the release notes if you want it—snacks or memes also accepted as thanks.
+- If you’d like, you’ll be credited in the release notes for your contribution - plus, snacks or memes upon special request as a thank you!
 
 ## Project Security Commitments
 
