@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-  pull_request:
-    types: [opened, synchronize, reopened]
 
 permissions:
   contents: write
   pull-requests: write
+  id-token: write
+  attestations: write
 
 jobs:
   release-please:
@@ -17,25 +17,32 @@ jobs:
     steps:
       - name: ✅ Checkout Code
         uses: actions/checkout@v4
+
       - name: ⚙️ Get Volta Node Version
         id: get-volta-node
         run: |
           version=$(jq -r .volta.node package.json)
           echo "node-version=$version" >> $GITHUB_OUTPUT
+
       - name: 🤖 Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ steps.get-volta-node.outputs.node-version }}
+
       - name: 📥 Install Dependencies
         run: npm install
+
       - name: 🏗️ Build Project
         run: npm run build
+
       - name: 🧪 Run Tests
         run: npm test
+
       - name: 📦 Package Artifact
         run: |
           mkdir -p artifact
           git archive -o artifact/release-artifact.zip HEAD
+
       - name: 🚀 Create Release
         id: release
         uses: googleapis/release-please-action@v4
@@ -43,11 +50,21 @@ jobs:
           token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
       - name: 📤 Upload Release Artifact
+        id: upload
         if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release upload ${{ steps.release.outputs.tag_name }} artifact/release-artifact.zip
+
+      - name: ✍️ Generate Attestation
+        id: attestation
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-name: release-artifact.zip
+          subject-digest: sha256:${{ steps.upload.outputs.artifact-digest }}
+
       - name: 📝 Report Release Status
         if: always()
         run: |

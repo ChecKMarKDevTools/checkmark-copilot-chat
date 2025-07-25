@@ -1,0 +1,41 @@
+// Project & Branding
+CheckMarKDevTools
+checkmark
+Reviewr
+Childress
+anchildress1
+Oompa
+Loompa
+Tetris
+
+// External Service
+Pulumi
+Porkbun
+githubcopilot
+chatdoc
+
+// Dev Concept
+CICD
+CODEOWNERS
+docstrings
+frontmatter
+gatekeeping
+rollouts
+wireframes
+unshift
+gatekeep
+gitdiff
+
+// Security / Infra
+SIEM
+cccp
+semgrep
+sarif
+
+// Internal Project
+Kondo
+rulebook
+robotspeak
+Qube
+setnames
+storyboarding

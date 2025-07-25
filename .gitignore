@@ -201,5 +201,5 @@ dist
 # Ignore all local temp files
 *.tmp
 *.txt
-!./.vscode/project-dict.txt
+!.vscode/project-dict.txt
 !version.txt

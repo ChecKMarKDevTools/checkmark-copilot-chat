@@ -24,7 +24,7 @@ RTFM answers, sarcasm, or gatekeeping are not cool. If someone takes the time to
 
 If you see someone doing something awesome, call it out!
 
-Drop Oompa Loompa-level kudos, memes, high-fives, or whatever your good-vibes style is. We thrive on positive feedback and *recognize all the helpers* - publicly and often.
+Drop Oompa Loompa-level kudos, memes, high-fives, or whatever your good-vibes style is. We thrive on positive feedback and _recognize all the helpers_ - publicly and often.
 
 ---
 
@@ -38,6 +38,7 @@ Drop Oompa Loompa-level kudos, memes, high-fives, or whatever your good-vibes st
 > **Discrimination, harassment, bullying, or hate of any kind?** I do not tolerate it in any form, nor will I stand by and watch, hear, or read it happen - no matter the channel 🗣️, space 💬, meeting 🖥️, call 📞, or corner of the internet 🌐. If you’re a contributor here, you’re accountable everywhere.
 >
 > That means:
+>
 > - **Race** 🏳️‍🌈🧑🏿‍🦱🎭
 > - **Religion** ⛪🕍🕌
 > - **Country of origin** 🌎🗺️🧭
@@ -50,7 +51,7 @@ Drop Oompa Loompa-level kudos, memes, high-fives, or whatever your good-vibes st
 > **If you can't contribute as a decent human being, you’re out. Period. Permanently.**
 >
 > If I see it, hear it, or smell it, I will **report you, flag you 🚩, and if necessary, hang a bright, giant, flashing, neon, screaming sign above your head** so everyone knows exactly what kind of person you are — if that’s what it takes to get you out of my space, permanently.
-> *And honestly? This is me being as nice as I’m ever going to be about it.*
+> _And honestly? This is me being as nice as I’m ever going to be about it._
 
 ---
 
@@ -58,7 +59,8 @@ Drop Oompa Loompa-level kudos, memes, high-fives, or whatever your good-vibes st
 
 If someone crosses the line, here’s how to reach me:
 
-Send a message to [human@checkmarkdevtools.dev](mailto:human@checkmarkdevtools.dev).
+Send a message to <human@checkmarkdevtools.dev>.
+
 - If it’s urgent, please put **URGENT** in the subject line.
 - I’ll get back to you as quickly as I can.
 
