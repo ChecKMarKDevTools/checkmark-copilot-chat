@@ -1,6 +1,7 @@
 name: Semgrep Scan
 
 on:
+  workflow_dispatch:
   pull_request: {}
 
 jobs:
@@ -11,8 +12,8 @@ jobs:
       actions: read
     runs-on: ubuntu-latest
     container:
-      image: semgrep/semgrep:1.70.0
-    if: (github.actor != 'dependabot[bot]')
+      image: semgrep/semgrep:1.89.0
+    if: github.actor != 'dependabot[bot]' && !startsWith(github.head_ref, 'release-please-')
     steps:
       - name: ✅ Checkout Code
         uses: actions/checkout@v4
