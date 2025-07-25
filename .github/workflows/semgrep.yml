@@ -26,11 +26,7 @@ jobs:
           SEMGREP_DEPLOYMENT_ID: ${{ secrets.SEMGREP_DEPLOYMENT_ID }}
         run: |
           # Run the scan once and output to JSON.
-          semgrep ci --json -o semgrep.json
-
-          # Convert the JSON output to SARIF for the upload action.
-          # This is more efficient than running the scan twice.
-          semgrep convert --output-format sarif -o semgrep.sarif semgrep.json
+          semgrep ci --json-output=semgrep.json --sarif-output=semgrep.sarif
 
       - name: 📤 Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
