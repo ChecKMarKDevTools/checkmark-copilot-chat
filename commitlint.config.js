@@ -31,16 +31,12 @@ export default {
     ],
     'type-empty': [2, 'never'],
     'scope-enum': [0, 'always', []],
-    'scope-max-length': [0, 'always', 0],
-    'scope-min-length': [0, 'always', 0],
     'subject-empty': [2, 'never'],
     'subject-full-stop': [2, 'never', '.'],
-    'subject-min-length': [0, 'always', 0],
     'footer-leading-blank': [1, 'always'],
     'header-max-length': [2, 'always', 72],
     'header-trim': [1, 'always'],
     'type-case': [2, 'always', 'lower-case'],
-    'scope-empty': [2, 'never'],
     'scope-case': [2, 'always', 'lower-case'],
     'subject-case': [2, 'always', 'sentence-case'],
     'body-leading-blank': [2, 'always'],
@@ -50,4 +46,12 @@ export default {
     'signed-off-by': [2, 'always'],
     'trailer-exists': [2, 'always', 'Signed-off-by'],
   },
+  'scope-empty': (ctx) =>
+    new Promise((resolve) => {
+      if (['feat', 'fix', 'refactor', 'perf', 'test'].includes(ctx.type)) {
+        resolve([2, 'never']);
+      } else {
+        resolve([0, 'always']);
+      }
+    }),
 };
