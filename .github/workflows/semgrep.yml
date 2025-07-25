@@ -11,7 +11,7 @@ jobs:
       actions: read
     runs-on: ubuntu-latest
     container:
-      image: semgrep/semgrep
+      image: semgrep/semgrep:1.70.0
     if: (github.actor != 'dependabot[bot]')
     steps:
       - name: ✅ Checkout Code
@@ -19,14 +19,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🔍 Run Semgrep CI (+ Publish + Emit Reports)
+      - name: 🔍 Run Semgrep CI
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+          SEMGREP_DEPLOYMENT_ID: ${{ secrets.SEMGREP_DEPLOYMENT_ID }}
         run: |
-          semgrep ci \
-            --publish \
-            --publish-token ${{ secrets.SEMGREP_APP_TOKEN }} \
-            --publish-deployment ${{ secrets.SEMGREP_DEPLOYMENT_ID }} \
-            --sarif semgrep.sarif \
-            --json   semgrep.json
+          semgrep ci --sarif semgrep.sarif --json semgrep.json
 
       - name: 📤 Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3

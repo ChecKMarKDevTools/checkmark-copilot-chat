@@ -5,7 +5,7 @@
   "versioning": "default",
   "prerelease": false,
   "bump-minor-pre-major": true,
-  "bump-patch-for-minor-pre-major": false,
+  "bump-patch-for-minor-pre-major": true,
   "changelog-type": "default",
   "include-v-in-tag": true,
   "pull-request-header": "📼 Pilot Episode: First Alpha Transmission",

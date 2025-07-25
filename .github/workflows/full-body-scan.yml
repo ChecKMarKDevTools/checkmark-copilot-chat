@@ -35,16 +35,20 @@ jobs:
       - name: 📺 Determine Episode Rotation
         id: episodes
         run: |
-          WEEK=$(date +%U)
-          THIS=$(( WEEK % 4 ))
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            WEEK=$(date +%U)
+            THIS=$(( WEEK % 4 ))
 
-          declare -a CODES
-          CODES[0]="${{ steps.setnames.outputs.JUDY }}"
-          CODES[1]="${{ steps.setnames.outputs.BILLY }}"
-          CODES[2]="${{ steps.setnames.outputs.KELVIN }}"
-          CODES[3]="${{ steps.setnames.outputs.JESSE }}"
+            declare -a CODES
+            CODES[0]="${{ env.JUDY }}"
+            CODES[1]="${{ env.BILLY }}"
+            CODES[2]="${{ env.KELVIN }}"
+            CODES[3]="${{ env.JESSE }}"
 
-          echo "this_week=${CODES[$THIS]}" >> $GITHUB_OUTPUT
+            echo "this_week=${CODES[$THIS]}" >> $GITHUB_OUTPUT
+          else
+            echo "this_week=🎬 On-Demand Special: The One Where We Scan Everything" >> $GITHUB_OUTPUT
+          fi
 
       - name: 🎬 Now Playing
         run: |
