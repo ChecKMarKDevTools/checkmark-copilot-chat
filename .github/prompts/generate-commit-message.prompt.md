@@ -314,9 +314,9 @@ Before validating with `commitlint`, self-check to verify:
 - [ ] Appropriate scope if multiple files changed
 - [ ] Always includes "why" if explicitly clear from diff or chat context
 - [ ] Never ASSUME or GUESS "why" if not explicitly clear, simply include "what" changed in the body
-- [ ] Included message in appropriate backticks for easy copy-pasting, e.g., `\`\`\`markdown\n<full-commit-message>\n\`\`\`\`
+- [ ] Included message in appropriate backticks for easy copy-pasting, e.g., `markdown\n<full-commit-message>`
 - [ ] If breaking change, a `!` follows the type and `BREAKING CHANGE:` is first line in footer
-- [ ] Signed-off-by footer included </pre-validation-checklist> <validation-report>
+- [ ] Signed-off-by footer included as the last line of the message </pre-validation-checklist> <validation-report>
 
 ### Commitlint Report
 

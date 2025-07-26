@@ -8,7 +8,10 @@ This document outlines the GitHub Actions workflows that power the CheckMark Cop
 
 Our main production workflow that handles versioning, changelog generation, and releases with TV show-themed sections!
 
-![Release Workflow](./diagrams/release-workflow.mmd)
+[Release Workflow Diagram](./diagrams/release-workflow.mmd)
+
+```mermaid src="./diagrams/release-workflow.mmd"
+```
 
 #### Changelog Sections (TV Show Style)
 
@@ -27,15 +30,36 @@ Here are workflows we could add as the project grows:
 
 ### 🧪 Continuous Integration Workflow
 
-![CI Workflow](./diagrams/ci-workflow.mmd)
+[CI Workflow Diagram](./diagrams/ci-workflow.mmd)
+
+```mermaid src="./diagrams/ci-workflow.mmd"
+```
 
 ### 🔒 Security Workflow
 
-![Security Workflow](./diagrams/security-workflow.mmd)
+[Security Workflow Diagram](./diagrams/security-workflow.mmd)
+
+```mermaid src="./diagrams/security-workflow.mmd"
+```
 
 ### 📦 Extension Publishing Workflow
 
-![Publishing Workflow](./diagrams/publishing-workflow.mmd)
+[Publishing Workflow Diagram](./diagrams/publishing-workflow.mmd)
+
+```mermaid src="./diagrams/publishing-workflow.mmd"
+```
+
+[Security Workflow Diagram](./diagrams/security-workflow.mmd)
+
+```mermaid src="./diagrams/security-workflow.mmd"
+```
+
+### 📦 Extension Publishing Workflow
+
+[Publishing Workflow Diagram](./diagrams/publishing-workflow.mmd)
+
+```mermaid src="./diagrams/publishing-workflow.mmd"
+```
 
 ## 🎯 Workflow Best Practices
 
@@ -64,11 +88,17 @@ Here are workflows we could add as the project grows:
 
 ### 🔥 Hotfix Deployment
 
-![Hotfix Workflow](./diagrams/hotfix-workflow.mmd)
+[Hotfix Workflow Diagram](./diagrams/hotfix-workflow.mmd)
+
+```mermaid src="./diagrams/hotfix-workflow.mmd"
+```
 
 ### 🛡️ Security Incident Response
 
-![Security Incident Response](./diagrams/security-incident-response.mmd)
+[Security Incident Response Diagram](./diagrams/security-incident-response.mmd)
+
+```mermaid src="./diagrams/security-incident-response.mmd"
+```
 
 ## 📊 Workflow Monitoring
 
