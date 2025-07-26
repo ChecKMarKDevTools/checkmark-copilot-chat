@@ -36,6 +36,9 @@
   "devDependencies": {
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
+    "@cspell/dict-bash": "4.2.1",
+    "@cspell/dict-companies": "3.2.3",
+    "@cspell/dict-shell": "1.1.1",
     "@cspell/eslint-plugin": "9.2.0",
     "cspell": "9.2.0",
     "eslint": "9.31.0",

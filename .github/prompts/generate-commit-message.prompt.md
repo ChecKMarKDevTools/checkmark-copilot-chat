@@ -239,14 +239,17 @@ Common indicators of breaking changes include:
 2. Maximum 100 characters per line
 3. If the commit contains a breaking change, use `BREAKING CHANGE: <description>` as the first line in the footer
 4. If you have a Jira Key, issue number, pull request, etc. then use one of the following followed by the corresponding value or number: `Fixes`, `Closes`, `Resolves`, `Related`
-5. Always include a signed-off-by footer: `Signed-off-by: UserFirst UserLast <user@email.com>`
-6. If AI contributed, the following footers may be included: `Reviewed-by`, `Commit-generated-by`, `Generated-by`, `Co-authored-by`
-7. The appropriate footers for AI are as follows:
+5. If AI contributed, the following footers may be included: `Reviewed-by`, `Commit-generated-by`, `Generated-by`, `Co-authored-by`
+6. The appropriate footers for AI are as follows:
 
 - GitHub Copilot: `GitHub Copilot <github.copilot@github.com>`
 - Codex: `Codex <codex@openai.com>`
 - Gemini: `Gemini <gemini@google.com>`
-- Claude Code: `Claude Code <claude.code@anthropic.com>` </footer-rules> </commit-message-rules> <output-rules> <requirements>
+- Claude Code: `Claude Code <claude.code@anthropic.com>`
+
+1. Always include a signed-off-by footer as last line of message: `Signed-off-by: UserFirst UserLast <user@email.com>`
+
+</footer-rules> </commit-message-rules> <output-rules> <requirements>
 
 ## Output Requirements
 
@@ -316,7 +319,9 @@ Before validating with `commitlint`, self-check to verify:
 - [ ] Never ASSUME or GUESS "why" if not explicitly clear, simply include "what" changed in the body
 - [ ] Included message in appropriate backticks for easy copy-pasting, e.g., `markdown\n<full-commit-message>`
 - [ ] If breaking change, a `!` follows the type and `BREAKING CHANGE:` is first line in footer
-- [ ] Signed-off-by footer included as the last line of the message </pre-validation-checklist> <validation-report>
+- [ ] Signed-off-by footer included AS THE LAST LINE of the message
+
+</pre-validation-checklist> <validation-report>
 
 ### Commitlint Report
 

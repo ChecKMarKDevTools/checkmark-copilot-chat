@@ -73,9 +73,34 @@ jobs:
         with:
           sarif_file: semgrep.sarif
 
-      - name: 📝 Summarize Full Body Scan
+      - name: � Weekly Episode Security Report
         if: ${{ steps.security-scan.outcome == 'success' }}
         run: |
-          echo "🔍 Full Body Scan Episode: ${{ steps.episodes.outputs.this_week }}" >> $GITHUB_STEP_SUMMARY
+          echo "## � Weekly Security Episode Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**This Week's Episode:** ${{ steps.episodes.outputs.this_week }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Scan Type:** Comprehensive Full-Body Security Analysis" >> $GITHUB_STEP_SUMMARY
+          echo "**Runtime:** Weekly Deep Dive Investigation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
           issues=$(jq '.results | length' semgrep.json)
-          echo "😵 Found **$issues** issues in changed files" >> $GITHUB_STEP_SUMMARY
+          echo "🔍 **Security Issues Discovered:** $issues vulnerabilities found" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "$issues" == "0" ]; then
+            echo "✅ **Episode Outcome:** 'All clear - no security issues detected!'" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "� **This Week's Lesson:** *The codebase passed its full-body security scan with flying colors. Like a well-scripted episode, everything is exactly where it should be with no plot holes or security vulnerabilities to worry about.*" >> $GITHUB_STEP_SUMMARY
+          elif [ "$issues" -lt "5" ]; then
+            echo "⚠️ **Episode Outcome:** 'Minor plot complications discovered - easily resolved.'" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "� **This Week's Lesson:** *Found $issues minor security issues that need attention. Like small continuity errors in a TV episode, these don't ruin the story but should be cleaned up for the final cut.*" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "🚨 **Episode Outcome:** 'Major security drama uncovered - immediate attention required!'" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "� **This Week's Lesson:** *Discovered $issues significant security vulnerabilities that need immediate resolution. Like a season finale cliffhanger, these issues require urgent attention to resolve the storyline safely.*" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**� Next Episode Preview:** Review all findings and implement security improvements" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "*🎭 Production Note: Weekly security episodes help maintain code quality through regular comprehensive scanning.*" >> $GITHUB_STEP_SUMMARY

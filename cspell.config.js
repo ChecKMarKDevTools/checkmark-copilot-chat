@@ -1,7 +1,7 @@
 export default {
   version: '0.2',
   language: 'en',
-  dictionaries: ['project-dict'],
+  dictionaries: ['project-dict', 'bash', 'shell', 'companies'],
   dictionaryDefinitions: [
     {
       name: 'project-dict',
