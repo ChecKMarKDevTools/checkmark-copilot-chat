@@ -14,24 +14,16 @@ jobs:
       contents: read
       security-events: write
       actions: read
-    container:
-      image: semgrep/semgrep
+
     name: 🔍 Weekly Deep Scan
     runs-on: ubuntu-latest
+    env:
+      JUDY: "💋 Judy's Backup Failed Again"
+      BILLY: '🎿 Billy Went Skiing With No Helmet'
+      KELVIN: '💰 Kelvin Charged It to the Church Card'
+      JESSE: '🙏 Jesse Baptized a Branch in Production'
+
     steps:
-      - name: 🧾 Checkout Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: 🎛️ Set Codename Roster
-        id: setnames
-        run: |
-          echo "JUDY=💋 Judy's Backup Failed Again" >> $GITHUB_ENV
-          echo "BILLY=🎿 Billy Went Skiing With No Helmet" >> $GITHUB_ENV
-          echo "KELVIN=💰 Kelvin Charged It to the Church Card" >> $GITHUB_ENV
-          echo "JESSE=🙏 Jesse Baptized a Branch in Production" >> $GITHUB_ENV
-
       - name: 📺 Determine Episode Rotation
         id: episodes
         shell: bash
@@ -51,37 +43,91 @@ jobs:
             echo "this_week=🎬 On-Demand Special: The One Where We Scan Everything" >> $GITHUB_OUTPUT
           fi
 
-      - name: 🎬 Now Playing
-        run: |
-          echo ""
-          echo "🎬 NOW PLAYING: ${{ steps.episodes.outputs.this_week }}"
-          echo "🎧 Soundtrack for this episode:"
-          echo "▶️ https://www.youtube.com/watch?v=R-znj7Uf9Oo"
-          echo ""
-          echo "💡 Hit play while we run this week's full-body scan. It's more fun that way."
+          # Determine episode name for display
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            WEEK=$(date +%U)
+            THIS=$(( WEEK % 4 ))
+            declare -a CODES
+            CODES[0]="${{ env.JUDY }}"
+            CODES[1]="${{ env.BILLY }}"
+            CODES[2]="${{ env.KELVIN }}"
+            CODES[3]="${{ env.JESSE }}"
+            THIS_EPISODE="${CODES[$THIS]}"
+          else
+            THIS_EPISODE="🎬 On-Demand Special: The One Where We Scan Everything"
+          fi
+
+          EPISODE_INTRO="
+          🎬 NOW PLAYING: $THIS_EPISODE
+          🎧 Soundtrack for this episode:
+          ▶️ https://www.youtube.com/watch?v=R-znj7Uf9Oo
+
+          💡 Hit play while we run this week's full-body scan. It's more fun that way."
+
+          # Output to console log
+          echo "$EPISODE_INTRO"
+
+          # Output to step summary
+          echo "## 🎬 Episode Introduction" >> $GITHUB_STEP_SUMMARY
+          echo "$EPISODE_INTRO" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+      - name: 🧾 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: 🧼 Run Security Scan
         id: security-scan
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
           SEMGREP_DEPLOYMENT_ID: ${{ secrets.SEMGREP_DEPLOYMENT_ID }}
-        run: semgrep ci --json-output=semgrep.json --sarif-output=semgrep.sarif --verbose
+        run: |
+          # Install Semgrep
+          pip install semgrep
+
+          # Run Semgrep CI with automatic SARIF output
+          if [ -n "$SEMGREP_APP_TOKEN" ]; then
+            semgrep ci --json-output=semgrep.json --sarif-output=semgrep.sarif --verbose
+          else
+            # Fallback to community rules if no Pro token
+            semgrep --config=auto --json --output=semgrep.json --sarif --sarif-output=semgrep.sarif .
+          fi
 
       - name: 📤 Upload SARIF file
         if: ${{ steps.security-scan.outcome == 'success' }}
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: semgrep.sarif
+          category: semgrep
 
-      - name: � Weekly Episode Security Report
+      - name: 📁 Upload Semgrep Results
+        if: ${{ steps.security-scan.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-security-scan
+          path: semgrep.json
+          retention-days: 30
+
+      - name: 🛡️ Weekly Episode Security Report
         if: ${{ steps.security-scan.outcome == 'success' }}
         run: |
-          echo "## � Weekly Security Episode Report" >> $GITHUB_STEP_SUMMARY
+          echo "## 🛡️ Weekly Security Episode Report" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**This Week's Episode:** ${{ steps.episodes.outputs.this_week }}" >> $GITHUB_STEP_SUMMARY
           echo "**Scan Type:** Comprehensive Full-Body Security Analysis" >> $GITHUB_STEP_SUMMARY
           echo "**Runtime:** Weekly Deep Dive Investigation" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check if semgrep.json exists before parsing
+          if [ ! -f "semgrep.json" ]; then
+            echo "❌ **Missing Results:** Semgrep JSON file not found - scan may have failed" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "📺 **This Week's Lesson:** *Something went wrong during the security scan. The expected results file is missing, which means we can't provide a proper episode analysis.*" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "*🎭 Production Note: Check the security scan step for errors.*" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
 
           issues=$(jq '.results | length' semgrep.json)
           echo "🔍 **Security Issues Discovered:** $issues vulnerabilities found" >> $GITHUB_STEP_SUMMARY
@@ -90,17 +136,17 @@ jobs:
           if [ "$issues" == "0" ]; then
             echo "✅ **Episode Outcome:** 'All clear - no security issues detected!'" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "� **This Week's Lesson:** *The codebase passed its full-body security scan with flying colors. Like a well-scripted episode, everything is exactly where it should be with no plot holes or security vulnerabilities to worry about.*" >> $GITHUB_STEP_SUMMARY
+            echo "📺 **This Week's Lesson:** *The codebase passed its full-body security scan with flying colors. Like a well-scripted episode, everything is exactly where it should be with no plot holes or security vulnerabilities to worry about.*" >> $GITHUB_STEP_SUMMARY
           elif [ "$issues" -lt "5" ]; then
             echo "⚠️ **Episode Outcome:** 'Minor plot complications discovered - easily resolved.'" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "� **This Week's Lesson:** *Found $issues minor security issues that need attention. Like small continuity errors in a TV episode, these don't ruin the story but should be cleaned up for the final cut.*" >> $GITHUB_STEP_SUMMARY
+            echo "📺 **This Week's Lesson:** *Found $issues minor security issues that need attention. Like small continuity errors in a TV episode, these don't ruin the story but should be cleaned up for the final cut.*" >> $GITHUB_STEP_SUMMARY
           else
             echo "🚨 **Episode Outcome:** 'Major security drama uncovered - immediate attention required!'" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "� **This Week's Lesson:** *Discovered $issues significant security vulnerabilities that need immediate resolution. Like a season finale cliffhanger, these issues require urgent attention to resolve the storyline safely.*" >> $GITHUB_STEP_SUMMARY
+            echo "📺 **This Week's Lesson:** *Discovered $issues significant security vulnerabilities that need immediate resolution. Like a season finale cliffhanger, these issues require urgent attention to resolve the storyline safely.*" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**� Next Episode Preview:** Review all findings and implement security improvements" >> $GITHUB_STEP_SUMMARY
+          echo "**📺 Next Episode Preview:** Review all findings and implement security improvements" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "*🎭 Production Note: Weekly security episodes help maintain code quality through regular comprehensive scanning.*" >> $GITHUB_STEP_SUMMARY

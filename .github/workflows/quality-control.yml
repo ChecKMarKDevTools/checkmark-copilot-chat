@@ -25,13 +25,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
     steps:
-      - name: 🧠 Jane's Initial Observation
+      - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.SUPER_LINTER_TOKEN }}
 
-      - name: 🔍 Jane Reads the Code's Mind
+      - name: Run Code Quality Linter
         uses: github/super-linter@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -39,7 +39,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: true
           FILTER_REGEX_EXCLUDE: .git|node_modules
 
-      - name: 📊 Jane's Deduction Report
+      - name: 📊 Report
         if: always()
         run: |
           echo "## 🔍 Patrick Jane: Code Quality Mentalist Report" >> $GITHUB_STEP_SUMMARY
@@ -65,27 +65,31 @@ jobs:
       - name: 🎯 Jane Studies the Security Landscape
         uses: actions/checkout@v4
 
-      - name: 🛡️ Jane's Security Mind Reading
+      - name: Vulnerability Scan with Semgrep
+        id: security-scan
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
           SEMGREP_DEPLOYMENT_ID: ${{ secrets.SEMGREP_DEPLOYMENT_ID }}
         run: |
+          # Install Semgrep
+          pip install semgrep
+
+          # Run Semgrep CI with automatic SARIF output
           if [ -n "$SEMGREP_APP_TOKEN" ]; then
-            semgrep ci --json-output=semgrep.json --sarif-output=semgrep.sarif --verbose
+            semgrep ci --sarif-output=semgrep.sarif
           else
-            # Fallback to Docker if no Pro token
-            docker run --rm -v "${PWD}:/src" \
-              returntocorp/semgrep \
-              semgrep ci --json-output=/src/semgrep.json --sarif-output=/src/semgrep.sarif --verbose
+            # Fallback to community rules if no Pro token
+            semgrep --config=auto --sarif --output=semgrep.sarif .
           fi
 
-      - name: 📤 Upload Security Intel to CBI
-        if: always()
+      - name: Upload Sarif Report
+        if: ${{ steps.security-scan.outcome == 'success' }}
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: semgrep.sarif
+          category: semgrep
 
-      - name: 📊 Jane's Security Profile Report
+      - name: 📊 Security Profile Report
         if: always()
         run: |
           echo "## 🛡️ Patrick Jane: Security Mentalist Report" >> $GITHUB_STEP_SUMMARY
@@ -112,31 +116,31 @@ jobs:
 
   # Advanced Static Analysis with CodeQL
   code-analysis:
-    name: '� Advanced Static Analysis'
+    name: '🌀 Advanced Static Analysis'
     runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
     permissions:
       security-events: write
       packages: read
       actions: read
       contents: read
     steps:
-      - name: 🔍 Jane's Deep Code Examination
+      - name: Checkout Code for Analysis
         uses: actions/checkout@v4
 
-      - name: 🧠 Initialize Jane's Pattern Recognition
+      - name: Initialize CodeQL Analysis
         uses: github/codeql-action/init@v3
         with:
           languages: javascript
           build-mode: none
 
-      - name: 🔬 Jane Analyzes Code Behavior Patterns
+      - name: Analyze Code with CodeQL
+        id: codeql-analyze
         uses: github/codeql-action/analyze@v3
         with:
           category: '/language:javascript'
 
-      - name: 📊 Jane's Pattern Analysis Report
-        if: always()
+      - name: 📊 Pattern Analysis Report
+        if: ${{ steps.codeql-analyze.outcome == 'success' }}
         run: |
           echo "## 🕵️ Patrick Jane: Advanced Pattern Analysis Report" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -155,7 +159,7 @@ jobs:
 
   # Final Quality Assessment Report
   final-assessment:
-    name: '🏛️ Final Quality Assessment'
+    name: '🏛️ Final Quality Assessment from The Mentalist'
     runs-on: ubuntu-latest
     needs: [code-quality-lint, security-scan, code-analysis]
     if: always()
