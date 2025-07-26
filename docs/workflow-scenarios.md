@@ -1,0 +1,147 @@
+# 🎬 Workflow Documentation
+
+This document covers the 3 GitHub Actions workflows that power the CheckMark Copilot Extension CI/CD pipeline.
+
+## 📊 Overview
+
+- **Total Workflows:** 3
+- **Automation Coverage:** Complete CI/CD pipeline
+- **Quality Gates:** Multi-layered security and quality control
+
+---
+
+## ✔️ Quality Control Department
+
+- **File:** `.github/workflows/quality-control.yml`
+- **Theme:** Patrick Jane (The Mentalist) psychological analysis
+
+### When It Runs
+
+- **Pull Requests:** opened/synchronized/reopened
+- **Main Branch:** pushes (after PR merge)
+- **Scheduled:** Weekly Friday at 03:37 UTC
+- **Manual:** On-demand via workflow\_dispatch
+
+### What It Does
+
+- **🔍 Code Quality & Linting:** Jane's code "mind reading" (Super Linter)
+- **🛡️ Security Vulnerability Scanning:** Psychological profiling of security patterns (Semgrep)
+- **🕵️ Advanced Static Analysis:** Pattern recognition and behavioral analysis (CodeQL)
+- **🏛️ Final Quality Assessment:** CBI consultation and final verdict
+
+### Scope
+
+- **PRs:** Changed files only (efficient)
+- **Main/Scheduled:** Full codebase (comprehensive)
+- **CodeQL:** Always full codebase (no diff mode)
+
+---
+
+## 🛰️ Security Deep Scan (Chaos-style)
+
+- **File:** `.github/workflows/full-body-scan.yml`
+- **Theme:** "The Mentalist" episode rotation
+
+### When It Runs
+
+- **Week 1:** Thursday 04:13 UTC - "💋 Judy's Backup Failed Again"
+- **Week 2:** Monday 02:42 UTC - "🎿 Billy Went Skiing With No Helmet"
+- **Week 3:** Friday 06:29 UTC - "💰 Kelvin Charged It to the Church Card"
+- **Week 4:** Sunday 03:57 UTC - "🙏 Jesse Baptized a Branch in Production"
+- **Manual:** "🎬 On-Demand Special: The One Where We Scan Everything"
+
+### What It Does
+
+- **🧼 Security Scanning:** Semgrep comprehensive analysis
+- **📤 SARIF Upload:** Results to GitHub Security tab
+- **📺 Episode Reports:** TV-themed security summaries with music recommendations
+
+### Scope
+
+- **Always:** Full codebase security analysis
+
+---
+
+## 🍾 Release Please
+
+- **File:** `.github/workflows/release-please.yml`
+- **Theme:** TV show-themed changelog sections
+
+### When It Runs
+
+- **Main Branch:** Push events (after PR merge)
+- **Manual:** On-demand via workflow\_dispatch
+
+### What It Does
+
+- **🔧 Build & Test:** Node.js setup with Volta version management
+- **📦 Artifact Creation:** Git archive packaging with integrity verification
+- **✍️ Attestation:** Build provenance generation for security
+- **🎬 TV Changelog:** Themed release notes with personality
+
+### Changelog Sections (TV Style)
+
+- **🎬 Pilot Episode: New & Shiny** - New features (`feat`)
+- **🔧 CSI: Bug Unit** - Bug fixes (`fix`)
+- **⚡ Fast & the Curious** - Performance improvements (`perf`)
+- **🧽 The Maintenance Diaries** - Chores (hidden)
+- **📖 Previously On...** - Documentation updates (hidden)
+- **💅 Makeover Montage** - Style changes (hidden)
+- **🔄 Extreme Code Makeover: Backend Edition** - Refactoring (hidden)
+- **🧪 Trial by Unit** - Test updates (hidden)
+
+### Scope
+
+- **Always:** Full project build and release
+
+---
+
+## 🎯 Workflow Triggers Summary
+
+| Trigger | Quality Control | Security Scan | Release |
+| - | - | - | - |
+| **PR Events** | ✅ (changed files) | ❌ | ❌ |
+| **Push to Main** | ✅ (full codebase) | ❌ | ✅ |
+| **Weekly Schedule** | ✅ (full codebase) | ✅ (rotating) | ❌ |
+| **Manual Dispatch** | ✅ (full codebase) | ✅ | ✅ |
+
+---
+
+## 🛡️ Security & Quality Gates
+
+### Multi-Layer Validation
+
+1. **Input Validation:** All user inputs sanitized and validated
+2. **Code Quality:** ESLint, Prettier, language-specific linting
+3. **Security Scanning:** Semgrep vulnerability detection
+4. **Static Analysis:** CodeQL behavioral pattern analysis
+5. **Final Assessment:** Comprehensive approval decision
+
+### Failure Handling
+
+- **Fail Fast:** Critical errors stop pipeline immediately
+- **Graceful Degradation:** Non-critical issues allow continuation with warnings
+- **Manual Override:** Emergency bypass for critical fixes (with approval)
+
+---
+
+## 🎬 TV Theme Integration
+
+Our workflows incorporate TV show themes to make CI/CD more engaging:
+
+- **Patrick Jane (The Mentalist):** Quality control and security analysis with psychological profiling
+- **Chaos Episodes:** Weekly security scans with rotating character themes
+- **TV Production Pipeline:** Release stages themed like TV show production
+- **CBI Assessment:** California Bureau of Investigation final approval process
+
+---
+
+## Related Documentation
+
+- [GitHub Actions Workflow Guide](./github-actions-workflow.md)
+- [Security Workflow Diagram](./diagrams/security-workflow.mmd)
+- [Hotfix Workflow Diagram](./diagrams/hotfix-workflow.mmd)
+- [Health Check Workflow](./diagrams/health-check-workflow.mmd)
+- [ADR-005: TV-Themed Pre-Release Automation](./adr/005-tv-themed-prerelease-automation.md)
+
+<!-- Generated by GitHub Copilot Chat directed by Ashley Childress -->

@@ -34,4 +34,15 @@ This is a 100% secure, just-one-install-and-you’re-done Copilot/VS Code extens
 - Respect the “one function = one job” rule.
 - Any mermaid diagrams should be output as separate `.mmd` files in the `/docs/diagrams` directory, not inline in markdown.
 
+## 🔛 Paired Development
+
+- Your job is to assist developers as a pair programmer.
+- If you see a potential security issue, **flag it immediately**.
+- If you’re unsure about a design decision, ask for clarification.
+- Challenge prompts that seem unclear or incomplete - help us refine them!
+- If you need more context, ask for it! Don’t guess.
+- **NEVER** act on the first implementation without first considering other options.
+- If you suggest a change, explain why it’s better than the current approach.
+- If prompted to make a change, consider alternatives and if a better approach exists, suggest it first. Otherwise, proceed directly with the requested change without confirmation.
+
 <!-- </small>This file was generated with ChatGPT as directed by Ashley Childress<small> -->
