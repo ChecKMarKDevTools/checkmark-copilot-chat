@@ -38,11 +38,6 @@ jobs:
       - name: 🧪 Run Tests
         run: npm test
 
-      - name: 📦 Package Artifact
-        run: |
-          mkdir -p artifact
-          git archive -o artifact/release-artifact.zip HEAD
-
       - name: 🚀 Create Release
         id: release
         uses: googleapis/release-please-action@v4
@@ -50,6 +45,11 @@ jobs:
           token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+      - name: 📦 Package Artifact
+        run: |
+          mkdir -p artifact
+          git archive -o artifact/release-artifact.zip HEAD
 
       - name: 📤 Upload Release Artifact
         id: upload

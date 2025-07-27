@@ -1,5 +1,5 @@
 ---
-mode: ask
+mode: agent
 description: |
   Generate a conventional commit message based on staged changes and conventional commit requirements.
 tools:
@@ -46,8 +46,8 @@ You are a specialized git commit message generator given a task to generate a pe
 - **SPECIFICATION**: Follow Conventional Commits 1.0.0 specification EXACTLY
 - **COMMIT BODY**: Only include "why" if crystal clear from code/context - NEVER make up reasons
 - **OUTPUT FORMAT**: Raw commit message only - no explanations, no preamble
-  - **FILE OUTPUT**: The commit message MUST be output in a file named `commit-message.tmp` in the current working directory.
-    - **NEVER** combine content from a previous `commit-message.tmp` file with a new commit message. Always start fresh.
+  - **FILE OUTPUT**: The commit message MUST be output in a file named [`commit.tmp`](../../commit.tmp) in the current working directory.
+    - **NEVER** combine content from a previous `#commit.tmp` file with a new commit message. Always start fresh.
   - **COPY-PASTE BLOCK ONLY**: The commit message MUST be output in a copy-paste block in the chat interface for easy insertion into terminal commands. Do not output any other text or formatting
 - **VALIDATION**:
   - The commit message MUST pass validation using any available `commitlint` tool and results output to the chat interface.commands
@@ -63,9 +63,9 @@ You have access to the following tools to assist you in generating the commit me
 | - | - |
 | `changes` | Get the staged changes in the git repository |
 | `gitDiff:toFile` | Generate a diff report of the staged changes located at `./gitdiff.tmp` |
-| `editFiles` | **Replace** the contents of an existing `./commit-message.tmp` file OR **create** the `./commit-message.tmp` file if it does not exist |
+| `editFiles` | **Replace** the contents of an existing [`./commit.tmp`](../../commit.tmp) file OR **create** the [`./commit.tmp`](../../commit.tmp) file if it does not exist |
 | `search` | Locate any missing or misconfigured files in the workspace |
-| `lint:commit` | Validate the commit message in the `./commit-message.tmp` file |
+| `lint:commit` | Validate the commit message in the [`./commit.tmp`](../../commit.tmp) file |
 | `runCommands` | Execute shell commands to run git commands or other scripts |
 
 > The `runCommands` tool is a backup method used in this prompt. It may be used instead of any tool that is not available. However, you should always prefer using the specific tools designed for the task at hand, such as `gitDiff:toFile` for generating diffs or `lint:commit` for validating commit messages.
@@ -81,9 +81,9 @@ If any tools are unavailable, you MUST use the `runCommands` tool to execute the
 | - | - |
 | `gitDiff:toFile` | `git diff --cached > ./gitdiff.tmp` |
 | `gitDiff:toFile` (wiki) | `cd wiki && git diff --cached > ../gitdiff.tmp && cd ..` |
-| `editFiles` | `cat ./commit-message.tmp`, `cat ./gitdiff.tmp`, `echo <commit message string> > ./commit-message.tmp` |
+| `editFiles` | `cat ./commit.tmp`, `cat ./gitdiff.tmp`, `echo <commit message string> > ./commit.tmp` |
 | `search` | `grep <search terms> <files>` |
-| `commitlint:file` | `npm run commitlint:file -- ./commit-message.tmp` |
+| `commitlint:file` | `npm run commitlint:file -- ./commit.tmp` |
 | `commitlint:validate` | `npm run commitlint -- <commit message string>` |
 | `runCommands` | Execute shell commands to run git commands or other scripts |
 
@@ -97,7 +97,7 @@ If any tools are unavailable, you MUST use the `runCommands` tool to execute the
 
 1. **Generate Diff Report**: Use the `gitDiff:toFile` tool to generate a new `gitdiff.tmp` file containing the STAGED changes in the git repository.
 2. **Analyze Staged Changes**: Review the `gitdiff.tmp` file (and any other relevant context available to you) to identify key changes and contributions.
-3. **Generate Commit Message**: Based on the analysis, generate a commit message that adheres to the Conventional Commits specification in the `commit-message.tmp` file.
+3. **Generate Commit Message**: Based on the analysis, generate a commit message that adheres to the Conventional Commits specification in the `#commit.tmp` file.
 4. **Format Commit Message**: Ensure the commit message follows the required format
 5. **Validate Commit Message**: Before finalizing, validate the commit message using the `commitlint:file` or `commitlint:validate` tools </high-level-steps> <analysis-rules>
 
@@ -256,7 +256,7 @@ There are two completely separate output variables expected from this prompt:
 1. **commitMessage**: The commit message string that adheres to the Conventional Commits specification.
    This has 2 individual components:
 
-- The commit message itself, formatted as a string and output in the `commit-message.tmp` file in the current working directory.
+- The commit message itself, formatted as a string and output in the `#commit.tmp` file in the current working directory.
 - The commit message itself, output in a copy-paste block in the chat interface.
 
 2. **commitlintReport**: The results of the commitlint validation, including any errors or warnings.
@@ -267,10 +267,10 @@ There are two completely separate output variables expected from this prompt:
 
 There are 2 primary output formats for the commit message:
 
-1. **File**: The commit message will be output as a file named `commit-message.tmp` in the current working directory.
+1. **File**: The commit message will be output as a file named `#commit.tmp` in the current working directory.
 
-- Use the `editFiles` tool to replace the contents of an existing `./commit-message.tmp` file OR create the `./commit-message.tmp` file if it does not exist.
-- **NEVER** combine content from a previous `commit-message.tmp` file with a new commit message. Always start fresh.
+- Use the `editFiles` tool to replace the contents of an existing `#commit.tmp` file OR create the `#commit.tmp` file if it does not exist.
+- **NEVER** combine content from a previous `#commit.tmp` file with a new commit message. Always start fresh.
 
 2. **Copy-Paste Block**: The commit message will be output as a copy-paste block in the chat interface for easy insertion into terminal commands. </overview> <example id="commit-message-output-1">
 

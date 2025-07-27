@@ -25,6 +25,7 @@ wireframes
 unshift
 gatekeep
 gitdiff
+blockquotes
 
 // Security / Infra
 SIEM

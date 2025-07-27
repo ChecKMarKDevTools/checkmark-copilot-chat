@@ -4,7 +4,15 @@
   "description": "Custom chat modes for GitHub Copilot, starting with skillsets. Docs, logging, and more - no weird prompts required.",
   "author": "Ashley Childress",
   "license": "Apache-2.0",
-  "keywords": ["github", "copilot", "vscode", "extension", "chat", "automation", "security"],
+  "keywords": [
+    "github",
+    "copilot",
+    "vscode",
+    "extension",
+    "chat",
+    "automation",
+    "security"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CheckMarKDevTools/checkmark-copilot-chat.git"
@@ -26,11 +34,10 @@
     "build": "echo \"🎬 Now Building: Season 1, Episode 1 — 'The Setup Begins' 💡🛠️ (Coming soon to a terminal near you...)\"",
     "test": "echo \"📺 Previously on 'ChecKMarK': The tests... don't exist. But stay tuned — filming starts soon. 🎈✨🦄🍿\"",
     "prepare": "command -v husky >/dev/null 2>&1 && husky install",
-    "format": "prettier --write .",
-    "lint:js": "eslint .",
-    "format:md": "remark . -o",
-    "lint": "npm run lint:js && npm run format:md",
+    "format": "prettier --write . --log-level silent && remark . -o --quiet && node scripts/fix-github-admonitions.js",
+    "lint": "eslint . --ext . --fix",
     "spellcheck": "cspell . --show-suggestions",
+    "check": "npm run format && eslint . && npm run spellcheck",
     "commitlint": "commitlint --edit"
   },
   "devDependencies": {
@@ -41,9 +48,10 @@
     "@cspell/dict-shell": "1.1.1",
     "@cspell/eslint-plugin": "9.2.0",
     "cspell": "9.2.0",
-    "eslint": "9.31.0",
+    "eslint": "9.32.0",
+    "glob": "11.0.3",
     "husky": "9.1.7",
-    "jest": "30.0.4",
+    "jest": "30.0.5",
     "lint-staged": "16.1.2",
     "prettier": "3.6.2",
     "release-please": "17.1.1",

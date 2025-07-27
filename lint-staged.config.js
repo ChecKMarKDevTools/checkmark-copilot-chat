@@ -1,6 +1,6 @@
 export default {
-  '**/*.*': 'cspell --show-suggestions',
-  '*.js': ['npm run lint:js -- --fix', 'npm run format'],
+  '**/*.*': 'npm run spellcheck -- --show-suggestions',
+  '*.js': ['npm run format', 'npm run lint'],
   '*.{json,css,yml,yaml}': ['npm run format'],
-  '*.md': (filenames) => [`remark ${filenames.join(' ')} --output`],
+  '*.md': 'npm run format',
 };

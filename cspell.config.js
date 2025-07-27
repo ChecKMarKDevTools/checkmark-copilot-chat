@@ -15,5 +15,6 @@ export default {
     'package-lock.json',
     '.gitignore',
     '**/.gitignore',
+    '*.tmp',
   ],
 };

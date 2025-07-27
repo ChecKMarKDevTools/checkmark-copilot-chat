@@ -123,7 +123,8 @@ jobs:
           if [ ! -f "semgrep.json" ]; then
             echo "❌ **Missing Results:** Semgrep JSON file not found - scan may have failed" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "📺 **This Week's Lesson:** *Something went wrong during the security scan. The expected results file is missing, which means we can't provide a proper episode analysis.*" >> $GITHUB_STEP_SUMMARY
+            echo "📺 **This Week's Lesson:** *Something went wrong during the security scan. \
+            The expected results file is missing, which means we can't provide a proper episode analysis.*" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "*🎭 Production Note: Check the security scan step for errors.*" >> $GITHUB_STEP_SUMMARY
             exit 0
@@ -136,15 +137,18 @@ jobs:
           if [ "$issues" == "0" ]; then
             echo "✅ **Episode Outcome:** 'All clear - no security issues detected!'" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "📺 **This Week's Lesson:** *The codebase passed its full-body security scan with flying colors. Like a well-scripted episode, everything is exactly where it should be with no plot holes or security vulnerabilities to worry about.*" >> $GITHUB_STEP_SUMMARY
+            echo "📺 **This Week's Lesson:** *The codebase passed its full-body security scan with flying colors. \
+            Like a well-scripted episode, everything is exactly where it should be with no plot holes or security vulnerabilities to worry about.*" >> $GITHUB_STEP_SUMMARY
           elif [ "$issues" -lt "5" ]; then
             echo "⚠️ **Episode Outcome:** 'Minor plot complications discovered - easily resolved.'" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "📺 **This Week's Lesson:** *Found $issues minor security issues that need attention. Like small continuity errors in a TV episode, these don't ruin the story but should be cleaned up for the final cut.*" >> $GITHUB_STEP_SUMMARY
+            echo "📺 **This Week's Lesson:** *Found $issues minor security issues that need attention. \
+            Like small continuity errors in a TV episode, these don't ruin the story but should be cleaned up for the final cut.*" >> $GITHUB_STEP_SUMMARY
           else
             echo "🚨 **Episode Outcome:** 'Major security drama uncovered - immediate attention required!'" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "📺 **This Week's Lesson:** *Discovered $issues significant security vulnerabilities that need immediate resolution. Like a season finale cliffhanger, these issues require urgent attention to resolve the storyline safely.*" >> $GITHUB_STEP_SUMMARY
+            echo "📺 **This Week's Lesson:** *Discovered $issues significant security vulnerabilities that need immediate resolution. \
+            Like a season finale cliffhanger, these issues require urgent attention to resolve the storyline safely.*" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**📺 Next Episode Preview:** Review all findings and implement security improvements" >> $GITHUB_STEP_SUMMARY
