@@ -34,10 +34,13 @@
     "build": "echo \"🎬 Now Building: Season 1, Episode 1 — 'The Setup Begins' 💡🛠️ (Coming soon to a terminal near you...)\"",
     "test": "echo \"📺 Previously on 'ChecKMarK': The tests... don't exist. But stay tuned — filming starts soon. 🎈✨🦄🍿\"",
     "prepare": "command -v husky >/dev/null 2>&1 && husky install",
-    "format": "prettier --write . --log-level silent && remark . -o --quiet && node scripts/fix-github-admonitions.js",
+    "format": "npm run format:prettier && npm run format:remark && npm run format:fix-admonitions",
+    "format:prettier": "prettier --write . --log-level silent",
+    "format:remark": "remark . -o --quiet",
+    "format:fix-admonitions": "node scripts/fix-github-admonitions.js",
     "lint": "eslint . --ext . --fix",
     "spellcheck": "cspell . --show-suggestions",
-    "check": "npm run format && eslint . && npm run spellcheck",
+    "check": "npm run format && npm run lint && npm run spellcheck",
     "commitlint": "commitlint --edit"
   },
   "devDependencies": {
@@ -51,7 +54,6 @@
     "eslint": "9.32.0",
     "glob": "11.0.3",
     "husky": "9.1.7",
-    "jest": "30.0.5",
     "lint-staged": "16.1.2",
     "prettier": "3.6.2",
     "release-please": "17.1.1",
@@ -62,6 +64,7 @@
     "remark-github": "12.0.0",
     "remark-lint": "10.0.1",
     "remark-lint-no-unneeded-full-reference-link": "4.0.1",
-    "remark-stringify": "11.0.0"
+    "remark-stringify": "11.0.0",
+    "@microsoft/sarif-multitool": "^1.0.0"
   }
 }

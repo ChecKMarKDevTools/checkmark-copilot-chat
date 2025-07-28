@@ -4,9 +4,6 @@
       "test": "Always tag every AI-generated footer with: GitHub Copilot <copilot@github.com>"
     },
     {
-      "test": "Always include a Signed-off-by footer with Ashley Childress <6563688+anchildress1@users.noreply.github.com>"
-    },
-    {
       "file": "../prompts/generate-commit-message.prompt.md"
     }
   ]

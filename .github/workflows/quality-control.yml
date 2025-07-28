@@ -29,14 +29,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.SUPER_LINTER_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Code Quality Linter
         uses: github/super-linter@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
-          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'pull_request' && 'false' || 'true' }}
           FILTER_REGEX_EXCLUDE: .git|node_modules
 
       - name: 📊 Report
@@ -50,10 +50,10 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           if [ "${{ job.status }}" == "success" ]; then
             echo "✅ **Jane's Deduction:** 'The code is honest. No deception here.'" >> $GITHUB_STEP_SUMMARY
-            echo "🎭 **Jane Says:** 'I can tell by the way the brackets are aligned that this developer has excellent attention to detail. Case closed.'" >> $GITHUB_STEP_SUMMARY
+            echo "**Jane Says:** 'I can tell by the way the brackets are aligned that this developer has excellent attention to detail. Case closed.'" >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ **Jane's Deduction:** 'Interesting... the code is trying to hide something.'" >> $GITHUB_STEP_SUMMARY
-            echo "🎭 **Jane Says:** 'The linting errors are like tells in poker. This code is bluffing, but I can see right through it.'" >> $GITHUB_STEP_SUMMARY
+            echo "**Jane Says:** 'The linting errors are like tells in poker. This code is bluffing, but I can see right through it.'" >> $GITHUB_STEP_SUMMARY
           fi
 
   # Security Vulnerability Scanning
@@ -76,11 +76,14 @@ jobs:
 
           # Run Semgrep CI with automatic SARIF output
           if [ -n "$SEMGREP_APP_TOKEN" ]; then
-            semgrep ci --sarif-output=semgrep.sarif --json-output=semgrep.json
+            semgrep ci --sarif-output=semgrep.sarif
           else
             # Fallback to community rules if no Pro token
-            semgrep --config=auto --sarif --output=semgrep.sarif --json-output=semgrep.json .
+            semgrep --config=auto --sarif --output=semgrep.sarif .
           fi
+
+          # Install SARIF Tools for SARIF parsing
+          pip install sarif-tools
 
       - name: Upload Sarif Report
         if: ${{ steps.security-scan.outcome == 'success' }}
@@ -99,19 +102,20 @@ jobs:
           echo "**Method:** Psychological profiling of code vulnerabilities" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          if [ -f "semgrep.json" ]; then
-            issues=$(jq '.results | length' semgrep.json 2>/dev/null || echo "0")
-            echo "🔍 **Jane's Count:** $issues potential security tells identified" >> $GITHUB_STEP_SUMMARY
+          if [ -f "semgrep.sarif" ]; then
+            # Parse SARIF with Python sarif-tools CLI
+            issues=$(sarif-tools summary semgrep.sarif | grep 'Results:' | awk -F':' '{print $2}' | tr -d ' ')
+            echo "**Jane's Count:** $issues potential security tells identified" >> $GITHUB_STEP_SUMMARY
 
             if [ "$issues" == "0" ]; then
               echo "✅ **Jane's Assessment:** 'No security vulnerabilities. This code has nothing to hide.'" >> $GITHUB_STEP_SUMMARY
-              echo "🎭 **Jane Says:** 'Clean code is like an honest person - it doesn't try to deceive you with hidden vulnerabilities.'" >> $GITHUB_STEP_SUMMARY
+              echo "**Jane Says:** 'Clean code is like an honest person - it doesn't try to deceive you with hidden vulnerabilities.'" >> $GITHUB_STEP_SUMMARY
             else
               echo "⚠️ **Jane's Assessment:** 'I see $issues security patterns that concern me.'" >> $GITHUB_STEP_SUMMARY
-              echo "🎭 **Jane Says:** 'Security flaws are like micro-expressions - if you know what to look for, they're impossible to hide.'" >> $GITHUB_STEP_SUMMARY
+              echo "**Jane Says:** 'Security flaws are like micro-expressions - if you know what to look for, they're impossible to hide.'" >> $GITHUB_STEP_SUMMARY
             fi
           else
-            echo "📝 **Jane's Note:** 'The security scan data is... elusive. Interesting.'" >> $GITHUB_STEP_SUMMARY
+            echo "**Jane's Note:** 'The security scan data is... elusive. Interesting.'" >> $GITHUB_STEP_SUMMARY
           fi
 
   # Advanced Static Analysis with CodeQL
@@ -151,10 +155,10 @@ jobs:
 
           if [ "${{ job.status }}" == "success" ]; then
             echo "✅ **Jane's Analysis:** 'The code patterns are consistent and truthful.'" >> $GITHUB_STEP_SUMMARY
-            echo "💯 **Jane Says:** 'Like reading body language, code has its own tells. This code is comfortable with itself - no hidden malicious intent.'" >> $GITHUB_STEP_SUMMARY
+            echo "**Jane Says:** 'Like reading body language, code has its own tells. This code is comfortable with itself - no hidden malicious intent.'" >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ **Jane's Analysis:** 'Something in the code patterns troubles me.'" >> $GITHUB_STEP_SUMMARY
-            echo "🎭 **Jane Says:** 'The code is exhibiting suspicious behavioral patterns. Trust me, I've seen this before - it's hiding something.'" >> $GITHUB_STEP_SUMMARY
+            echo "**Jane Says:** 'The code is exhibiting suspicious behavioral patterns. Trust me, I've seen this before - it's hiding something.'" >> $GITHUB_STEP_SUMMARY
           fi
 
   # Final Quality Assessment Report
@@ -176,11 +180,11 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Analysis Type | Status | Jane's Assessment |" >> $GITHUB_STEP_SUMMARY
           echo "|---------------|---------|-------------------|" >> $GITHUB_STEP_SUMMARY
-          echo "| 🔍 Code Quality Reading | ${{ needs.code-quality-lint.result }} | $([ '${{ needs.code-quality-lint.result }}' == 'success' ] && \
+          echo "| Code Quality Reading | ${{ needs.code-quality-lint.result }} | $([ '${{ needs.code-quality-lint.result }}' == 'success' ] && \
             echo '✅ Honest Code' || echo '❌ Deceptive Patterns') |" >> $GITHUB_STEP_SUMMARY
-          echo "| 🛡️ Security Profiling | ${{ needs.security-scan.result }} | $([ '${{ needs.security-scan.result }}' == 'success' ] && \
+          echo "| Security Profiling | ${{ needs.security-scan.result }} | $([ '${{ needs.security-scan.result }}' == 'success' ] && \
             echo '✅ No Hidden Threats' || echo '⚠️ Security Tells Detected') |" >> $GITHUB_STEP_SUMMARY
-          echo "| 🕵️ Behavioral Analysis | ${{ needs.code-analysis.result }} | $([ '${{ needs.code-analysis.result }}' == 'success' ] && \
+          echo "| Behavioral Analysis | ${{ needs.code-analysis.result }} | $([ '${{ needs.code-analysis.result }}' == 'success' ] && \
             echo '✅ Consistent Patterns' || echo '🔍 Suspicious Behavior') |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
@@ -188,11 +192,11 @@ jobs:
           if [ "${{ needs.code-quality-lint.result }}" == "success" ] && \
              [ "${{ needs.security-scan.result }}" == "success" ] && \
              [ "${{ needs.code-analysis.result }}" == "success" ]; then
-            echo "## 🎉 **JANE'S FINAL VERDICT: CASE CLEARED** 🎉" >> $GITHUB_STEP_SUMMARY
+            echo "## JANE'S FINAL VERDICT: CASE CLEARED 🎉" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "**Jane's Assessment:** 'This code is clean, honest, and ready for production.'" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "🎭 **Jane's Signature Analysis:** *'I can tell by the way this code carries itself that it has nothing to hide. \
+            echo "**Jane's Signature Analysis:** *'I can tell by the way this code carries itself that it has nothing to hide. \
             The patterns are consistent, the security posture is confident but not arrogant, and the quality standards show genuine care for the craft. \
             Trust me, I've seen enough deceptive code to know - this one's telling the truth.'*" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
@@ -202,12 +206,12 @@ jobs:
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "**Jane's Assessment:** 'Something about this code bothers me. My instincts are rarely wrong.'" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "🎭 **Jane's Signature Analysis:** *'The code is trying to hide something - I can sense it. \
+            echo "**Jane's Signature Analysis:** *'The code is trying to hide something - I can sense it. \
             Whether it's sloppy patterns, security vulnerabilities, or behavioral inconsistencies, there are tells here that need investigation. \
             Fix what's broken, then we'll talk.'*" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "** 📛 CBI Recommendation:** INVESTIGATION REQUIRED BEFORE APPROVAL" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "*📝 Note: Jane's assessments are based on advanced pattern recognition and years of reading code behavior. \
+          echo "*Note: Jane's assessments are based on advanced pattern recognition and years of reading code behavior. \
           Trust the process.*" >> $GITHUB_STEP_SUMMARY

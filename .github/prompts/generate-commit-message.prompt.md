@@ -196,7 +196,7 @@ Common indicators of breaking changes include:
 ### Subject Line Rules
 
 1. Use imperative mood: `add`, `fix`, `update` (not "added", "fixed", "updated")
-2. No capitalization of first letter after colon
+2. Capitalize the first letter after colon, which is the first word of the description
 3. No period at end
 4. Maximum 72 characters total
 5. Format: `<type>(<scope>): <description>`
@@ -218,7 +218,10 @@ Common indicators of breaking changes include:
 2. Maximum 100 characters per line
 3. If the commit contains a breaking change, use `BREAKING CHANGE: <description>` as the first line in the footer
 4. If you have a Jira Key, issue number, pull request, etc. then use one of the following followed by the corresponding value or number: `Fixes`, `Closes`, `Resolves`, `Related`
-5. If AI contributed, the following footers may be included: `Reviewed-by`, `Commit-generated-by`, `Generated-by`, `Co-authored-by`
+5. If AI contributed, the following footers SHOULD be included: `Reviewed-by`, `Commit-generated-by`, `Generated-by`, `Co-authored-by`
+
+- Use your context and best judgement to determine AI contributions and choose the most involved that applies.
+
 6. The appropriate footers for AI are as follows:
 
 - GitHub Copilot: `GitHub Copilot <github.copilot@github.com>`

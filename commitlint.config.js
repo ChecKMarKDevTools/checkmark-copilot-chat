@@ -30,6 +30,7 @@ export default {
       ],
     ],
     'type-empty': [2, 'never'],
+    'scope-empty': [0, 'never'],
     'scope-enum': [0, 'always', []],
     'subject-empty': [2, 'never'],
     'subject-full-stop': [2, 'never', '.'],
@@ -46,12 +47,4 @@ export default {
     'signed-off-by': [2, 'always'],
     'trailer-exists': [2, 'always', 'Signed-off-by'],
   },
-  'scope-empty': (ctx) =>
-    new Promise((resolve) => {
-      if (['feat', 'fix', 'refactor', 'perf', 'test'].includes(ctx.type)) {
-        resolve([2, 'never']);
-      } else {
-        resolve([0, 'always']);
-      }
-    }),
 };

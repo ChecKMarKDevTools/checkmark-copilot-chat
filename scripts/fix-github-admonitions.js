@@ -1,27 +1,10 @@
 #!/usr/bin/env node
-
 /**
- *      // Fix escaped GitHub admonitions in blockquotes
-      const fixedContent = content
-        .replace(
-          /^> \\(\[!(?:TIP|NOTE|WARNING|IMPORTANT|CAUTION|DANGER)\])/gm,
-          '> $1'
-        )
-        .replace(
-          /^> (\[!(?:TIP|NOTE|WARNING|IMPORTANT|CAUTION|DANGER)\])\\$/gm,
-          '> $1'
-        )
-        .replace(
-          /(\[!(?:TIP|NOTE|WARNING|IMPORTANT|CAUTION|DANGER)\])\\/g,
-          '$1'
-        );-process markdown files to fix GitHub admonition escaping
- *
  * This script fixes the issue where remark-stringify escapes GitHub
  * admonitions like > [!TIP] to > \[!TIP]
  *
  * @security This script only modifies markdown formatting, no security implications
  */
-
 import { readFile, writeFile } from 'fs/promises';
 import { glob } from 'glob';
 

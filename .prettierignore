@@ -1,5 +1,5 @@
 .github/CODEOWNERS
-**/*/*.md
-**/*/*.mmd
+*.md
+*.mmd
 version.txt
 package*.json

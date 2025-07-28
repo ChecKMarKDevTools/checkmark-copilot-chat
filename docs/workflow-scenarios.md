@@ -98,7 +98,7 @@ This document covers the 3 GitHub Actions workflows that power the CheckMark Cop
 
 ## 🎯 Workflow Triggers Summary
 
-| Trigger | Quality Control | Security Scan | Release |
+| Trigger | Quality Control | Full Scan | Release |
 | - | - | - | - |
 | **PR Events** | ✅ (changed files) | ❌ | ❌ |
 | **Push to Main** | ✅ (full codebase) | ❌ | ✅ |
