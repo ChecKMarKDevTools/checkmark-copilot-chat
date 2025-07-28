@@ -7,6 +7,7 @@ anchildress1
 Oompa
 Loompa
 Tetris
+wakatime
 
 // External Service
 Pulumi
@@ -26,6 +27,7 @@ unshift
 gatekeep
 gitdiff
 blockquotes
+multitool
 
 // Security / Infra
 SIEM

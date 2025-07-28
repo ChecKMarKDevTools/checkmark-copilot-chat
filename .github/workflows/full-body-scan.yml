@@ -94,6 +94,9 @@ jobs:
             # Fallback to community rules if no Pro token
             semgrep --config=auto --sarif --output=semgrep.sarif .
           fi
+          # Install SARIF Tools and jq for JSON processing
+          pip install sarif-tools
+          apt-get update && apt-get install -y jq
 
       - name: 📤 Upload SARIF file
         if: ${{ steps.security-scan.outcome == 'success' }}
@@ -133,6 +136,17 @@ jobs:
 
           issues=$(npx sarif-multitool summary semgrep.sarif | grep 'Results:' | awk -F':' '{print $2}' | tr -d ' ')
           echo "🔍 **Security Issues Discovered:** $issues vulnerabilities found" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Console detailed SARIF findings
+          if [ "$issues" -ne "0" ]; then
+            echo "## Detailed Weekly SARIF Findings:" >&2
+            jq -r '.runs[].results[] | "- \(.ruleId): \(.message.text)"' semgrep.sarif | head -n5 >&2
+          fi
+
+          # Summary detailed findings
+          echo "**Detailed Findings:**" >> $GITHUB_STEP_SUMMARY
+          jq -r '.runs[].results[] | "- \(.ruleId): \(.message.text)"' semgrep.sarif | head -n5 | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           if [ "$issues" == "0" ]; then

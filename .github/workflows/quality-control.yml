@@ -32,12 +32,22 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Code Quality Linter
+        id: super-linter
         uses: github/super-linter@latest
+        with:
+          # output lint findings to a text file for detailed reporting
+          args: '--format text --output-file super-linter-report.txt'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
           VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'pull_request' && 'false' || 'true' }}
           FILTER_REGEX_EXCLUDE: .git|node_modules
+
+      - name: Display Super-Linter Findings
+        if: ${{ steps.super-linter.outcome != 'success' }}
+        run: |
+          echo "## Detailed Lint Findings:" >&2
+          cat super-linter-report.txt >&2
 
       - name: 📊 Report
         if: always()
@@ -54,6 +64,9 @@ jobs:
           else
             echo "❌ **Jane's Deduction:** 'Interesting... the code is trying to hide something.'" >> $GITHUB_STEP_SUMMARY
             echo "**Jane Says:** 'The linting errors are like tells in poker. This code is bluffing, but I can see right through it.'" >> $GITHUB_STEP_SUMMARY
+            echo "**Detailed Lint Findings:**" >> $GITHUB_STEP_SUMMARY
+            # list top 10 lint errors
+            cat super-linter-report.txt | head -n 10 | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
           fi
 
   # Security Vulnerability Scanning
@@ -78,12 +91,13 @@ jobs:
           if [ -n "$SEMGREP_APP_TOKEN" ]; then
             semgrep ci --sarif-output=semgrep.sarif
           else
-            # Fallback to community rules if no Pro token
             semgrep --config=auto --sarif --output=semgrep.sarif .
           fi
 
           # Install SARIF Tools for SARIF parsing
           pip install sarif-tools
+          # Install jq for JSON processing
+          apt-get update && apt-get install -y jq
 
       - name: Upload Sarif Report
         if: ${{ steps.security-scan.outcome == 'success' }}
@@ -106,12 +120,25 @@ jobs:
             # Parse SARIF with Python sarif-tools CLI
             issues=$(sarif-tools summary semgrep.sarif | grep 'Results:' | awk -F':' '{print $2}' | tr -d ' ')
             echo "**Jane's Count:** $issues potential security tells identified" >> $GITHUB_STEP_SUMMARY
+            # Console detailed SARIF findings
+            if [ "$issues" -ne "0" ]; then
+              echo "Detailed SARIF Findings:" >&2
+              jq -r '.runs[].results[] | "- \(.ruleId): \(.message.text)"' semgrep.sarif | head -n5 >&2
+            fi
+            # Summary detailed findings
+            echo "**Detailed Findings:**" >> $GITHUB_STEP_SUMMARY
+            jq -r '.runs[].results[] | "- \(.ruleId): \(.message.text)"' semgrep.sarif | head -n5 | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
 
             if [ "$issues" == "0" ]; then
               echo "✅ **Jane's Assessment:** 'No security vulnerabilities. This code has nothing to hide.'" >> $GITHUB_STEP_SUMMARY
               echo "**Jane Says:** 'Clean code is like an honest person - it doesn't try to deceive you with hidden vulnerabilities.'" >> $GITHUB_STEP_SUMMARY
             else
+              # Console detailed Semgrep vulnerability output
+              echo "## Detailed Semgrep Vulnerabilities:" >&2
+              jq -r '.runs[].results[] | "- \(.ruleId): \(.message.text)"' semgrep.sarif | head -n5 >&2
               echo "⚠️ **Jane's Assessment:** 'I see $issues security patterns that concern me.'" >> $GITHUB_STEP_SUMMARY
+              echo "**Detailed Vulnerabilities:**" >> $GITHUB_STEP_SUMMARY
+              jq -r '.runs[].results[] | "- \(.ruleId): \(.message.text)"' semgrep.sarif | head -n5 | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
               echo "**Jane Says:** 'Security flaws are like micro-expressions - if you know what to look for, they're impossible to hide.'" >> $GITHUB_STEP_SUMMARY
             fi
           else
