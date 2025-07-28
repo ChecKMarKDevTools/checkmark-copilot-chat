@@ -51,6 +51,13 @@ jobs:
           mkdir -p artifact
           git archive -o artifact/release-artifact.zip HEAD
 
+      - name: 🔏 Calculate SHA256 digest
+        id: digest
+        run: |
+          # compute SHA-256 for the release artifact
+          digest=$(sha256sum artifact/release-artifact.zip | cut -d' ' -f1)
+          echo "artifact-digest=$digest" >> $GITHUB_OUTPUT
+
       - name: 📤 Upload Release Artifact
         id: upload
         if: ${{ steps.release.outputs.release_created }}
@@ -64,7 +71,7 @@ jobs:
         uses: actions/attest-build-provenance@v2
         with:
           subject-name: release-artifact.zip
-          subject-digest: sha256:${{ steps.upload.outputs.artifact-digest }}
+          subject-digest: sha256:${{ steps.digest.outputs.artifact-digest }}
 
       - name: 📝 Report Release Status
         if: always()

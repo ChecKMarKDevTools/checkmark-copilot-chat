@@ -1,3 +1,7 @@
+---
+applyTo: '**'
+---
+
 # 🔒 Security & Design Best Practices
 
 Copilot, this is your rulebook. Ignore it at your peril (and mine).

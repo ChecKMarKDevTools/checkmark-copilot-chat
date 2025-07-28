@@ -1,3 +1,7 @@
+---
+applyTo: '**'
+---
+
 # 📝 Design Principles for CheckMarK
 
 ## Core Patterns & Principles

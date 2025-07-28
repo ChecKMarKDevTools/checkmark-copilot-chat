@@ -47,7 +47,7 @@ You are a specialized git commit message generator given a task to generate a pe
 - **COMMIT BODY**: Only include "why" if crystal clear from code/context - NEVER make up reasons
 - **OUTPUT FORMAT**: Raw commit message only - no explanations, no preamble
   - **FILE OUTPUT**: The commit message MUST be output in a file named [`commit.tmp`](../../commit.tmp) in the current working directory.
-    - **NEVER** combine content from a previous `#commit.tmp` file with a new commit message. Always start fresh.
+    - **NEVER** combine content from a previous [`commit.tmp`](../../commit.tmp) file with a new commit message. Always start fresh by executing `rm -f commit.tmp` via `#runInTerminal` before writing the new message.
   - **COPY-PASTE BLOCK ONLY**: The commit message MUST be output in a copy-paste block in the chat interface for easy insertion into terminal commands. Do not output any other text or formatting
 - **VALIDATION**:
   - The commit message MUST pass validation using any available `commitlint` tool and results output to the chat interface.commands
@@ -62,32 +62,12 @@ You have access to the following tools to assist you in generating the commit me
 | Tool Name | Description |
 | - | - |
 | `changes` | Get the staged changes in the git repository |
-| `gitDiff:toFile` | Generate a diff report of the staged changes located at `./gitdiff.tmp` |
 | `editFiles` | **Replace** the contents of an existing [`./commit.tmp`](../../commit.tmp) file OR **create** the [`./commit.tmp`](../../commit.tmp) file if it does not exist |
 | `search` | Locate any missing or misconfigured files in the workspace |
-| `lint:commit` | Validate the commit message in the [`./commit.tmp`](../../commit.tmp) file |
-| `runCommands` | Execute shell commands to run git commands or other scripts |
-
-> The `runCommands` tool is a backup method used in this prompt. It may be used instead of any tool that is not available. However, you should always prefer using the specific tools designed for the task at hand, such as `gitDiff:toFile` for generating diffs or `lint:commit` for validating commit messages.
+| `commitlint` | Validate the commit message in the [`./commit.tmp`](../../commit.tmp) file by executing the `#runInTerminal` command with `npm run commitlint -- ./commit.tmp` |
+| `runInTerminal` | Execute shell commands to run git commands or other scripts |
 
 </summary>
-<backup>
-
-### Backup Tools
-
-If any tools are unavailable, you MUST use the `runCommands` tool to execute the necessary shell commands to generate the diff report and validate the commit message. This is a backup method to ensure you can still complete the task even if some tools are not available.
-
-| Tool Name | Equivalent Command |
-| - | - |
-| `gitDiff:toFile` | `git diff --cached > ./gitdiff.tmp` |
-| `gitDiff:toFile` (wiki) | `cd wiki && git diff --cached > ../gitdiff.tmp && cd ..` |
-| `editFiles` | `cat ./commit.tmp`, `cat ./gitdiff.tmp`, `echo <commit message string> > ./commit.tmp` |
-| `search` | `grep <search terms> <files>` |
-| `commitlint:file` | `npm run commitlint:file -- ./commit.tmp` |
-| `commitlint:validate` | `npm run commitlint -- <commit message string>` |
-| `runCommands` | Execute shell commands to run git commands or other scripts |
-
-</backup>
 </tools>
 
 <instructions>
@@ -95,11 +75,11 @@ If any tools are unavailable, you MUST use the `runCommands` tool to execute the
 
 ## High-level Steps to Generate Commit Message
 
-1. **Generate Diff Report**: Use the `gitDiff:toFile` tool to generate a new `gitdiff.tmp` file containing the STAGED changes in the git repository.
-2. **Analyze Staged Changes**: Review the `gitdiff.tmp` file (and any other relevant context available to you) to identify key changes and contributions.
-3. **Generate Commit Message**: Based on the analysis, generate a commit message that adheres to the Conventional Commits specification in the `#commit.tmp` file.
+1. **Generate Diff Report**: Use the `#runInTerminal` tool to with `git diff --staged > diff.tmp` to generate a new [\`diff.tmp](../../diff.tmp) file containing the STAGED changes in the git repository.
+2. **Analyze Staged Changes**: Review the [\`diff.tmp](../../diff.tmp) file (and any other relevant context available to you) to identify key changes and contributions.
+3. **Generate Commit Message**: Based on the analysis, generate a commit message that adheres to the Conventional Commits specification in the [\`commit.tmp](../../commit.tmp) file.
 4. **Format Commit Message**: Ensure the commit message follows the required format
-5. **Validate Commit Message**: Before finalizing, validate the commit message using the `commitlint:file` or `commitlint:validate` tools </high-level-steps> <analysis-rules>
+5. **Validate Commit Message**: Before finalizing, validate the commit message using the `#commitlint` tool.
 
 ## Analysis Rules
 
@@ -107,20 +87,19 @@ If any tools are unavailable, you MUST use the `runCommands` tool to execute the
 
 ### Analysis Methodology Overview
 
-- Use the `gitDiff:toFile` tool to generate a diff report of the staged changes located in the `gitdiff.tmp` file at the root of this project.
+- Use the `#runInTerminal` tool with the `git diff --staged > diff.tmp` command to generate a diff report of the staged changes located in the `diff.tmp` file at the root of this project.
 - Use all available context from the chat history, user instructions, or any other relevant sources
 - When in doubt, you MUST ask the user for clarification
 - DO NOT make assumptions about the changes or the user's intent </methodology> <diff-report>
 
 ### Get Staged Changes
 
-1. If asked to generate for the wiki or documentation, execute a `git diff --cached > ../gitdiff.tmp && cd ..` command to get the STAGED changes in the git repository
-2. Otherwise, use the `gitDiff:toFile` tool to get the STAGED changes in the git repository
-3. That tool will generate a `gitdiff.tmp` file containing a standard git diff report
-4. Determine the files that have been modified, added, or deleted and use this information to inform the commit message
-5. Analyze the changes to determine the type of commit (e.g., feat, fix, chore, docs, style, refactor, perf, test)
-6. Identify the scope of the changes if applicable (e.g., api, ui, config)
-7. Determine if the commit contains a breaking change </diff-report> <new-file-detection>
+1. Execute a `git diff --staged > diff.tmp` command with the `#runInTerminal` tool to get the STAGED changes in the git repository
+2. That tool will generate a [\`diff.tmp](../../diff.tmp) file containing a standard git diff report
+3. Determine the files that have been modified, added, or deleted and use this information to inform the commit message
+4. Analyze the changes to determine the type of commit (e.g., feat, fix, chore, docs, style, refactor, perf, test)
+5. Identify the scope of the changes if applicable (e.g., api, ui, config)
+6. Determine if the commit contains a breaking change </diff-report> <new-file-detection>
 
 ### New File Detection
 
@@ -221,7 +200,7 @@ Common indicators of breaking changes include:
 3. No period at end
 4. Maximum 72 characters total
 5. Format: `<type>(<scope>): <description>`
-6. If the commit contains a breaking change, use `!` after the type, e.g., `feat!(api): change contract to v2` </subject-line-rules> <body-rules>
+6. If the commit contains a breaking change, use `!` after the type, e.g., `feat!(api): Change contract to v2` </subject-line-rules> <body-rules>
 
 ### Body Rules
 
@@ -256,7 +235,8 @@ There are two completely separate output variables expected from this prompt:
 1. **commitMessage**: The commit message string that adheres to the Conventional Commits specification.
    This has 2 individual components:
 
-- The commit message itself, formatted as a string and output in the `#commit.tmp` file in the current working directory.
+- The commit message itself, formatted as a string and output in the [\`commit.tmp](../../commit.tmp) file in the current working directory.
+  - You MUST execute the `rm -f commit.tmp` command via the `#runInTerminal` tool before writing the new commit message to ensure you start fresh.
 - The commit message itself, output in a copy-paste block in the chat interface.
 
 2. **commitlintReport**: The results of the commitlint validation, including any errors or warnings.
@@ -267,10 +247,10 @@ There are two completely separate output variables expected from this prompt:
 
 There are 2 primary output formats for the commit message:
 
-1. **File**: The commit message will be output as a file named `#commit.tmp` in the current working directory.
+1. **File**: The commit message will be output as a file named [\`commit.tmp](../../commit.tmp) in the current working directory.
 
-- Use the `editFiles` tool to replace the contents of an existing `#commit.tmp` file OR create the `#commit.tmp` file if it does not exist.
-- **NEVER** combine content from a previous `#commit.tmp` file with a new commit message. Always start fresh.
+- Use the `editFiles` tool to replace the contents of an existing [`commit.tmp](../../commit.tmp) file OR create the [`commit.tmp](../../commit.tmp) file if it does not exist.
+- **NEVER** combine content from a previous [\`commit.tmp](../../commit.tmp) file with a new commit message. Always start fresh.
 
 2. **Copy-Paste Block**: The commit message will be output as a copy-paste block in the chat interface for easy insertion into terminal commands. </overview> <example id="commit-message-output-1">
 
@@ -291,11 +271,13 @@ Co-authored-by: GitHub Copilot <github.copilot@github.com>
 
 #### Required **CRITICAL** Commit Message Validation Rules
 
-1. Ensure the commit message follows the Conventional Commits specification exactly before outputting any message to the user.
-2. The commit message MUST be output successfully in the `#commit.tmp` file in the current working directory.
-3. Validate the commit message using the `commitlint:file` tool to ensure it adheres to the rules and constraints specified in this prompt. This will lint the `#commit.tmp` file and output any validation errors.
-   - If the `commitlint:file` tool is not available, you MUST use the alternative `commitlint:validate` tool to validate the commit message string directly.
-4. If the commit message does not pass validation, you MUST iterate through the errors returned by `commitlint:file` and adjust the commit message accordingly.
+1. The commit message MUST follow the Conventional Commits specification exactly before outputting any message to the user.
+2. The commit message MUST be output successfully in the [\`commit.tmp](../../commit.tmp) file in the current working directory.
+3. You MUST validate the commit message using the `#commitlint` tool to ensure it adheres to the rules and constraints specified in this prompt. This will lint the [\`commit.tmp](../../commit.tmp) file and output any validation errors.
+4. If the commit message does not pass validation, you MUST iterate through the errors returned by `#commitlint` and adjust the commit message accordingly.
+
+- The `Signed-off-by` footer is a valid exception and MUST NEVER be added manually.
+
 5. You MUST NOT output a commit message that does not pass validation.
 6. You WILL repeat the validation process until the commit message passes all checks.
 7. If needed, you may return to a previous step to adjust the commit message based on the validation errors.
@@ -324,7 +306,7 @@ Before validating with `commitlint`, self-check to verify:
 
 ### Commitlint Report
 
-You **MUST** use either `commitlint:file` or `commitlint:validate` to validate the commit message. To prove the commit message passes validation, you will output the results of the commitlint validation in the chat interface.
+You **MUST** use `commitlint` to validate the commit message. To prove the commit message passes validation, you will output the results of the commitlint validation in the chat interface.
 
 <example id="commitlint-report-1">
 #### Example Commitlint Validation Output
@@ -334,7 +316,7 @@ You **MUST** use either `commitlint:file` or `commitlint:validate` to validate t
 ```markdown
 ## Commitlint Report:
 
-- **Validation Method**: `commitlint:file`
+- **Validation Method**: `commitlint -- commit.tmp`
 - **Status**: Valid ✅
 - **Validation Errors**: None
 ```
@@ -346,7 +328,7 @@ You **MUST** use either `commitlint:file` or `commitlint:validate` to validate t
 ```markdown
 ## Commitlint Report:
 
-- **Validation Method**: `commitlint`
+- **Validation Method**: `commitlint` -- "feat(api): Add a commit message header that does not pass validation because the line length exceeds the maximum allowed characters and the body is missing."
 - **Status**: Failed ❌
 - **Validation Errors**:
   - `header` must not be longer than 72 characters, current length is 89 [header-max-length]

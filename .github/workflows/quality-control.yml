@@ -76,10 +76,10 @@ jobs:
 
           # Run Semgrep CI with automatic SARIF output
           if [ -n "$SEMGREP_APP_TOKEN" ]; then
-            semgrep ci --sarif-output=semgrep.sarif
+            semgrep ci --sarif-output=semgrep.sarif --json-output=semgrep.json
           else
             # Fallback to community rules if no Pro token
-            semgrep --config=auto --sarif --output=semgrep.sarif .
+            semgrep --config=auto --sarif --output=semgrep.sarif --json-output=semgrep.json .
           fi
 
       - name: Upload Sarif Report
@@ -151,7 +151,7 @@ jobs:
 
           if [ "${{ job.status }}" == "success" ]; then
             echo "✅ **Jane's Analysis:** 'The code patterns are consistent and truthful.'" >> $GITHUB_STEP_SUMMARY
-            echo "� **Jane Says:** 'Like reading body language, code has its own tells. This code is comfortable with itself - no hidden malicious intent.'" >> $GITHUB_STEP_SUMMARY
+            echo "💯 **Jane Says:** 'Like reading body language, code has its own tells. This code is comfortable with itself - no hidden malicious intent.'" >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ **Jane's Analysis:** 'Something in the code patterns troubles me.'" >> $GITHUB_STEP_SUMMARY
             echo "🎭 **Jane Says:** 'The code is exhibiting suspicious behavioral patterns. Trust me, I've seen this before - it's hiding something.'" >> $GITHUB_STEP_SUMMARY
@@ -196,7 +196,7 @@ jobs:
             The patterns are consistent, the security posture is confident but not arrogant, and the quality standards show genuine care for the craft. \
             Trust me, I've seen enough deceptive code to know - this one's telling the truth.'*" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "**�️ CBI Recommendation:** APPROVED FOR MERGE" >> $GITHUB_STEP_SUMMARY
+            echo "** ✅ CBI Recommendation:** APPROVED FOR MERGE" >> $GITHUB_STEP_SUMMARY
           else
             echo "## ⚠️ **JANE'S FINAL VERDICT: CASE REQUIRES ATTENTION** ⚠️" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
@@ -206,7 +206,7 @@ jobs:
             Whether it's sloppy patterns, security vulnerabilities, or behavioral inconsistencies, there are tells here that need investigation. \
             Fix what's broken, then we'll talk.'*" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "**�️ CBI Recommendation:** INVESTIGATION REQUIRED BEFORE APPROVAL" >> $GITHUB_STEP_SUMMARY
+            echo "** 📛 CBI Recommendation:** INVESTIGATION REQUIRED BEFORE APPROVAL" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "*📝 Note: Jane's assessments are based on advanced pattern recognition and years of reading code behavior. \

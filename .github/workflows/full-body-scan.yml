@@ -26,19 +26,19 @@ jobs:
     steps:
       - name: 📺 Determine Episode Rotation
         id: episodes
-        shell: bash
         run: |
           if [[ "${{ github.event_name }}" == "schedule" ]]; then
             WEEK=$(date +%U)
             THIS=$(( WEEK % 4 ))
 
-            declare -a CODES
-            CODES[0]="${{ env.JUDY }}"
-            CODES[1]="${{ env.BILLY }}"
-            CODES[2]="${{ env.KELVIN }}"
-            CODES[3]="${{ env.JESSE }}"
+            case $THIS in
+              0) EP="${{ env.JUDY }}" ;;
+              1) EP="${{ env.BILLY }}" ;;
+              2) EP="${{ env.KELVIN }}" ;;
+              3) EP="${{ env.JESSE }}" ;;
+            esac
 
-            echo "this_week=${CODES[$THIS]}" >> $GITHUB_OUTPUT
+            echo "this_week=$EP" >> $GITHUB_OUTPUT
           else
             echo "this_week=🎬 On-Demand Special: The One Where We Scan Everything" >> $GITHUB_OUTPUT
           fi
