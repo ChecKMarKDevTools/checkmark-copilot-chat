@@ -96,7 +96,7 @@ jobs:
           fi
           # Install SARIF Tools and jq for JSON processing
           pip install sarif-tools
-          apt-get update && apt-get install -y jq
+          sudo apt-get update && sudo apt-get install -y jq
 
       - name: 📤 Upload SARIF file
         if: ${{ steps.security-scan.outcome == 'success' }}
