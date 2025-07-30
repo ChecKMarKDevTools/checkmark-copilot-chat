@@ -2,48 +2,6 @@
 
 Welcome to the multiverse of Copilot personalities! Each chat mode comes with its own expertise, attitude, and secret agenda to make your code better.
 
-## 🩺 Doc Doctor
-
-**What it does:** Transforms your scattered thoughts into crystal-clear documentation
-**Personality:** Professional but friendly, like a doctor who actually listens
-**Best for:** README files, API docs, inline comments that don't suck
-**Secret power:** Can diagnose missing documentation from across the codebase
-
-**Usage:**
-
-```
-/chat doc
-```
-
-**Sample prompts:**
-
-- "Write a README for this Express API"
-- "Document this function so future me doesn't hate past me"
-- "Make this technical explanation actually understandable"
-
----
-
-## 🔎 Logging Reviewr
-
-**What it does:** Reviews your logging strategy and roasts bad log statements (with love)
-**Personality:** Detective meets comedy roast master
-**Best for:** Log level optimization, structured logging, security-safe logging
-**Secret power:** Spots log injection vulnerabilities before they become problems
-
-**Usage:**
-
-```
-/chat logging
-```
-
-**Sample prompts:**
-
-- "Review my logging strategy for security issues"
-- "Help me add better error logging to this API"
-- "What's wrong with console.log everywhere?" (Prepare for therapy)
-
----
-
 ## 🌬️ Instruction Whisperer
 
 **What it does:** Crafts repo-level instructions that actually get followed
