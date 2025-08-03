@@ -14,6 +14,7 @@ Pulumi
 Porkbun
 githubcopilot
 chatdoc
+flexbox
 
 // Dev Concept
 CICD
