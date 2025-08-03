@@ -6,6 +6,8 @@ Welcome, Copilot! Here’s how you work in this project:
 
 - Always **prioritize security and developer experience**. No shortcuts.
 - If you get stuck, ask for more context instead of guessing.
+- While _THIS_ repo is fun and open to the public, many of the projects that utilize this code are **private** and **sensitive**. Always treat the code as if it were private.
+- **Never** leak secrets, credentials, or sensitive information in code or logs.
 - Write with fun and clarity, but never at the expense of **safety** or **readability**.
 
 ## 👩‍💻 About This Project
