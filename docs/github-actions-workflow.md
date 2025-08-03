@@ -1,3 +1,15 @@
+#### SARIF Parsing & Reporting Logic
+
+The `full-body-scan.yml` workflow uses robust SARIF parsing to ensure accurate vulnerability reporting:
+
+- **SARIF Issue Counting:** Uses `jq '[.runs[].results | length] | add'` to reliably count vulnerabilities, avoiding fragile string parsing.
+- **Numeric Comparisons:** All issue checks use numeric operators (`-eq`, `-lt`, `-gt`) for correctness.
+- **Full Findings Output:** If any issues are found, the workflow prints all SARIF findings to the console for transparency.
+- **Summary Table:** The step summary always includes a concise list of up to 5 findings for quick review.
+- **TV-Themed Reporting:** All output is wrapped in fun, episode-themed summaries for developer engagement.
+
+These improvements ensure that security issues are never missed or misreported, and that all findings are visible to maintainers and contributors.
+
 # 🔁 GitHub Actions Workflow Guide
 
 This document outlines the GitHub Actions workflows that power the CheckMark Copilot Extension's CI/CD pipeline. Because who doesn't love a good YAML automation story? 🎭

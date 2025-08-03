@@ -130,7 +130,7 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 - **🟣 Planning** - Architecture design, documentation foundation, core decisions
 - **🔵 Implementation** - Core extension development, basic chat modes
 - **🩷 Testing** - Quality assurance, security validation, user testing
-- **� Beta** - Public testing, feedback incorporation, stability improvements
+- **🟡 Beta** - Public testing, feedback incorporation, stability improvements
 - **🟢 Stable** - Production ready, full feature set, ongoing maintenance
 
 ### Coming Soon
