@@ -26,6 +26,8 @@ This is a 100% secure, just-one-install-and-you’re-done Copilot/VS Code extens
    - Safe defaults and error handling—never trust user input, ever.
    - Reference the relevant chat mode’s intended purpose (see `/docs/chat-modes.md`).
 3. **Use the provided templates** for implementing features (see [implement-feature.prompt.md](./prompts/implement-feature.prompt.md)).
+4. **Follow code style guidelines** (see [eslint style guide](../eslint.config.js) and [format guidelines](../prettier.config.js)).
+5. **This repo is ES6+ only**—no legacy JavaScript, please.
 
 ## 🌟 Best Practices Quick Reference
 
@@ -34,7 +36,8 @@ This is a 100% secure, just-one-install-and-you’re-done Copilot/VS Code extens
 - Always validate and sanitize user input (see Security Principles).
 - Write concise but informative doc comments—make them fun, but not mysterious.
 - Respect the “one function = one job” rule.
-- Any mermaid diagrams should be output as separate `.mmd` files in the `/docs/diagrams` directory, not inline in markdown.
+- Any mermaid diagrams should be output as separate `.mmd` files in the `/docs/diagrams` directory, not inline in markdown unless they are very simple.
+- Ensure all code meets standards defined by Prettier in [prettier.config.js](../prettier.config.js), ESLint in [eslint.config.js](../eslint.config.js), and [.remarkrc.js](../.remarkrc.js).
 
 ## 🔛 Paired Development
 

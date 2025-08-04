@@ -15,6 +15,7 @@ Porkbun
 githubcopilot
 chatdoc
 flexbox
+remarkrc
 
 // Dev Concept
 CICD

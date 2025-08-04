@@ -12,12 +12,15 @@ export default [
   },
   pluginJs.configs.recommended,
   {
+    extends: ['plugin:naming/recommended'],
     plugins: {
       '@cspell': cspellPlugin,
     },
     rules: {
       '@cspell/spellchecker': ['warn', { autoFix: true }],
       'no-warning-comments': ['error', { terms: ['eslint-disable'], location: 'anywhere' }],
+      'func-style': ['error', 'expression'],
+      'naming/case': ['error', 'kebab'],
     },
   },
   {
