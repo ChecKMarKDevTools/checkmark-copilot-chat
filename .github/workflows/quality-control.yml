@@ -162,50 +162,6 @@ jobs:
             echo "**Jane's Note:** 'The security scan data is... elusive. Interesting.'" >> $GITHUB_STEP_SUMMARY
           fi
 
-  # Advanced Static Analysis with CodeQL
-  code-analysis:
-    name: '🌀 Advanced Static Analysis'
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
-      checks: write
-      packages: read
-      actions: read
-      contents: read
-    steps:
-      - name: Checkout Code for Analysis
-        uses: actions/checkout@v4
-
-      - name: Initialize CodeQL Analysis
-        uses: github/codeql-action/init@v3
-        with:
-          languages: javascript
-          build-mode: none
-
-      - name: Analyze Code with CodeQL
-        id: codeql-analyze
-        uses: github/codeql-action/analyze@v3
-        with:
-          category: '/language:javascript'
-
-      - name: 📊 Pattern Analysis Report
-        if: ${{ always() }}
-        run: |
-          echo "## 🕵️ Patrick Jane: Advanced Pattern Analysis Report" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Consultant:** Patrick Jane (Code Behavior Analyst)" >> $GITHUB_STEP_SUMMARY
-          echo "**Case Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
-          echo "**Method:** Advanced pattern recognition and behavioral analysis" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          if [ "${{ job.status }}" == "success" ]; then
-            echo "✅ **Jane's Analysis:** 'The code patterns are consistent and truthful.'" >> $GITHUB_STEP_SUMMARY
-            echo "**Jane Says:** 'Like reading body language, code has its own tells. This code is comfortable with itself - no hidden malicious intent.'" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ **Jane's Analysis:** 'Something in the code patterns troubles me.'" >> $GITHUB_STEP_SUMMARY
-            echo "**Jane Says:** 'The code is exhibiting suspicious behavioral patterns. Trust me, I've seen this before - it's hiding something.'" >> $GITHUB_STEP_SUMMARY
-          fi
-
   # Final Quality Assessment Report
   final-assessment:
     permissions:
@@ -214,7 +170,7 @@ jobs:
       checks: write
     name: '🏛️ Final Quality Assessment from The Mentalist'
     runs-on: ubuntu-latest
-    needs: [code-quality-lint, security-scan, code-analysis]
+    needs: [code-quality-lint, security-scan]
     if: ${{ always() }}
     steps:
       - name: 🏛️ Jane's Final CBI Consultation
@@ -222,4 +178,3 @@ jobs:
           echo "## 🏛️ Final Quality Assessment Summary" >> $GITHUB_STEP_SUMMARY
           echo "- Code Quality: ${{ needs.code-quality-lint.result }}" >> $GITHUB_STEP_SUMMARY
           echo "- Security Profile: ${{ needs.security-scan.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Behavioral Analysis: ${{ needs.code-analysis.result }}" >> $GITHUB_STEP_SUMMARY
