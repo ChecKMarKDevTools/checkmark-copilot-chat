@@ -39,7 +39,7 @@ export default {
     'header-trim': [1, 'always'],
     'type-case': [2, 'always', 'lower-case'],
     'scope-case': [2, 'always', 'lower-case'],
-    'subject-case': [2, 'always', 'sentence-case'],
+    'subject-case': [2, 'always', ['sentence-case']],
     'body-leading-blank': [2, 'always'],
     'body-empty': [2, 'never'],
     'body-max-line-length': [2, 'always', 100],

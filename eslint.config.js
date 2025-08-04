@@ -17,6 +17,20 @@ export default [
     },
     rules: {
       '@cspell/spellchecker': ['warn', { autoFix: true }],
+      'no-warning-comments': ['error', { terms: ['eslint-disable'], location: 'anywhere' }],
+    },
+  },
+  {
+    files: ['test/**/*', '*test*'],
+    rules: {
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: 'CatchClause',
+          message:
+            'Do not use catch statements in test files. Use expect(...).rejects or .toThrow() for error assertions.',
+        },
+      ],
     },
   },
 ];

@@ -87,8 +87,6 @@ Automated release management with comprehensive build and deployment:
 
 ---
 
----
-
 ## 🛠️ Potential Future Workflows
 
 Here are workflows we could add as the project grows:
