@@ -38,7 +38,7 @@
     "format:prettier": "prettier --write . --log-level silent",
     "format:remark": "remark . -o --quiet",
     "format:fix-admonitions": "node scripts/fix-github-admonitions.js",
-    "lint": "eslint . --ext . --fix",
+    "lint": "eslint . --fix",
     "spellcheck": "cspell . --show-suggestions",
     "check": "npm run format && npm run lint && npm run spellcheck",
     "commitlint": "commitlint --edit"
@@ -66,5 +66,9 @@
     "remark-lint": "10.0.1",
     "remark-lint-no-unneeded-full-reference-link": "4.0.1",
     "remark-stringify": "11.0.0"
+  },
+  "dependencies": {
+    "@octokit/core": "5.2.2",
+    "express": "5.1.0"
   }
 }
