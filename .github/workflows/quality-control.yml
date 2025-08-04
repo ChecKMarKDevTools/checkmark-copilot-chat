@@ -34,7 +34,8 @@ jobs:
         id: super-linter
         uses: github/super-linter@latest
         env:
-          OUTPUT_FORMAT: text
+          # output in JSON so we can parse with jq
+          OUTPUT_FORMAT: json
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
           VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'pull_request' && 'false' || 'true' }}
@@ -42,13 +43,20 @@ jobs:
           ENABLE_GITHUB_ACTIONS_STEP_SUMMARY: true
           SAVE_SUPER_LINTER_OUTPUT: true
           SAVE_SUPER_LINTER_SUMMARY: true
-          SUPER_LINTER_SUMMARY_FILE_NAME: super-linter-report.md
+          SUPER_LINTER_OUTPUT_DIRECTORY_NAME: output
 
       - name: Display Super-Linter Findings
         if: ${{ always() }}
         run: |
           echo "## Detailed Lint Findings:" >&2
-          cat super-linter-report.md >&2
+          # print any saved super-linter output files
+          if ls output/super-linter* 1> /dev/null 2>&1; then
+            for f in output/super-linter*; do
+              cat "$f" >&2
+            done
+          else
+            echo "No super-linter output file found" >&2
+          fi
 
       - name: 📊 Report
         if: ${{ always() }}
@@ -66,10 +74,11 @@ jobs:
             echo "❌ **Jane's Deduction:** 'Interesting... the code is trying to hide something.'" >> $GITHUB_STEP_SUMMARY
             echo "**Jane Says:** 'The linting errors are like tells in poker. This code is bluffing, but I can see right through it.'" >> $GITHUB_STEP_SUMMARY
             echo "**Detailed Lint Findings:**" >> $GITHUB_STEP_SUMMARY
-            # list top 10 lint errors
-             if [ -f super-linter-report.txt ]; then
-              cat super-linter-report.txt | head -n 10 | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
-             fi
+            # list top 10 lint errors by parsing JSON output via jq
+            json_file=$(ls output/*.json | head -n1)
+            if [ -f "$json_file" ]; then
+              jq -r '.results[:10] | .[] | "- [[31m"]; ruleId: \(.ruleId), message: \(.message)"' "$json_file" >> $GITHUB_STEP_SUMMARY
+            fi
           fi
 
   # Security Vulnerability Scanning
