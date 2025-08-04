@@ -35,17 +35,21 @@ jobs:
         uses: github/super-linter@latest
         env:
           OUTPUT_FORMAT: text
-          OUTPUT_FILE_NAME: super-linter-report.txt
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
+          JAVASCRIPT_ES_CONFIG_FILE: eslint.config.js
           VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'pull_request' && 'false' || 'true' }}
           FILTER_REGEX_EXCLUDE: .git|node_modules
+          ENABLE_GITHUB_ACTIONS_STEP_SUMMARY: true
+          SAVE_SUPER_LINTER_OUTPUT: true
+          SAVE_SUPER_LINTER_SUMMARY: true
+          SUPER_LINTER_SUMMARY_FILE_NAME: super-linter-report.md
 
       - name: Display Super-Linter Findings
         if: ${{ always() }}
         run: |
           echo "## Detailed Lint Findings:" >&2
-          cat super-linter-report.txt >&2
+          cat super-linter-report.md >&2
 
       - name: 📊 Report
         if: ${{ always() }}
