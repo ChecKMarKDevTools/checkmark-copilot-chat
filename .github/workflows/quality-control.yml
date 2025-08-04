@@ -168,6 +168,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
+      checks: write
       packages: read
       actions: read
       contents: read
