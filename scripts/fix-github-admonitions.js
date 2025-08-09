@@ -8,7 +8,11 @@
 import { readFile, writeFile } from 'fs/promises';
 import { glob } from 'glob';
 
-async function fixGithubAdmonitions() {
+/**
+ * Fixes escaped GitHub admonitions in markdown files.
+ * Converts function expression to declaration for clarity and consistency.
+ */
+export const fixGithubAdmonitions = async () => {
   try {
     // Find all markdown files
     const files = await glob('**/*.md', {
@@ -36,11 +40,9 @@ async function fixGithubAdmonitions() {
     console.error('❌ Error fixing GitHub admonitions:', error);
     process.exit(1);
   }
-}
+};
 
 // Run if called directly
 if (import.meta.url.endsWith(process.argv[1])) {
   fixGithubAdmonitions();
 }
-
-export default fixGithubAdmonitions;

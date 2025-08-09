@@ -81,7 +81,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Dependencies
-        run: npm i
+        run: npm install
 
       - name: 🧼 Run Security Scan
         id: security-scan
@@ -130,7 +130,7 @@ jobs:
 
           # Check if semgrep.json exists before parsing
           if [ ! -f "semgrep.sarif" ]; then
-            echo "❌ **Missing Results:** Semgrep JSON file not found - scan may have failed" >> $GITHUB_STEP_SUMMARY
+            echo "❌ **Missing Results:** Semgrep Sarif file not found - scan may have failed" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "**This Week's Lesson:** *Something went wrong during the security scan. \
             The expected results file is missing, which means we can't provide a proper episode analysis.*" >> $GITHUB_STEP_SUMMARY

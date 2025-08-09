@@ -50,7 +50,7 @@ Your masterpiece ends with a commit message that is:
   - **COPY-PASTE BLOCK**: The commit message MUST be output in a copy-paste block in the chat interface for easy insertion into terminal commands.
   - **FILE OUTPUT**: The commit message MUST be output in a file named [`commit.tmp`](../../commit.tmp) in the current working directory.
 - **VALIDATION**: The commit stored in #commit.tmp MUST pass validation using the `npm run commitlint -- commit.tmp` command.
-  - If the user requires a `Signed-off-by` line, and it causes validation errors, then you MAY bypass that specific validation rule ONLY.
+  - If the user requires a `Signed-off-by` line, and it causes validation errors, then you MAY ignore that specific validation rule ONLY.
   - If the commit message does not pass validation, you MUST iterate through the errors returned by using the `#runInTerminal` tool to execute `npm run commitlint -- commit.tmp` and adjust the commit message accordingly.
 - **NO OUTPUT UNTIL VALID**: You MUST NOT output a commit message that does not pass validation.
 
@@ -118,7 +118,7 @@ Co-authored-by: GitHub Copilot <github.copilot@github.com>
 5. You WILL repeat the validation process until the commit message passes all checks.
 6. If needed, you may return to a previous step to adjust the commit message based on the validation errors.
 7. Only after the commit message successfully passes validation, you will output the final commit message in a copy-paste block format.
-8. If validation fails because of a single `Signed-off-by` line, you MUST BYPASS that specific validation rule ONLY.
+8. If validation fails because of a single `Signed-off-by` line, you MUST ignore that specific validation rule ONLY.
    - **NEVER** add a `Signed-off-by` line if it causes validation errors, unless explicitly requested by the user.
 
 </validation-rules> </commit-message>
