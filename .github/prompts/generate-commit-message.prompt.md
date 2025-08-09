@@ -129,26 +129,25 @@ Co-authored-by: GitHub Copilot <github.copilot@github.com>
 
 Before validating with `commitlint`, self-check to verify:
 
-- [ ] Follows `<type>(<scope>): <description>` format with maximum 72 characters
-- [ ] A blank line after subject line
-- [ ] Bullet points for body with maximum 100 characters per line
-- [ ] Uses imperative mood
-- [ ] No capitalization after colon
-- [ ] No period at end
-- [ ] Appropriate scope if multiple files changed
-- [ ] Always explain "why" or the importance of the change or use `(TBD)` if not clear and prompt the user for more context
-- [ ] Never ASSUME or GUESS "why" if not explicitly clear, prompt the user for clarification
-- [ ] Included message in appropriate backticks for easy copy-pasting, e.g.
-  ```markdown copy
-  feat(scope): Summary of the change
+- [ ] Validate the commit message against `npm run commitlint -- commit.tmp` using your [commitlint.config.js](../../commitlint.config.js) rules
+- [ ] Always explain “why” or the importance of the change; if unclear, use `(TBD)` and prompt the user for clarification
+- [ ] Never ASSUME or GUESS intent; prompt the user for more context when necessary
 
-  - bullet 1
-  - bullet 2
+```markdown copy
+feat(scope): Summary of the change
 
-  BREAKING CHANGE: if applicable and how to handle it
-  Co-authored-by: GitHub Copilot <github.copilot@github.com>
-  ```
+- bullet 1
+- bullet 2
+
+BREAKING CHANGE: if applicable and how to handle it
+Co-authored-by: GitHub Copilot <github.copilot@github.com>
+```
+
 - [ ] If breaking change, a `!` immediately follows the type in the header and the `BREAKING CHANGE:` trailer is the first line in the footer
+- [ ] Footer must include one of the following when applicable:
+  - `Co-authored-by: <tool>` - used when the code is part generated and part human-written
+  - `Generated-by: <tool>` - used when the code is mostly generated and little human involvement
+  - `Commit-generated-by: <tool>` - used when the code is mostly human-written and copilot only generated the commit message
 
 </pre-validation-checklist>
 <validation-rule class="critical">

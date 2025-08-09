@@ -9,7 +9,7 @@
   "packages": {
     ".": {
       "extra-files": ["package.json", "version.txt"],
-      "prerelease-type": "pilot"
+      "prerelease-type": "scripting"
     }
   },
   "changelog-sections": [

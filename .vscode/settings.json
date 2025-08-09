@@ -1,7 +1,10 @@
 {
+  "chat.modeFilesLocations": {
+    "/Users/AXC468S_1/Library/Application Support/Code - Insiders/User/prompts": false
+  },
   "github.copilot.chat.commitMessageGeneration.instructions": [
     {
-      "test": "Always tag every AI-generated footer with: GitHub Copilot <copilot@github.com>"
+      "test": "Always tag every AI-generated footer with: GitHub Copilot <github.copilot@github.com>"
     },
     {
       "file": "../prompts/generate-commit-message.prompt.md"

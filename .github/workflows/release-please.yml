@@ -40,7 +40,7 @@ jobs:
 
       - name: 🚀 Create Release
         id: release
-        uses: googleapis/release-please-action@v4
+        uses: googleapis/release-please-action@v4.2.0
         with:
           token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
           config-file: release-please-config.json
