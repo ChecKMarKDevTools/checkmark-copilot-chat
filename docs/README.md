@@ -25,6 +25,7 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 - **[Architecture Overview](./architecture.md)** - System design and component structure
 - **[Development Setup](./development.md)** - For contributors and advanced users
 - **[GitHub Actions Workflow](./github-actions-workflow.md)** - CI/CD pipeline documentation
+- **[Workflow Scenarios](./workflow-scenarios.md)** - Complete documentation of GitHub Actions workflows
 
 ## 🎭 Chat Mode Documentation
 
@@ -32,16 +33,18 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 
 | Mode | Emoji | Purpose | Documentation |
 | - | - | - | - |
-| Doc Doctor | 🩺 | Documentation generation and review | [Chat Modes](./chatmodes.md#-doc-doctor) |
-| Logging Reviewr | 🔎 | Log optimization and security | [Chat Modes](./chatmodes.md#-logging-reviewr) |
-| Instruction Whisperer | 🌬️ | Repo guidelines and standards | [Chat Modes](./chatmodes.md#-instruction-whisperer) |
-| Refactor Genie | 🧞 | Code cleanup and optimization | [Chat Modes](./chatmodes.md#-refactor-genie) |
-| CI/CD Wizard | 🪄 | Pipeline automation | [Chat Modes](./chatmodes.md#-cicd-wizard) |
-| Security Sentinel | 🛡️ | Security review and validation | [Chat Modes](./chatmodes.md#-security-sentinel) |
-| Test Alchemist | 🧪 | Test generation and strategy | [Chat Modes](./chatmodes.md#-test-alchemist) |
-| UX Craftsperson | 🎨 | UI/UX improvements | [Chat Modes](./chatmodes.md#-ux-craftsperson) |
-| Data Whisperer | 📊 | Data analysis and visualization | [Chat Modes](./chatmodes.md#-data-whisperer) |
-| Performance Optimizer | 🚀 | Performance analysis and tuning | [Chat Modes](./chatmodes.md#-performance-optimizer) |
+| Doc Doctor | 🩺 | Documentation generation and review | [Chat Modes](./chat-modes.md#-doc-doctor) |
+| Logging Reviewr | 🔎 | Log optimization and security | [Chat Modes](./chat-modes.md#-logging-reviewr) |
+| Instruction Whisperer | 🌬️ | Repo guidelines and standards | [Chat Modes](./chat-modes.md#-instruction-whisperer) |
+| Refactor Genie | 🧞 | Code cleanup and optimization | [Chat Modes](./chat-modes.md#-refactor-genie) |
+| CI/CD Wizard | 🪄 | Pipeline automation | [Chat Modes](./chat-modes.md#-cicd-wizard) |
+| Security Sentinel | 🛡️ | Security review and validation | [Chat Modes](./chat-modes.md#-security-sentinel) |
+| Test Alchemist | 🧪 | Test generation and strategy | [Chat Modes](./chat-modes.md#-test-alchemist) |
+| UX Craftsperson | 🎨 | UI/UX improvements | [Chat Modes](./chat-modes.md#-ux-craftsperson) |
+| Data Whisperer | 📊 | Data analysis and visualization | [Chat Modes](./chat-modes.md#-data-whisperer) |
+| Performance Optimizer | 🚀 | Performance analysis and tuning | [Chat Modes](./chat-modes.md#-performance-optimizer) |
+
+---
 
 ## 🛠️ Development Documentation
 
@@ -59,6 +62,8 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 - **[Release Process](../CHANGELOG.md)** - How releases are managed
 - **[Security Policy](../.github/SECURITY.md)** - Security reporting and response
 
+---
+
 ## 🔐 Security Documentation
 
 ### Security Resources
@@ -70,8 +75,10 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 
 ### Privacy Information
 
-- **[Privacy Considerations](./faq.md#security--privacy)** - What data is processed and how
+- **[Privacy Considerations](./faq.md#-security--privacy)** - What data is processed and how
 - **[GitHub Copilot Privacy](https://docs.github.com/en/copilot/overview-of-github-copilot/about-github-copilot-for-individuals#about-the-use-of-github-copilot-data)** - Underlying service privacy policy
+
+---
 
 ## 🎯 Use Case Documentation
 
@@ -88,12 +95,14 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 
 | Project Type | Recommended Modes | Documentation |
 | - | - | - |
-| **Web Apps** | Doc Doctor, Refactor Genie, Security Sentinel | [Chat Modes](./chatmodes.md) |
-| **APIs** | Logging Reviewr, Security Sentinel, Test Alchemist | [Chat Modes](./chatmodes.md) |
-| **Open Source** | Doc Doctor, Instruction Whisperer, CI/CD Wizard | [Chat Modes](./chatmodes.md) |
+| **Web Apps** | Doc Doctor, Refactor Genie, Security Sentinel | [Chat Modes](./chat-modes.md) |
+| **APIs** | Logging Reviewr, Security Sentinel, Test Alchemist | [Chat Modes](./chat-modes.md) |
+| **Open Source** | Doc Doctor, Instruction Whisperer, CI/CD Wizard | [Chat Modes](./chat-modes.md) |
 | **Enterprise** | Security Sentinel, Instruction Whisperer, Performance Optimizer | [Architecture](./architecture.md) |
 
-## 🚨 Emergency Documentation
+---
+
+## 🚨 Emergency Troubleshooting
 
 ### Quick Problem Solving
 
@@ -110,6 +119,8 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 - **Security Issues:** `human@checkmarkdevtools.dev`
 - **Discussions:** [GitHub Discussions](https://github.com/CheckMarKDevTools/checkmark-copilot-chat/discussions)
 
+---
+
 ## 📈 Documentation Roadmap
 
 ### Development Stages
@@ -119,7 +130,7 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 - **🟣 Planning** - Architecture design, documentation foundation, core decisions
 - **🔵 Implementation** - Core extension development, basic chat modes
 - **🩷 Testing** - Quality assurance, security validation, user testing
-- **� Beta** - Public testing, feedback incorporation, stability improvements
+- **🟡 Beta** - Public testing, feedback incorporation, stability improvements
 - **🟢 Stable** - Production ready, full feature set, ongoing maintenance
 
 ### Coming Soon
@@ -136,6 +147,8 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 - [ ] **Best Practices** - Community-contributed tips
 - [ ] **Use Case Gallery** - Showcase of creative applications
 
+---
+
 ## 🎨 Documentation Standards
 
 ### Writing Style
@@ -151,6 +164,8 @@ Welcome to the CheckMark Copilot Extension documentation hub! Everything you nee
 - **Provide examples** - Show, don't just tell
 - **Include troubleshooting** - What could go wrong?
 - **Link to related topics** - Help users find what they need
+
+---
 
 ## 🔄 Keeping Documentation Updated
 
@@ -183,6 +198,8 @@ Found outdated information or missing documentation? Please:
 
 ---
 
-_This documentation is a living resource - it grows and improves with the project and community! 📖✨_
+> 🦄 This documentation is a living resource - it grows and improves with the project and community! 📖✨
+
+---
 
 _Generated by GitHub Copilot Chat directed by Ashley Childress on Sun Jul 20 23:39:06 EDT 2025._

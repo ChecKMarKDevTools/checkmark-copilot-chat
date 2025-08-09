@@ -1,0 +1,180 @@
+name: '🎬 Quality Control Department'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches-ignore:
+      - 'release-please*'
+  schedule:
+    - cron: '37 03 * * 5'
+
+jobs:
+  # Code Quality & Linting
+  code-quality-lint:
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+      checks: write
+    name: '🔍 Code Quality & Linting'
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Code Quality Linter
+        id: super-linter
+        uses: github/super-linter@latest
+        env:
+          # output in JSON so we can parse with jq
+          OUTPUT_FORMAT: json
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: main
+          VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'pull_request' && 'false' || 'true' }}
+          FILTER_REGEX_EXCLUDE: .git|node_modules
+          ENABLE_GITHUB_ACTIONS_STEP_SUMMARY: true
+          SAVE_SUPER_LINTER_OUTPUT: true
+          SAVE_SUPER_LINTER_SUMMARY: true
+          SUPER_LINTER_OUTPUT_DIRECTORY_NAME: output
+
+      - name: Display Super-Linter Findings
+        if: ${{ always() }}
+        run: |
+          echo "## Detailed Lint Findings:" >&2
+          # print any saved super-linter output files
+          if ls output/super-linter* 1> /dev/null 2>&1; then
+            for f in output/super-linter*; do
+              cat "$f" >&2
+            done
+          else
+            echo "No super-linter output file found" >&2
+          fi
+
+      - name: 📊 Report
+        if: ${{ always() }}
+        run: |
+          echo "## 🔍 Patrick Jane: Code Quality Mentalist Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Consultant:** Patrick Jane (Former Psychic, Current Mentalist)" >> $GITHUB_STEP_SUMMARY
+          echo "**Case Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Method:** Cold reading of code patterns and psychological profiling" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ **Jane's Deduction:** 'The code is honest. No deception here.'" >> $GITHUB_STEP_SUMMARY
+            echo "**Jane Says:** 'I can tell by the way the brackets are aligned that this developer has excellent attention to detail. Case closed.'" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Jane's Deduction:** 'Interesting... the code is trying to hide something.'" >> $GITHUB_STEP_SUMMARY
+            echo "**Jane Says:** 'The linting errors are like tells in poker. This code is bluffing, but I can see right through it.'" >> $GITHUB_STEP_SUMMARY
+            echo "**Detailed Lint Findings:**" >> $GITHUB_STEP_SUMMARY
+            # list top 10 lint errors by parsing JSON output via jq
+            json_file=$(ls output/*.json | head -n1)
+            if [ -f "$json_file" ]; then
+              jq -r '.results[:10] | .[] | "- ruleId: \(.ruleId), message: \(.message)"' "$json_file" >> $GITHUB_STEP_SUMMARY
+            fi
+          fi
+
+  # Security Vulnerability Scanning
+  security-scan:
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+      checks: write
+    name: '🛡️ Security Vulnerability Scanning'
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - name: 🎯 Jane Studies the Security Landscape
+        uses: actions/checkout@v4
+
+      - name: Vulnerability Scan with Semgrep
+        id: security-scan
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+          SEMGREP_DEPLOYMENT_ID: ${{ secrets.SEMGREP_DEPLOYMENT_ID }}
+        run: |
+          # Install Semgrep
+          pip install semgrep
+
+          # Run Semgrep CI with automatic SARIF output
+          if [ -n "$SEMGREP_APP_TOKEN" ]; then
+            semgrep ci --sarif-output=semgrep.sarif
+          else
+            semgrep --config=auto --sarif --output=semgrep.sarif .
+          fi
+
+          # Install SARIF Tools for SARIF parsing
+          pip install sarif-tools
+          # Install jq for JSON processing
+          sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Upload Sarif Report
+        if: ${{ always() }}
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
+          category: semgrep
+
+      - name: 📊 Security Profile Report
+        if: ${{ always() }}
+        run: |
+          echo "## 🛡️ Patrick Jane: Security Mentalist Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Consultant:** Patrick Jane (Security Vulnerability Profiler)" >> $GITHUB_STEP_SUMMARY
+          echo "**Case Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Method:** Psychological profiling of code vulnerabilities" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f "semgrep.sarif" ]; then
+            # Parse SARIF with Python sarif-tools CLI
+            issues=$(jq '[.runs[]?.results | length] | add // 0' semgrep.sarif)
+            echo "**Jane's Count:** $issues potential security tells identified" >> $GITHUB_STEP_SUMMARY
+            # Console detailed SARIF findings
+            if [ "$issues" -ne "0" ]; then
+              echo "Detailed SARIF Findings:" >&2
+              jq -r '.runs[].results[] | "- \(.ruleId): \(.message.text)"' semgrep.sarif | head -n5 >&2
+            fi
+            # Summary detailed findings
+            echo "**Detailed Findings:**" >> $GITHUB_STEP_SUMMARY
+            jq -r '.runs[].results[] | "- \(.ruleId): \(.message.text)"' semgrep.sarif | head -n5 | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
+
+            if [ "$issues" == "0" ]; then
+              echo "✅ **Jane's Assessment:** 'No security vulnerabilities. This code has nothing to hide.'" >> $GITHUB_STEP_SUMMARY
+              echo "**Jane Says:** 'Clean code is like an honest person - it doesn't try to deceive you with hidden vulnerabilities.'" >> $GITHUB_STEP_SUMMARY
+            else
+              # Console detailed Semgrep vulnerability output
+              echo "## Detailed Semgrep Vulnerabilities:" >&2
+              jq -r '.runs[].results[] | "- \(.ruleId): \(.message.text)"' semgrep.sarif | head -n5 >&2
+              echo "⚠️ **Jane's Assessment:** 'I see $issues security patterns that concern me.'" >> $GITHUB_STEP_SUMMARY
+              echo "**Detailed Vulnerabilities:**" >> $GITHUB_STEP_SUMMARY
+              jq -r '.runs[].results[] | "- \(.ruleId): \(.message.text)"' semgrep.sarif | head -n5 | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
+              echo "**Jane Says:** 'Security flaws are like micro-expressions - if you know what to look for, they're impossible to hide.'" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "**Jane's Note:** 'The security scan data is... elusive. Interesting.'" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # Final Quality Assessment Report
+  final-assessment:
+    permissions:
+      contents: read
+      actions: read
+      checks: write
+    name: '🏛️ Final Quality Assessment from The Mentalist'
+    runs-on: ubuntu-latest
+    needs: [code-quality-lint, security-scan]
+    if: ${{ always() }}
+    steps:
+      - name: 🏛️ Jane's Final CBI Consultation
+        run: |
+          echo "## 🏛️ Final Quality Assessment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Code Quality: ${{ needs.code-quality-lint.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Security Profile: ${{ needs.security-scan.result }}" >> $GITHUB_STEP_SUMMARY

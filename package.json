@@ -1,10 +1,18 @@
 {
   "name": "checkmark-copilot-chat",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Custom chat modes for GitHub Copilot, starting with skillsets. Docs, logging, and more - no weird prompts required.",
   "author": "Ashley Childress",
   "license": "Apache-2.0",
-  "keywords": ["github", "copilot", "vscode", "extension", "chat", "automation", "security"],
+  "keywords": [
+    "github",
+    "copilot",
+    "vscode",
+    "extension",
+    "chat",
+    "automation",
+    "security"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CheckMarKDevTools/checkmark-copilot-chat.git"
@@ -26,21 +34,28 @@
     "build": "echo \"🎬 Now Building: Season 1, Episode 1 — 'The Setup Begins' 💡🛠️ (Coming soon to a terminal near you...)\"",
     "test": "echo \"📺 Previously on 'ChecKMarK': The tests... don't exist. But stay tuned — filming starts soon. 🎈✨🦄🍿\"",
     "prepare": "command -v husky >/dev/null 2>&1 && husky install",
-    "format": "prettier --write .",
-    "lint:js": "eslint .",
-    "format:md": "remark . -o",
-    "lint": "npm run lint:js && npm run format:md",
+    "format": "npm run format:prettier && npm run format:remark && npm run format:fix-admonitions",
+    "format:prettier": "prettier --write . --log-level silent",
+    "format:remark": "remark . -o --quiet",
+    "format:fix-admonitions": "node scripts/fix-github-admonitions.js",
+    "lint": "eslint . --fix",
     "spellcheck": "cspell . --show-suggestions",
-    "lint:commit": "commitlint --edit"
+    "check": "npm run format && npm run lint && npm run spellcheck",
+    "commitlint": "commitlint --edit"
   },
   "devDependencies": {
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
+    "@cspell/dict-bash": "4.2.1",
+    "@cspell/dict-companies": "3.2.3",
+    "@cspell/dict-shell": "1.1.1",
     "@cspell/eslint-plugin": "9.2.0",
+    "@microsoft/sarif-multitool": "4.5.4",
     "cspell": "9.2.0",
-    "eslint": "9.31.0",
+    "eslint": "9.32.0",
+    "eslint-plugin-naming": "0.1.10",
+    "glob": "11.0.3",
     "husky": "9.1.7",
-    "jest": "30.0.4",
     "lint-staged": "16.1.2",
     "prettier": "3.6.2",
     "release-please": "17.1.1",
@@ -52,5 +67,9 @@
     "remark-lint": "10.0.1",
     "remark-lint-no-unneeded-full-reference-link": "4.0.1",
     "remark-stringify": "11.0.0"
+  },
+  "dependencies": {
+    "@octokit/core": "5.2.2",
+    "express": "5.1.0"
   }
 }

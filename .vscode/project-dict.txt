@@ -7,12 +7,15 @@ anchildress1
 Oompa
 Loompa
 Tetris
+wakatime
 
 // External Service
 Pulumi
 Porkbun
 githubcopilot
 chatdoc
+flexbox
+remarkrc
 
 // Dev Concept
 CICD
@@ -25,12 +28,16 @@ wireframes
 unshift
 gatekeep
 gitdiff
+blockquotes
+multitool
 
 // Security / Infra
 SIEM
 cccp
 semgrep
 sarif
+gpgsign
+returntocorp
 
 // Internal Project
 Kondo
@@ -39,3 +46,5 @@ robotspeak
 Qube
 setnames
 storyboarding
+Yellowjackets
+Quigley

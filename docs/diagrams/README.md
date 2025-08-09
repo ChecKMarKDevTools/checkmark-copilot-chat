@@ -2,6 +2,8 @@
 
 This folder contains all the Mermaid diagrams for the CheckMark Copilot Extension project, organized by category. 📊
 
+> **📊 Complete Workflow Coverage:** See [Workflow Scenarios Documentation](../workflow-scenarios.md) for comprehensive documentation of GitHub Actions workflows.
+
 > **Guidelines**: All diagrams follow [Design Principles](../../.github/instructions/design-principles.instructions.md) and [Security Principles](../../.github/instructions/security-principles.instructions.md).
 
 ## 🏗️ Architecture Diagrams

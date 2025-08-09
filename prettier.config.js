@@ -8,11 +8,33 @@ export default {
   overrides: [
     {
       files: '**/*.json',
-      options: { parser: 'json' },
+      options: {
+        parser: 'json',
+        printWidth: 100,
+        proseWrap: 'preserve',
+        bracketSpacing: true,
+        trailingComma: 'none',
+      },
     },
     {
       files: '**/*.yaml,**/*.yml',
-      options: { parser: 'yaml' },
+      options: {
+        parser: 'yaml',
+        printWidth: 120,
+        proseWrap: 'preserve',
+        bracketSpacing: true,
+        singleQuote: true,
+      },
+    },
+    {
+      files: '.github/workflows/**/*.yml',
+      options: {
+        parser: 'yaml',
+        printWidth: 200,
+        proseWrap: 'preserve',
+        bracketSpacing: true,
+        singleQuote: true,
+      },
     },
   ],
 };
