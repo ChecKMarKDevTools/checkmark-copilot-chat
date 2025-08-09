@@ -38,6 +38,7 @@ This is a 100% secure, just-one-install-and-you’re-done Copilot/VS Code extens
 - Respect the “one function = one job” rule.
 - Any mermaid diagrams should be output as separate `.mmd` files in the `/docs/diagrams` directory, not inline in markdown unless they are very simple.
 - Ensure all code meets standards defined by Prettier in [prettier.config.js](../prettier.config.js), ESLint in [eslint.config.js](../eslint.config.js), and [.remarkrc.js](../.remarkrc.js).
+- [lint-staged.config.js](../lint-staged.config.js) is configured to run  `format`, `lint`, and `spellcheck` on all staged files, for every type in that order. Each tool take care of it's own apply/ignore rules in it's own config.
 
 ## 🔛 Paired Development
 

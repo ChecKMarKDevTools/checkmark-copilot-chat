@@ -5,6 +5,9 @@ import namingPlugin from 'eslint-plugin-naming';
 
 export default [
   {
+    ignores: ['**/*.md'], // remark handles markdown files
+  },
+  {
     languageOptions: {
       globals: globals.node,
       ecmaVersion: 2024,
