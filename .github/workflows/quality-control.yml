@@ -13,8 +13,8 @@ on:
 jobs:
   # Code Quality & Linting
   code-quality-lint:
-    # Only run for non-dependabot and non-release-please branches
-    if: ${{ github.actor != 'dependabot[bot]' && (github.event_name != 'pull_request' || !startsWith(github.head_ref, 'release-please')) }}
+    # Only run for non-dependabot branches
+    if: ${{ github.actor != 'dependabot[bot]' }}
     permissions:
       contents: read
       security-events: write
@@ -83,8 +83,8 @@ jobs:
 
   # Security Vulnerability Scanning
   security-scan:
-    # Only run for non-dependabot and non-release-please branches
-    if: ${{ github.actor != 'dependabot[bot]' && (github.event_name != 'pull_request' || !startsWith(github.head_ref, 'release-please')) }}
+    # Only run for non-dependabot branches
+    if: ${{ github.actor != 'dependabot[bot]' }}
     permissions:
       contents: read
       security-events: write
