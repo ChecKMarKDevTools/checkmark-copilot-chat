@@ -7,14 +7,14 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
-    branches-ignore:
-      - 'release-please*'
   schedule:
     - cron: '37 03 * * 5'
 
 jobs:
   # Code Quality & Linting
   code-quality-lint:
+    # Only run for non-dependabot and non-release-please branches
+    if: ${{ github.actor != 'dependabot[bot]' && (github.event_name != 'pull_request' || !startsWith(github.head_ref, 'release-please')) }}
     permissions:
       contents: read
       security-events: write
@@ -22,7 +22,6 @@ jobs:
       checks: write
     name: '🔍 Code Quality & Linting'
     runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -74,15 +73,18 @@ jobs:
             echo "❌ **Jane's Deduction:** 'Interesting... the code is trying to hide something.'" >> $GITHUB_STEP_SUMMARY
             echo "**Jane Says:** 'The linting errors are like tells in poker. This code is bluffing, but I can see right through it.'" >> $GITHUB_STEP_SUMMARY
             echo "**Detailed Lint Findings:**" >> $GITHUB_STEP_SUMMARY
-            # list top 10 lint errors by parsing JSON output via jq
+            # list top 10 lint errors by parsing Super-Linter JSON output via jq
             json_file=$(ls output/*.json | head -n1)
             if [ -f "$json_file" ]; then
-              jq -r '.results[:10] | .[] | "- ruleId: \(.ruleId), message: \(.message)"' "$json_file" >> $GITHUB_STEP_SUMMARY
+              # Super-Linter JSON has errors under 'files' object
+              jq -r '.files | to_entries | .[] | .value[] | "- ruleId: \(.ruleId), message: \(.message)"' "$json_file" | head -n10 >> $GITHUB_STEP_SUMMARY
             fi
           fi
 
   # Security Vulnerability Scanning
   security-scan:
+    # Only run for non-dependabot and non-release-please branches
+    if: ${{ github.actor != 'dependabot[bot]' && (github.event_name != 'pull_request' || !startsWith(github.head_ref, 'release-please')) }}
     permissions:
       contents: read
       security-events: write
@@ -90,7 +92,6 @@ jobs:
       checks: write
     name: '🛡️ Security Vulnerability Scanning'
     runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
     steps:
       - name: 🎯 Jane Studies the Security Landscape
         uses: actions/checkout@v4
