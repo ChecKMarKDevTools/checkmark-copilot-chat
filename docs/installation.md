@@ -85,7 +85,7 @@ Add to your `.vscode/settings.json`:
       "autoContext": true,
       "securityLevel": "strict"
     },
-    "log-reviewr": {
+    "the-logfather": {
       "enabled": true,
       "includeStackTraces": false,
       "sanitizeOutput": true

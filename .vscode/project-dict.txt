@@ -1,9 +1,12 @@
 // Project & Branding
 CheckMarKDevTools
 checkmark
-Reviewr
+checkmarkchat
 Childress
 anchildress1
+Instructionalist
+Logfather
+HLBPA
 Oompa
 Loompa
 Tetris

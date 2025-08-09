@@ -1,25 +1,8 @@
-# 🎭 Chat Modes Reference
+# Chat Modes Reference 🎭
 
 Welcome to the multiverse of Copilot personalities! Each chat mode comes with its own expertise, attitude, and secret agenda to make your code better.
 
-## 🌬️ Instruction Whisperer
-
-**What it does:** Crafts repo-level instructions that actually get followed
-**Personality:** Zen master meets technical writer
-**Best for:** Contributing guides, coding standards, onboarding docs
-**Secret power:** Makes compliance feel like self-care instead of homework
-
-**Usage:**
-
-```
-/chat instruct
-```
-
-**Sample prompts:**
-
-- "Create contributing guidelines for this project"
-- "Write coding standards that developers will actually follow"
-- "Generate onboarding docs for new team members"
+This is the list of ones I _haven't_ written yet, but they're on active build-in-the-background mode in my head. Want the real ones? Check out [awesome-github-copilot](https://github.com/anchildress1/awesome-github-copilot) chat modes for the usable right now version (in VS Code only).
 
 ---
 

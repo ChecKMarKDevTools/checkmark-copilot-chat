@@ -48,7 +48,7 @@ checkmark-copilot-chat/
 │   │   └── configManager.js      # Configuration handling
 │   ├── modes/                    # Individual chat modes
 │   │   ├── docDoctor.js          # Documentation mode
-│   │   ├── logReviewr.js         # Logging review mode
+│   │   ├── logfather.js          # Logging review mode
 │   │   ├── refactorGenie.js      # Refactoring mode
 │   │   └── ...                   # Other modes
 │   ├── utils/                    # Shared utilities

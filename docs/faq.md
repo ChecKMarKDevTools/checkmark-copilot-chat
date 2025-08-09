@@ -6,7 +6,7 @@ All the questions you're thinking but haven't asked yet! And some you probably w
 
 ### Q: What exactly is the CheckMark Copilot Extension?
 
-**A:** It's a VS Code extension that adds specialized "chat modes" to GitHub Copilot. Instead of generic AI assistance, you get expert personas like Doc Doctor (for documentation), Logging Reviewr (for log optimization), and Refactor Genie (for code cleanup). Think of it as giving Copilot multiple personalities, each with their own expertise! 🎭
+**A:** It's a VS Code extension that adds specialized "chat modes" to GitHub Copilot. Instead of generic AI assistance, you get expert personas like Doc Doctor (for documentation), The Logfather (for log optimization), and Refactor Genie (for code cleanup). Think of it as giving Copilot multiple personalities, each with their own expertise! 🎭
 
 ### Q: Do I need a GitHub Copilot subscription?
 
@@ -31,7 +31,7 @@ All the questions you're thinking but haven't asked yet! And some you probably w
 **A:** We're designing 10+ specialized modes including:
 
 - 🩺 Doc Doctor (documentation)
-- 🔎 Logging Reviewr (log optimization)
+- 🔎 The Logfather (log optimization)
 - 🧞 Refactor Genie (code cleanup)
 - 🪄 CI/CD Wizard (automation)
 - 🛡️ Security Sentinel (security review)
@@ -137,7 +137,7 @@ We read every issue! 🐛
 **A:** Here's the quick guide:
 
 - **Writing docs?** → Doc Doctor
-- **Fixing logs?** → Logging Reviewr
+- **Fixing logs?** → The Logfather
 - **Cleaning code?** → Refactor Genie
 - **Setting up CI/CD?** → CI/CD Wizard
 - **Security review?** → Security Sentinel

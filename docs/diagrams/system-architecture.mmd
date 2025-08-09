@@ -27,7 +27,7 @@ graph TB
 
     subgraph "Chat Modes"
         DocDoctor[🩺 Doc Doctor]
-        LogReviewr[🔎 Logging Reviewr]
+        TheLogfather[🔎 The Logfather]
         RefactorGenie[🧞 Refactor Genie]
         CICDWizard[🪄 CI/CD Wizard]
         SecuritySentinel[🛡️ Security Sentinel]
@@ -51,7 +51,7 @@ graph TB
     Core --> Config
 
     ChatModes --> DocDoctor
-    ChatModes --> LogReviewr
+    ChatModes --> TheLogfather
     ChatModes --> RefactorGenie
     ChatModes --> CICDWizard
     ChatModes --> SecuritySentinel
@@ -72,6 +72,6 @@ graph TB
     classDef vscode fill:#fff3e0,stroke:#f57c00,stroke-width:2px
 
     class Core,ChatModes,Security,Config coreComponent
-    class DocDoctor,LogReviewr,RefactorGenie,CICDWizard,SecuritySentinel,TestAlchemist,UXCrafter,DataWhisperer,PerfOptimizer,ModeCustom chatMode
+    class DocDoctor,TheLogfather,RefactorGenie,CICDWizard,SecuritySentinel,TestAlchemist,UXCrafter,DataWhisperer,PerfOptimizer,ModeCustom chatMode
     class GitHub,NPM,Marketplace external
     class VSCode,CopilotAPI,ExtensionHost vscode

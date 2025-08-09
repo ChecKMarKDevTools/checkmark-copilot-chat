@@ -1,9 +1,11 @@
 # CheckMark Copilot Extension 🦾🤖🛡️
 
+> 🛡 Security: Report privately → <human@checkmarkdevtools.dev> (credit + karma included)
+
 A “just install it and go” VS Code + Copilot extension that’s actually fun to use.
 You get docs, logging, automation, and code review magic-served with security, snark, and a few TV Easter eggs.
 
-| [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-EDC531.svg?logo=apache)](./LICENSE) | [![Status: Building the Set](https://img.shields.io/badge/Status-Building_the_Set-9B5DE5?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMGJiZjkiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1nZW0taWNvbiBsdWNpZGUtZ2VtIj48cGF0aCBkPSJNNiAzaDEybDQgNi0xMCAxM0wyIDlaIi8+PHBhdGggZD0iTTExIDMgOCA5bDQgMTMgNC0xMy0zLTYiLz48cGF0aCBkPSJNMiA5aDIwIi8+PC9zdmc+)](./docs/README.md) [![No Boring Allowed](https://img.shields.io/badge/Style-Fun%20Only-F054B2?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMGJiZjkiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1nZW0taWNvbiBsdWNpZGUtZ2VtIj48cGF0aCBkPSJNNiAzaDEybDQgNi0xMCAxM0wyIDlaIi8+PHBhdGggZD0iTTExIDMgOCA5bDQgMTMgNC0xMy0zLTYiLz48cGF0aCBkPSJNMiA5aDIwIi8+PC9zdmc+)]() [![Security Policy](https://img.shields.io/badge/Security-Responsible-2A1F33?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMGJiZjkiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1nZW0taWNvbiBsdWNpZGUtZ2VtIj48cGF0aCBkPSJNNiAzaDEybDQgNi0xMCAxM0wyIDlaIi8+PHBhdGggZD0iTTExIDMgOCA5bDQgMTMgNC0xMy0zLTYiLz48cGF0aCBkPSJNMiA5aDIwIi8+PC9zdmc+)](.github/SECURITY.md) |
+| [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-EDC531.svg?logo=apache)](./LICENSE) | [![Status: Scripting in Progress](https://img.shields.io/badge/Status-Building_the_Set-9B5DE5?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMGJiZjkiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1nZW0taWNvbiBsdWNpZGUtZ2VtIj48cGF0aCBkPSJNNiAzaDEybDQgNi0xMCAxM0wyIDlaIi8+PHBhdGggZD0iTTExIDMgOCA5bDQgMTMgNC0xMy0zLTYiLz48cGF0aCBkPSJNMiA5aDIwIi8+PC9zdmc+)](./docs/README.md) [![No Boring Allowed](https://img.shields.io/badge/Style-Fun%20Only-F054B2?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMGJiZjkiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1nZW0taWNvbiBsdWNpZGUtZ2VtIj48cGF0aCBkPSJNNiAzaDEybDQgNi0xMCAxM0wyIDlaIi8+PHBhdGggZD0iTTExIDMgOCA5bDQgMTMgNC0xMy0zLTYiLz48cGF0aCBkPSJNMiA5aDIwIi8+PC9zdmc+)]() [![Security Policy](https://img.shields.io/badge/Security-Responsible-2A1F33?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMGJiZjkiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1nZW0taWNvbiBsdWNpZGUtZ2VtIj48cGF0aCBkPSJNNiAzaDEybDQgNi0xMCAxM0wyIDlaIi8+PHBhdGggZD0iTTExIDMgOCA5bDQgMTMgNC0xMy0zLTYiLz48cGF0aCBkPSJNMiA5aDIwIi8+PC9zdmc+)](.github/SECURITY.md) |
 | - | :- |
 | 🫶 Show Some Love | [![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee\&logoColor=black)](https://www.buymeacoffee.com/anchildress1) [![dev.to Badge](https://img.shields.io/badge/dev.to-0A0A0A?logo=devdotto\&logoColor=fff)](https://dev.to/anchildress1) [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?logo=linkedin\&logoColor=white)](https://www.linkedin.com/in/anchildress1/) |
 | 🛼 Recent Activity | [![GitHub commit activity](https://img.shields.io/github/commit-activity/t/CheckMarKDevTools/checkmark-copilot-chat?color=F054B2\&cacheSeconds=3600)](https://github.com/CheckMarKDevTools/checkmark-copilot-chat/commits/main/) [![GitHub last commit](https://img.shields.io/github/last-commit/CheckMarKDevTools/checkmark-copilot-chat?display_timestamp=author\&color=34A853\&cacheSeconds=3600)](https://github.com/CheckMarKDevTools/checkmark-copilot-chat/commits/main/) [![GitHub Created At](https://img.shields.io/github/created-at/CheckMarKDevTools/checkmark-copilot-chat?color=EDC531)](https://github.com/CheckMarKDevTools/checkmark-copilot-chat) [![wakatime](https://wakatime.com/badge/github/CheckMarKDevTools/checkmark-copilot-chat.svg)](https://wakatime.com/badge/github/CheckMarKDevTools/checkmark-copilot-chat) |
@@ -20,6 +22,10 @@ You get docs, logging, automation, and code review magic-served with security, s
 
 ## 🦄 What Does This Extension Do?
 
+> This repo aims to make Copilot’s most opinionated custom chat modes & prompts available **in any editor where GitHub Copilot works**. I ship my own creations plus any community gold I dig up (`@checkmarkchat`), ready to use out of the box—**zero config**, no copy-paste, no shady surprise APIs. My personal ones debut in [awesome-github-copilot](https://github.com/anchildress1/awesome-github-copilot) for wider testing, then get promoted here once they’re stable.
+>
+> **Goal:** The Instructionalist at your fingertips for custom instructions, an Architect-on-demand for quick big-picture maps of that legacy app no one dares touch, and The Logfather on call for devs still navigating the wilds of enterprise. Powered by a transparent interceptor that only reads the bare minimum for stable results; everything else goes straight to the official Copilot API you’re already using—no scenic joyrides. Fueled entirely by weekend-project energy, enterprise guardrails, excessive caffeine, and the eternal “just 5 more minutes” mindset. 🫶
+
 - **Custom Copilot Chat Modes:** Docs, logging, refactoring, and CI/CD—each with its own twist (and sometimes attitude).
 - **One-click Setup:** Install, configure, get out of your own way.
 - **Security First:** All code and features are designed to be safe, open, and 100% transparent.
@@ -27,15 +33,16 @@ You get docs, logging, automation, and code review magic-served with security, s
 
 ---
 
-## 🛠️ How to Use
+## 🛠️ How to Use (coming soon)
 
-1. **Install the Extension** (from the VS Code marketplace or side-load—docs coming soon!)
+1. **Install the (not-yet-existing) Extension or GitHub App** (from the GitHub or VS Code marketplace — coming soon!)
 2. **Pick Your Mode:**
-   - _Doc Doctor_ for docs
-   - _Logging Reviewr_ for logs
-   - _Instruction Whisperer_ for repo rules
+   - _The Instructionalist_ for repo rules
+   - _HLBPA (High-level Big-picture Architect)_ for systems overview
+   - _The Logfather_ for always on-point enterprise log implementations
+   - _Doc Doctor_ for technical and user docs
    - _Refactor Genie_ for cleanup
-   - …or just try `/chat help` to see them all!
+   - ...or just try `/chat help` to see them all!
 3. **Chat With Copilot:**
    Use [implement-feature.prompt.md](./.github/prompts/implement-feature.prompt.md) for new features. All instructions are written for real people—no robotspeak.
 
@@ -48,14 +55,16 @@ You get docs, logging, automation, and code review magic-served with security, s
 - All dependencies scanned for known vulnerabilities.
 - Read the full [Security Principles](.github/instructions/security-principles.instructions.md) for your AI rulebook.
 
-If you find a security issue, please **don’t open a public issue**—email `human@checkmarkdevtools.dev` and you’ll get a response fast (plus credit and good karma).
+**Found a security issue? Skip the public issue tracker** and email <human@checkmarkdevtools.dev>. I’ll reply as soon as I check my inbox (sometimes even daily!). Bonus: you get credit, good karma, and my eternal gratitude. 🙏
+
+> **Formal bit** for the compliance folks: _Please_ do not disclose vulnerabilities publicly until they’ve been verified and addressed. You’ll receive an acknowledgement and follow-up within 24–48 hours of sending the details.
 
 ---
 
 ## 🧑‍💻 Contributing
 
 Right now, contributions are **not accepted** - it’s just me, Ashley, running this rodeo.
-That’ll change soon, so:
+That’ll change soon (I hope), so:
 
 - Open issues for bugs, features, or feedback (credit always given)
 - Watch the repo for updates (and memes)
@@ -65,8 +74,10 @@ That’ll change soon, so:
 
 ## 🌈 Code of Conduct
 
-This project is welcoming, open, and safe for all.
-If you see something, say something—nicely!
+This project is welcoming, open, and safe for all. If you see something, say something — **nicely**.
+
+> Come at someone sideways and I _will_ escalate into a full-on, caffeine-fueled grudge spiral you’ll still be hearing about three releases from now. 🌀😈
+
 Full [Code of Conduct here](.github/CODE_OF_CONDUCT.md).
 
 ---

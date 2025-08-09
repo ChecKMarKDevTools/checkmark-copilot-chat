@@ -10,7 +10,7 @@ Seriously, read [Security Principles](../.github/instructions/security-principle
 
 2. **Pick a Chat Mode**
    Want docs? Use Doc Doctor.
-   Need to review logs? Summon Logging Reviewr.
+   Need to review logs? Summon The Logfather.
    Feeling lucky? Try one of the weird modes and see what happens.
    _Pro tip: Each mode comes with its own custom instructions and Easter eggs._
 
@@ -43,7 +43,7 @@ Seriously, read [Security Principles](../.github/instructions/security-principle
 | Mode Name | What It Does | How to Use It |
 | - | - | - |
 | Doc Doctor 🩺 | Writes docs in every style except boring | `/chat doc` |
-| Logging Reviewr 🔎 | Roasts your log statements, suggests fixes | `/chat logging` |
+| The Logfather 🔎 | Cleans up your log statements, suggests fixes | `/chat logging` |
 | Instruction Whisperer 🌬️ | Crafts repo-level instructions like a pro | `/chat instruct` |
 | Refactor Genie 🧞 | Transforms code from ugly to elegant | `/chat refactor` |
 | CI/CD Wizard 🪄 | Automates pipelines with magic (and YAML) | `/chat ci` |

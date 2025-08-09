@@ -259,7 +259,7 @@ const DEFAULT_CHAT_MODE = 'doc-doctor';
 // Chat modes: kebab-case
 const CHAT_MODES = {
   'doc-doctor': docDoctorMode,
-  'log-reviewr': logReviewrMode,
+  'the-logfather': logFatherMode,
   'refactor-genie': refactorGenieMode,
 };
 ```
