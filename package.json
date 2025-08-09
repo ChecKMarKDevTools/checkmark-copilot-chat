@@ -1,6 +1,6 @@
 {
   "name": "checkmark-copilot-chat",
-  "version": "0.0.0",
+  "version": "1.0.0-scripting.0",
   "description": "Custom chat modes for GitHub Copilot, starting with skillsets. Docs, logging, and more - no weird prompts required.",
   "author": "Ashley Childress",
   "license": "Apache-2.0",

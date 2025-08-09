@@ -2,12 +2,11 @@
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "release-type": "simple",
   "include-component-in-tag": false,
-  "prerelease": true,
   "include-v-in-tag": true,
   "pull-request-header": "📼 Pilot Episode: First Alpha Transmission",
-  "always-update": false,
   "packages": {
     ".": {
+      "prerelease": true,
       "prerelease-type": "scripting",
       "extra-files": ["package.json", "version.txt"],
       "bump-minor-pre-major": true,
