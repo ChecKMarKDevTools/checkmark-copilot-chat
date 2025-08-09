@@ -6,11 +6,13 @@
   "pull-request-header": "📼 Pilot Episode: First Alpha Transmission",
   "packages": {
     ".": {
-      "prerelease": false,
-      "prerelease-type": "scripting",
+      "prerelease": true,
+      "prerelease-type": "pilot",
       "extra-files": ["package.json", "version.txt"],
       "bump-minor-pre-major": true,
-      "bump-patch-for-minor-pre-major": true
+      "bump-patch-for-minor-pre-major": true,
+      "initial-version": "0.0.1-pilot.0",
+      "versioning-strategy": "prerelease"
     }
   },
   "changelog-sections": [
