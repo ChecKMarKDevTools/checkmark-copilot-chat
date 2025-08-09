@@ -8,8 +8,10 @@
   "always-update": false,
   "packages": {
     ".": {
+      "prerelease-type": "scripting",
       "extra-files": ["package.json", "version.txt"],
-      "prerelease-type": "scripting"
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true
     }
   },
   "changelog-sections": [
