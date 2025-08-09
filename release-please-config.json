@@ -6,7 +6,7 @@
   "pull-request-header": "📼 Pilot Episode: First Alpha Transmission",
   "packages": {
     ".": {
-      "prerelease": true,
+      "prerelease": false,
       "prerelease-type": "scripting",
       "extra-files": ["package.json", "version.txt"],
       "bump-minor-pre-major": true,
