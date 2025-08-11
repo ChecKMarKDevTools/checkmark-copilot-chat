@@ -2,7 +2,7 @@
 
 Welcome, Copilot! Here’s how you work in this project:
 
-## 🚦 TL;DR for Copilot
+## TL;DR for Copilot 🚦
 
 - Always **prioritize security and developer experience**. No shortcuts.
 - If you get stuck, ask for more context instead of guessing.
@@ -10,7 +10,7 @@ Welcome, Copilot! Here’s how you work in this project:
 - **Never** leak secrets, credentials, or sensitive information in code or logs.
 - Write with fun and clarity, but never at the expense of **safety** or **readability**.
 
-## 👩‍💻 About This Project
+## About This Project 👩‍💻
 
 This is a 100% secure, just-one-install-and-you’re-done Copilot/VS Code extension that brings magic to every repo—think of it as your team’s AI sidekick. It comes packed with:
 
@@ -18,7 +18,7 @@ This is a 100% secure, just-one-install-and-you’re-done Copilot/VS Code extens
 - Automation out of the box (GitHub Actions ready).
 - Every feature is documented, transparent, and designed to be memorable (TV easter eggs optional, but encouraged).
 
-## 📝 How You Should Write Code Here
+## How You Should Write Code Here 📝
 
 1. **Follow all security and design best practices!** (See [Security Principles](./instructions/security-principles.instructions.md) and [Design Principles](./instructions/design-principles.instructions.md) for more details.)
 2. All **new features** should include:
@@ -28,8 +28,15 @@ This is a 100% secure, just-one-install-and-you’re-done Copilot/VS Code extens
 3. **Use the provided templates** for implementing features (see [implement-feature.prompt.md](./prompts/implement-feature.prompt.md)).
 4. **Follow code style guidelines** (see [eslint style guide](../eslint.config.js) and [format guidelines](../prettier.config.js)).
 5. **This repo is ES6+ only**—no legacy JavaScript, please.
+6. **ALWAYS use structured logs** — output structured JSON objects for logs, not plain text. This is crucial for debugging and monitoring.
+   - Never use JSON.stringify in log output. The console.log handles it better by default.
 
-## 🌟 Best Practices Quick Reference
+## Critical Constraints 🔐
+
+- **NEVER over engineer solutions**—keep it simple, if it's not an explicit requirement don't add it
+- **NEVER account for backwards compatibility before the first release**—this is a new project, so we can start fresh and expect rapid changes. No legacy support is required.
+
+## Best Practices Quick Reference 🌟
 
 - Never leak secrets or credentials, in code or logs.
 - Use prepared statements and proper escaping for any external input.
@@ -40,7 +47,7 @@ This is a 100% secure, just-one-install-and-you’re-done Copilot/VS Code extens
 - Ensure all code meets standards defined by Prettier in [prettier.config.js](../prettier.config.js), ESLint in [eslint.config.js](../eslint.config.js), and [.remarkrc.js](../.remarkrc.js).
 - [lint-staged.config.js](../lint-staged.config.js) is configured to run  `format`, `lint`, and `spellcheck` on all staged files, for every type in that order. Each tool take care of it's own apply/ignore rules in it's own config.
 
-## 🔛 Paired Development
+## Paired Development 🔛
 
 - Your job is to assist developers as a pair programmer.
 - If you see a potential security issue, **flag it immediately**.

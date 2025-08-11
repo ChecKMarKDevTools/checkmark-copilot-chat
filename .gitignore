@@ -203,3 +203,8 @@ dist
 *.txt
 !.vscode/project-dict.txt
 !version.txt
+
+# Ignore all env by default, except test and example
+*.env.*
+!.env.test
+!.env.example

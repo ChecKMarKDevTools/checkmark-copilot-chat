@@ -1,0 +1,24 @@
+---
+title: Chat Context Flow (Stateless Extension)
+---
+flowchart TD
+    A[LLM responds with system instructions in chat history] --> B[VS Code/Copilot Chat UI receives response]
+    B --> C[User sees system instructions in chat]
+    C --> D[User sends next request - no manual removal]
+    D --> E[VS Code/Copilot Chat extension serializes messages array]
+    E --> F[Messages array sent to backend]
+    F --> G[Backend removes old persona/system messages]
+    G --> H[Backend injects new system message]
+    H --> I[Backend sends updated messages to LLM]
+    %% Possible loss points
+    B -.-> |Session reset or extension reload| J[System instructions missing from UI]
+    E -.-> |Extension logic error| K[System instructions missing from payload]
+    F -.-> |Backend bug| L[System instructions missing from LLM context]
+    style J fill:#fbb,stroke:#f00,stroke-width:2px
+    style K fill:#fbb,stroke:#f00,stroke-width:2px
+    style L fill:#fbb,stroke:#f00,stroke-width:2px
+    %% Legend
+    subgraph Legend
+      direction LR
+      X[Red: Where instructions can be lost]
+    end

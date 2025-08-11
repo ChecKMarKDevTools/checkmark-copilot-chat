@@ -5,7 +5,8 @@ import namingPlugin from 'eslint-plugin-naming';
 
 export default [
   {
-    ignores: ['**/*.md'], // remark handles markdown files
+    // Ignore markdown and environment files; remark handles markdown and .env are non-code
+    ignores: ['**/*.md', '**/*.mmd', '**/.env*', '.gitignore', 'package.json', 'package-lock.json'],
   },
   {
     languageOptions: {

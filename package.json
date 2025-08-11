@@ -31,6 +31,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
     "build": "echo \"🎬 Now Building: Season 1, Episode 1 — 'The Setup Begins' 💡🛠️ (Coming soon to a terminal near you...)\"",
     "test": "echo \"📺 Previously on 'ChecKMarK': The tests... don't exist. But stay tuned — filming starts soon. 🎈✨🦄🍿\"",
     "prepare": "command -v husky >/dev/null 2>&1 && husky install",
@@ -38,7 +40,7 @@
     "format:prettier": "prettier --write . --log-level silent",
     "format:remark": "remark . -o --quiet",
     "format:fix-admonitions": "node scripts/fix-github-admonitions.js",
-    "lint": "eslint . --fix",
+    "lint": "eslint . --fix --no-warn-ignored",
     "spellcheck": "cspell . --show-suggestions",
     "check": "npm run format && npm run lint && npm run spellcheck",
     "commitlint": "commitlint --edit"
@@ -70,6 +72,7 @@
   },
   "dependencies": {
     "@octokit/core": "5.2.2",
+    "dotenv": "17.2.1",
     "express": "5.1.0"
   }
 }
