@@ -1,5 +1,14 @@
 # CheckMark Copilot Extension 🦾🤖🛡️
 
+> [!IMPORTANT]
+> This experiment set out to make individual Copilot chat modes easy to use without the heavy MCP configuration (which [awesome-copilot](https://github.com/github/awesome-copilot) already covers). The catch? The only way to deliver that kind of plug-and-play experience is with server-side memory—and after exhausting every workaround, that requirement is unavoidable.
+>
+> Server-side memory is a non-starter for our internal security review, so the concept never had a path to production. GitHub then sunset the Copilot apps a few weeks after I finally confirmed the limitation, which sealed the deal.
+>
+> The test code remains for reference, but the idea itself is retired. A new approach is already brewing elsewhere. 😉
+
+---
+
 > 🛡 Security: Report privately → <human@checkmarkdevtools.dev> (credit + karma included)
 
 A “just install it and go” VS Code + Copilot extension that’s actually fun to use.
